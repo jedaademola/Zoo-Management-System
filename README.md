@@ -66,7 +66,12 @@ JSP, HTML, Java script, CSS
 
 Back End :
 
-Sql Server, Embedded Tomcat, Spring boot, Spring MVC, Spring security, RESTful microservice API, Data structure (Array List), JDBC template, JSON.
+Embedded Tomcat, Spring boot, Spring MVC, Spring security, Spring scheduler, RESTful microservice API, Data structure (Array List), JDBC template, JSON, Hibernate 
+
+Database:
+
+SQL Server 
+
 
 
 
