@@ -17,20 +17,36 @@ reach the deadline.
 FEATURES OF THE SYSTEM
 
 Administration features
+
 •	Add/Edit/Update/view employee details
+
 •	Add/Edit/update/view animal detail
+
 •	Add/Edit/update/view animal food and medicine
+
 •	Add/Edit/update/view cell details
+
 •	Add/Edit/update/view supplier details
+
 •	Add/Edit/update/view Holiday/Promo packages
+
 •	Add/Edit/update/view Zoo card
+
 •	Stock management (simple operation)
+
 •	Generate Report: Animals, visitors, payments, employees
 
+
 Visitor/Employee features
+
 •	Search for animal
+
 •	Visitor make payment
+
 •	Make appointment to the Zoo
 
+
 System feature
+
 •	Send auto mail to supplier
+
