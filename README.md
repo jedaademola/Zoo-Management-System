@@ -53,7 +53,7 @@ System feature
 
 SOFTWARE DESIGN PATTERN USED
 
-Template method 
+Template method, Singleton 
 
 HARDWARE & SOFTWARE USED
 
