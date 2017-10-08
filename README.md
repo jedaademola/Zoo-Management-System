@@ -52,6 +52,7 @@ System feature
 
 
 SOFTWARE DESIGN PATTERN USED
+
 Template method 
 
 HARDWARE & SOFTWARE USED
