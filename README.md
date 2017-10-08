@@ -50,3 +50,22 @@ System feature
 
 •	Send auto mail to supplier
 
+
+SOFTWARE DESIGN PATTERN USED
+Template method 
+
+HARDWARE & SOFTWARE USED
+
+Software used:
+IntelliJ, Windows and Linux
+
+Front End : 
+
+JSP, HTML, Java script, CSS
+
+Back End :
+
+Sql Server, Embedded Tomcat, spring boot, spring mvc, spring security, RESTFUl microservice API, Data strcuture(ArrayList)
+
+
+
