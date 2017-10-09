@@ -15,6 +15,14 @@ import java.util.List;
 public class DashboardController {
 
 
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ModelAndView index() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("index");
+        return model;
+    }
+
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login() {
         ModelAndView model = new ModelAndView();
