@@ -7,9 +7,32 @@
 @font-face {
   font-family: 'FontAwesome';
   src: url('../fonts/fontawesome-webfont.eot?v=4.0.3');
-  src: url('../fonts/fontawesome-webfont.eot?#iefix&v=4.0.3') format('embedded-opentype'), url('../fonts/fontawesome-webfont.woff?v=4.0.3') format('woff'), url('../fonts/fontawesome-webfont.ttf?v=4.0.3') format('truetype'), url('../fonts/fontawesome-webfont.svg?v=4.0.3#fontawesomeregular') format('svg');
+  src: url('../fonts/fontawesome-webfont.eot?#iefix&v=4.0.3') format('embedded-opentype'), 
+       url('../fonts/fontawesome-webfont.woff?v=4.0.3') format('woff'), 
+       url('../fonts/fontawesome-webfont.ttf?v=4.0.3') format('truetype'), 
+       url('../fonts/fontawesome-webfont.svg?v=4.0.3#fontawesomeregular') format('svg');
   font-weight: normal;
   font-style: normal;
+}
+.box1 {
+	display: inline-block;
+	width: 15%;
+	padding:5px .5em;
+	background:rgba(238, 238, 238, 0.26);
+	margin: .5em 1% .5em 0;
+	text-align: left;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	font-size:13px;
+}
+.fontawesome-icon-list a i {
+    margin-right:10px;
+    font-size:25px;
+    color:#757575;
+}
+.margin-top{
+	margin-top:20px;
 }
 .fa {
   display: inline-block;

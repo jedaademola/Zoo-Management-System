@@ -10,19 +10,19 @@ import java.util.Objects;
 
 public abstract class AbstractModel implements Serializable {
     @JsonIgnore
-    private Long id;
+    private long id;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
     @JsonIgnore
     public boolean isNew() {
-        return (this.id == null);
+        return (this.id == 0);
     }
 
     @Override
