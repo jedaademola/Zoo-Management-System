@@ -1,6 +1,7 @@
 package edu.mum.mpp.util;
 
 import edu.mum.mpp.model.Block;
+import edu.mum.mpp.model.LabelValue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,24 @@ public class BlockDataUtil {
 
     public static List<Block> blockList = new ArrayList<>();
     private static long lastId;
+
+
+    public static List<LabelValue> getBlockListForDropDown() {
+
+        List<LabelValue> selectItems = new ArrayList<>();
+
+        for (Block b : displayBlocks()) {
+
+            LabelValue l = new LabelValue();
+            l.setLabel(b.getName());
+            l.setValue(b.getId());
+            selectItems.add(l);
+
+
+        }
+
+        return selectItems;
+    }
 
     public static List<Block> displayBlocks() {
         //blockList = new ArrayList<>();
@@ -33,5 +52,10 @@ public class BlockDataUtil {
 
         newBlock.setId(lastId);
         blockList.add(newBlock);
+    }
+
+    public static void editBlock(Block newBlock) {
+        int idTemp = (int) newBlock.getId();
+        blockList.set(idTemp - 1, newBlock);
     }
 }

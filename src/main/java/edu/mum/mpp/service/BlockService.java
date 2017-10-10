@@ -70,4 +70,11 @@ public class BlockService extends AbstractService<Block> {
 
         return singleBlock;
     }
+
+
+    public Block editBlock(Block block) {
+        BlockDataUtil.editBlock(block);
+        return block;
+
+    }
 }

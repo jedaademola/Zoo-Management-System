@@ -1,13 +1,17 @@
 package edu.mum.mpp.controller;
 
+import edu.mum.mpp.model.Block;
 import edu.mum.mpp.model.User;
+import edu.mum.mpp.util.AninalDataUtil;
 import edu.mum.mpp.util.BlockDataUtil;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 
@@ -23,11 +27,30 @@ public class DashboardController {
         return model;
     }
 
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public ModelAndView indexpage() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("index");
+        return model;
+    }
+
     @RequestMapping(value = "/manageBlock", method = RequestMethod.GET)
     public ModelAndView manageBlock() {
         ModelAndView model = new ModelAndView();
         model.addObject("blocks", BlockDataUtil.displayBlocks());
         model.setViewName("manageBlock");
+        return model;
+    }
+
+    @RequestMapping(value = "/manageAnimal", method = RequestMethod.GET)
+    public ModelAndView manageAnimal(@ModelAttribute("command") Block block) {
+
+        ModelAndView model = new ModelAndView();
+        // model.addObject("states",states);
+        model.addObject("blocks", BlockDataUtil.getBlockListForDropDown());
+        model.addObject("cells", null);
+        model.addObject("animals", AninalDataUtil.displayAnimals());
+        model.setViewName("manageAnimal");
         return model;
     }
 
