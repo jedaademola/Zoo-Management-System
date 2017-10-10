@@ -6,7 +6,14 @@
 package edu.mum.mpp.config;
 
 
+import com.zaxxer.hikari.HikariDataSource;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import javax.sql.DataSource;
+import java.io.IOException;
 
 /**
  *
@@ -14,10 +21,9 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 
-//@EnableTransactionManagement
+@EnableTransactionManagement
 
 public class DataSourceConfig {
-/*
     @Value("${portal.datasource.driverClassName}")
     private  String datasourceDriverClassName ;//="com.microsoft.sqlserver.jdbc.SQLServerDriver";
     @Value("${portal.datasource.url}")
@@ -40,5 +46,5 @@ public class DataSourceConfig {
 
         return ds;
     }
-    */
+
 }
