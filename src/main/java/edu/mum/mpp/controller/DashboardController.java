@@ -4,6 +4,7 @@ import edu.mum.mpp.model.Block;
 import edu.mum.mpp.model.User;
 import edu.mum.mpp.util.AninalDataUtil;
 import edu.mum.mpp.util.BlockDataUtil;
+import edu.mum.mpp.util.FoodDataUtil;
 import edu.mum.mpp.util.CellDataUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -42,6 +43,24 @@ public class DashboardController {
         model.setViewName("manageBlock");
         return model;
     }
+
+    @RequestMapping(value = "/manageFood", method = RequestMethod.GET)
+    public ModelAndView manageFood() {
+        ModelAndView model = new ModelAndView();
+        model.addObject("foods", FoodDataUtil.displayFoods());
+        model.setViewName("manageFood");
+        return model;
+    }
+
+    @RequestMapping(value = "/manageMedicine", method = RequestMethod.GET)
+    public ModelAndView manageMedicine() {
+        ModelAndView model = new ModelAndView();
+        model.addObject("medicines", FoodDataUtil.displayFoods());
+        model.setViewName("manageMedicine");
+        return model;
+    }
+
+
 
     @RequestMapping(value = "/manageCell", method = RequestMethod.GET)
     public ModelAndView manageCell(@ModelAttribute("command") Block block) {
