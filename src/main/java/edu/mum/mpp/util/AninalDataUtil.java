@@ -8,8 +8,8 @@ import java.util.List;
 
 public class AninalDataUtil {
 
-    public static List<Animal> animalList = new ArrayList<>();
-    private static long lastId;
+    private static List<Animal> animalList = new ArrayList<>();
+    public static long lastId;
 
     public static List<Animal> displayAnimals() {
 

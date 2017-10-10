@@ -7,6 +7,7 @@ import edu.mum.mpp.model.Animal;
 
 import edu.mum.mpp.model.Response;
 import edu.mum.mpp.service.AnimalService;
+import edu.mum.mpp.util.AninalDataUtil;
 import edu.mum.mpp.util.CustomResponseCode;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,14 +38,16 @@ public class AnimalController {
         if (animal.getTag() == null || animal.getTag().isEmpty())
             throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Tag cannot be empty");
 
-        if (animal.getBlockId() < 0L)
+        if (animal.getBlockId() < 0)
             throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Block cannot be empty");
 
-        if (animal.getCellId() < 0L)
+        animal.setCellId(AninalDataUtil.lastId + 1);//TODO REMOVE LATER JUST FOR TESTING, lastId SHOULD BE RPIVATE
+
+        if (animal.getCellId() < 0)
             throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Cell cannot be empty");
 
         if (animalService.checkAnimal(animal.getCellId())) {
-            throw new ConflictException(CustomResponseCode.INVALID_REQUEST, " animal already exist assigned to this Cell");
+            throw new ConflictException(CustomResponseCode.INVALID_REQUEST, "Another Animal already exist assigned to this Cell");
         }
 
         //    User user = TokenService.getCurrentUserFromSecurityContext();
@@ -71,10 +74,10 @@ public class AnimalController {
         if (animal.getTag() == null || animal.getTag().isEmpty())
             throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Tag cannot be empty");
 
-        if (animal.getBlockId() < 0L)
+        if (animal.getBlockId() < 0)
             throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Block cannot be empty");
 
-        if (animal.getCellId() < 0L)
+        if (animal.getCellId() < 0)
             throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Cell cannot be empty");
 
         Animal animalTemp = animalService.getSingleAnimal(animal.getId());
