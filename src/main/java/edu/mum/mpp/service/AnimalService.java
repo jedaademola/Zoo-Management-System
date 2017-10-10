@@ -31,7 +31,7 @@ public class AnimalService extends AbstractService<Animal> {
 
     public boolean checkAnimal(long cellId) {
 
-        long idTemp = 0;
+        long idTemp = cellId;
         try {
 
             idTemp = AninalDataUtil.displayAnimals().stream()
