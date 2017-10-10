@@ -19,4 +19,10 @@ public class CellService extends AbstractService<Cell> {
         CellDataUtil.addCell(cell);
         return cell;
     }
+
+    public Cell editCell(Cell cell) {
+        CellDataUtil.editCell(cell);
+        return cell;
+
+    }
 }

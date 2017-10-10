@@ -17,6 +17,11 @@ public class CellDataUtil {
         cellList.add(newCell);
     }
 
+    public static void editCell(Cell newCell) {
+        int idTemp = (int) newCell.getId();
+        cellList.set(idTemp - 1, newCell);
+    }
+
     public static List<Cell> displayCells() {
 
         if (cellList.size() < 1) { // if list blank populate these values in it

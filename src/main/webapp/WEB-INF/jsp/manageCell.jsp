@@ -206,7 +206,7 @@ License URL: http://creativecommons.org/licenses/by/4.0/
             <td></td>
             <td> <a href="#"
                         data-toggle="tooltip" data-placement="top"
-                        data-id="${cell.id}:${cell.name}"   class="editBlock" id="myBtn${cell.id}">Edit</td>
+                        data-id="${cell.id}:${cell.name}"   class="editCell" id="myBtn${cell.id}">Edit</td>
           </tr>
          </c:forEach>
         </tbody>
@@ -241,20 +241,20 @@ License URL: http://creativecommons.org/licenses/by/4.0/
                                    });
 
 
-              $('.editBlock').click(function () {
+              $('.editCell').click(function () {
 
                                      var id = $(this).attr('data-id');
 
-                                     $('#myModalEdit').find('#blockId').val(id.split(":")[0]);
+                                     $('#myModalEdit').find('#cellId').val(id.split(":")[0]);
                                      $('#myModalEdit').find('#nameEditInput').val(id.split(":")[1]);
 
                                      $('#myModalEdit').modal();
                                  });
 
-              $(document).on("click", "#editBlockId", function (e) {
+              $(document).on("click", "#editCellId", function (e) {
 
 
-                                          editBlock();
+                                          editCell();
 
                                        //   location.reload();
                                       });
@@ -297,6 +297,58 @@ License URL: http://creativecommons.org/licenses/by/4.0/
                    error: function (xhr, errorType, exception) {
 
                         $('#myModal').modal('hide');
+                       document.getElementById("msgAlertFailed").style.display = '';
+                       document.getElementById("msgAlert").style.display = 'none';
+
+                       var responseText = JSON.parse(xhr.responseText);
+
+
+
+                       $("#resultsError").html(responseText.description);
+
+                   }
+               }
+
+           );
+           }
+function editCell() {
+              // var token = $("meta[name='_csrf']").attr("content");
+             //  var header = $("meta[name='_csrf_header']").attr("content");
+
+               var jsonRequest = {};
+
+               jsonRequest["id"] =  $("#cellId").val();
+               jsonRequest["name"] =  $("#nameEditInput").val();
+               jsonRequest["blockId"] =  $("#editBlockId").val();
+
+
+
+               var param = JSON.stringify(jsonRequest);
+              // xhr.setRequestHeader(header, token);
+               $.ajax({
+                   url: "${cp}/api/v1/zoo/cell",
+                   type: "PUT",
+                   dataType: "json",
+                   beforeSend: function (xhr) {
+                       xhr.setRequestHeader("Accept", "application/json");
+                       xhr.setRequestHeader("Content-Type", "application/json");
+
+                   },
+                   data: param,
+                   success: function (data) {
+
+                      $('#myModalEdit').modal('hide');
+                       $("#resultsSuccess").html(data.description);
+                       document.getElementById("msgAlert").style.display = '';
+                       document.getElementById("msgAlertFailed").style.display = 'none';
+
+
+
+                   }
+                   ,
+                   error: function (xhr, errorType, exception) {
+
+                        $('#myModalEdit').modal('hide');
                        document.getElementById("msgAlertFailed").style.display = '';
                        document.getElementById("msgAlert").style.display = 'none';
 
@@ -375,7 +427,7 @@ License URL: http://creativecommons.org/licenses/by/4.0/
       <div class="modal-body">
             <form:form id = "form-popup-cell8" class="form-horizontal">
                        <div class="form-group">
-                       <input type ="hidden" name ="blockid" value ="" id ="blockId"/>
+                       <input type ="hidden" name ="cellId" value ="" id ="cellId"/>
                            <label for="nameEditInput" class="col-sm-2 control-label">Name</label>
                            <div class="col-sm-8">
                                <input type="text" class="form-control1" id="nameEditInput">
@@ -399,7 +451,7 @@ License URL: http://creativecommons.org/licenses/by/4.0/
                </form:form>
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-primary" id="editBlockId">Edit</button>
+      <button type="button" class="btn btn-primary" id="editCellId">Edit</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>

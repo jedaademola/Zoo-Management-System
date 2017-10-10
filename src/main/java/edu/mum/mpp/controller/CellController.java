@@ -50,7 +50,7 @@ public class CellController {
         return new ResponseEntity<>(resp, httpCode);
     }
 
-    /*
+
     @RequestMapping(value = "/cell", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> edit(@RequestBody @Validated Cell cell) {
@@ -61,22 +61,22 @@ public class CellController {
         if (cell.getName() == null || cell.getName().isEmpty())
             throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Block Name cannot be empty");
 
-        if (block.getLocation() == null || block.getLocation().isEmpty())
+        /*if (block.getLocation() == null || block.getLocation().isEmpty())
             throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Location cannot be empty");
 
         Block blockTemp = blockService.getSingleBlock(block.getId());
         if (blockTemp == null) {
             throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, " Block does not exist");
-        }
+        }*/
 
 
         Response resp = new Response();
-        cellService.editBlock(block);
-        HttpStatus httpCode = (block.getId() > 0) ? HttpStatus.OK : HttpStatus.INTERNAL_SERVER_ERROR;
-        resp.setDescription((block.getId() > 0) ? "Edit Operation successful" : "Edit Operation failed");
+        cellService.editCell(cell);
+        HttpStatus httpCode = (cell.getId() > 0) ? HttpStatus.OK : HttpStatus.INTERNAL_SERVER_ERROR;
+        resp.setDescription((cell.getId() > 0) ? "Edit Operation successful" : "Edit Operation failed");
 
         return new ResponseEntity<>(resp, httpCode);
-    }*/
+    }
 
     /*
     @RequestMapping(value = "/block", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
