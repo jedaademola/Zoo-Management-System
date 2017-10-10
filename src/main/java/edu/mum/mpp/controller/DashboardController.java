@@ -1,6 +1,7 @@
 package edu.mum.mpp.controller;
 
 import edu.mum.mpp.model.User;
+import edu.mum.mpp.util.BlockDataUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +20,14 @@ public class DashboardController {
     public ModelAndView index() {
         ModelAndView model = new ModelAndView();
         model.setViewName("index");
+        return model;
+    }
+
+    @RequestMapping(value = "/manageBlock", method = RequestMethod.GET)
+    public ModelAndView manageBlock() {
+        ModelAndView model = new ModelAndView();
+        model.addObject("blocks", BlockDataUtil.displayBlocks());
+        model.setViewName("manageBlock");
         return model;
     }
 

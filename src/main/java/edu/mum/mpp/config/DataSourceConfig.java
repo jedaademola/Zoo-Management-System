@@ -6,7 +6,14 @@
 package edu.mum.mpp.config;
 
 
+import com.zaxxer.hikari.HikariDataSource;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import javax.sql.DataSource;
+import java.io.IOException;
 
 /**
  *
@@ -14,18 +21,17 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 
-//@EnableTransactionManagement
+@EnableTransactionManagement
 
 public class DataSourceConfig {
-/*
     @Value("${portal.datasource.driverClassName}")
-    private  String datasourceDriverClassName ;//="com.microsoft.sqlserver.jdbc.SQLServerDriver";
+    private String datasourceDriverClassName;
     @Value("${portal.datasource.url}")
-    private  String datasourceUrl;//="jdbc:sqlserver://localhost;databaseName=school_portal;portNumber=1433";
+    private String datasourceUrl;
     @Value("${portal.datasource.username}")
-    private  String datasourceUsername;//="school_portal";
+    private String datasourceUsername;
     @Value("${portal.datasource.password}")
-    private  String datasourcePassword;//"Password1$";
+    private String datasourcePassword;
     @Value("${portal.datasource.max.connection.pool.size}")
     private int maxPoolSize;
     
@@ -40,5 +46,5 @@ public class DataSourceConfig {
 
         return ds;
     }
-    */
+
 }
