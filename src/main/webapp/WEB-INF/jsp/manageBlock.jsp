@@ -235,6 +235,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     // alert( "Here we come");
                     //alert( $("#nameInput").val());
                     addBlock();
+
+                 //   location.reload();
                 });
 
    });
@@ -319,7 +321,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="form-group">
                     <label for="locationInput" class="col-sm-2 control-label">Location</label>
                     <div class="col-sm-8">
-                        <select  id="nameLocation">
+                        <select  id="nameLocation" class="form-control1">
                             <option>East</option>
                             <option>West</option>
                             <option>North</option>
