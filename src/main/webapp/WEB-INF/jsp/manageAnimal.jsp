@@ -5,6 +5,10 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+
 <c:set var="cp" value="${pageContext.request.servletContext.contextPath}" scope="request" />
 <html>
 <head>
@@ -137,20 +141,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </form>
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="${cp}"><i class="fa fa-dashboard fa-fw nav_icon"></i>Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="${cp}/manageBlock"><i class="fa fa-check-square-o nav_icon"></i>Manage Block</a>
-                        </li>
-                          <li>
-                             <a href="${cp}/"><i class="fa fa-check-square-o nav_icon"></i>Manage Cell</a>
-                         </li>
-                         <li>
-                          <a href="${cp}/"><i class="fa fa-check-square-o nav_icon"></i>Manage Animal</a>
-                      </li>
-
+              <ul class="nav" id="side-menu">
+               <li>
+                   <a href="${cp}/index"><i class="fa fa-dashboard fa-fw nav_icon"></i>Dashboard</a>
+               </li>
+               <li>
+                   <a href="${cp}/manageBlock"><i class="fa fa-check-square-o nav_icon"></i>Manage Block</a>
+               </li>
+                 <li>
+                    <a href="${cp}/manageCell"><i class="fa fa-check-square-o nav_icon"></i>Manage Cell</a>
+                </li>
+                <li>
+                 <a href="${cp}/manageAnimal"><i class="fa fa-check-square-o nav_icon"></i>Manage Animal</a>
+             </li>
 
                     </ul>
                 </div>
@@ -176,35 +179,41 @@ License URL: http://creativecommons.org/licenses/by/3.0/
      <div class="clearfix"> </div>
     <div class="table-responsive">
      <a href="#" class="btn btn-primary btn-md pull-right" data-toggle="modal" data-target="#myModal">
-     <b>+</b> Add new Block</a>
+     <b>+</b> Add new Animal</a>
      <!-- Trigger the modal with a button -->
      <!--button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button -->
      <div class="clearfix"> </div>
+
+
        <div class="clearfix"> </div>
       <table class="table table-bordered">
         <thead>
           <tr>
             <th>#</th>
             <th>Name</th>
-            <th>Location</th>
-            <th>Date Created</th>
-            <th>Date Modified</th>
-            <th>Modified by</th>
+            <th>Species</th>
+            <th>Tag</th>
+            <th>Date Of Birth</th>
+            <th>Date Of Death</th>
+            <th>Block</th>
+            <th>Cell</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-         <c:forEach var="block" items="${blocks}" varStatus="theCount">
+         <c:forEach var="animal" items="${animals}" varStatus="theCount">
           <tr>
             <th scope="row">${theCount.count}</th>
-            <td>${block.name}</td>
-            <td>${block.location}</td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>${animal.name}</td>
+            <td>${animal.specy}</td>
+            <td>${animal.tag}</td>
+            <td>${animal.dateOfBirth}</td>
+            <td>${animal.dateOfDeath}</td>
+            <td>${animal.blockId}</td>
+            <td>${animal.cellId}</td>
             <td> <a href="#"
             data-toggle="tooltip" data-placement="top"
-            data-id="${block.id}:${block.name}"   class="editBlock" id="myBtn${block.id}">Edit</td>
+            data-id="${animal.id}:${animal.name}"   class="editAnimal" id="myBtn${animal.id}">Edit</td>
           </tr>
          </c:forEach>
         </tbody>
@@ -379,10 +388,10 @@ function editBlock() {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Add New Block</h4>
+        <h4 class="modal-title">Add New Animal</h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal">
+        <form:form id ="formaction" class="form-horizontal">
                 <div class="form-group">
                     <label for="nameInput" class="col-sm-2 control-label">Name</label>
                     <div class="col-sm-8">
@@ -393,21 +402,50 @@ function editBlock() {
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="locationInput" class="col-sm-2 control-label">Location</label>
+                    <label for="speciesInput" class="col-sm-2 control-label">Name</label>
                     <div class="col-sm-8">
-                        <select  id="nameLocation" class="form-control1">
-                            <option>East</option>
-                            <option>West</option>
-                            <option>North</option>
-                            <option>South</option>
-                        </select>
+                        <input type="text" class="form-control1" id="speciesInput" placeholder="Enter Species">
                     </div>
                     <div class="col-sm-2">
 
                     </div>
                 </div>
 
-         </form>
+
+                  <div class="form-group">
+                         <label for="tagInput" class="col-sm-2 control-label">Name</label>
+                         <div class="col-sm-8">
+                             <input type="text" class="form-control1" id="tagInput" placeholder="Enter Tag">
+                         </div>
+                         <div class="col-sm-2">
+
+                         </div>
+                     </div>
+                <div class="form-group">
+                    <label for="blockInput" class="col-sm-2 control-label">Block</label>
+                    <div class="col-sm-8">
+                       <form:select class="form-control1" id="blockInput" path="name">
+                            <form:options items="${blocks}" itemValue="value" itemLabel="label"/>
+                        </form:select>
+
+                    </div>
+                    <div class="col-sm-2">
+
+                    </div>
+                </div>
+             <div class="form-group">
+                <label for="cellInput" class="col-sm-2 control-label">Cell</label>
+                <div class="col-sm-8">
+                   <form:select class="form-control1" id="cellInput" path="id">
+                        <form:options items="${cells}" itemValue="value" itemLabel="label"/>
+                    </form:select>
+
+                </div>
+                <div class="col-sm-2">
+
+                </div>
+            </div>
+           </form:form>
 
       </div>
       <div class="modal-footer">
