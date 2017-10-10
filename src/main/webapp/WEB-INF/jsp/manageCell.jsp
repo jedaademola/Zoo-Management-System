@@ -5,6 +5,8 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/4.0/
 -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="cp" value="${pageContext.request.servletContext.contextPath}" scope="request" />
 <html>
 <head>
@@ -186,7 +188,7 @@ License URL: http://creativecommons.org/licenses/by/4.0/
           <tr>
             <th>#</th>
             <th>Name</th>
-            <th>Location</th>
+            <th>Block</th>
             <th>Date Created</th>
             <th>Date Modified</th>
             <th>Modified by</th>
@@ -194,15 +196,17 @@ License URL: http://creativecommons.org/licenses/by/4.0/
           </tr>
         </thead>
         <tbody>
-         <c:forEach var="cell" items="${blocks}" varStatus="theCount">
+         <c:forEach var="cell" items="${cells}" varStatus="theCount">
           <tr>
             <th scope="row">${theCount.count}</th>
-            <td>${block.name}</td>
-            <td>${block.location}</td>
+            <td>${cell.name}</td>
+             <td>${cell.blockId}</td>
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
+            <td> <a href="#"
+                        data-toggle="tooltip" data-placement="top"
+                        data-id="${cell.id}:${cell.name}"   class="editBlock" id="myBtn${cell.id}">Edit</td>
           </tr>
          </c:forEach>
         </tbody>
@@ -230,33 +234,47 @@ License URL: http://creativecommons.org/licenses/by/4.0/
 <script type="text/javascript">
     $(document).ready(function () {
 
-             $(document).on("click", "#addBlock", function (e) {
+             $(document).on("click", "#addCell", function (e) {
+                                       addCell();
 
-                    // alert( "Here we come");
-                    //alert( $("#nameInput").val());
-                    addBlock();
+                                    //   location.reload();
+                                   });
 
-                 //   location.reload();
-                });
+
+              $('.editBlock').click(function () {
+
+                                     var id = $(this).attr('data-id');
+
+                                     $('#myModalEdit').find('#blockId').val(id.split(":")[0]);
+                                     $('#myModalEdit').find('#nameEditInput').val(id.split(":")[1]);
+
+                                     $('#myModalEdit').modal();
+                                 });
+
+              $(document).on("click", "#editBlockId", function (e) {
+
+
+                                          editBlock();
+
+                                       //   location.reload();
+                                      });
 
    });
 
 
-   function addBlock() {
-              // var token = $("meta[name='_csrf']").attr("content");
-             //  var header = $("meta[name='_csrf_header']").attr("content");
+   function addCell() {
 
                var jsonRequest = {};
 
                jsonRequest["name"] =  $("#nameInput").val();
-               jsonRequest["location"] =  $("#nameLocation").val();
+               jsonRequest["blockId"] =  $("#blockInput").val();
 
 
 
                var param = JSON.stringify(jsonRequest);
-    // xhr.setRequestHeader(header, token);
+
                $.ajax({
-                   url: "${cp}/api/v1/zoo/block",
+                   url: "${cp}/api/v1/zoo/cell",
                    type: "POST",
                    dataType: "json",
                    beforeSend: function (xhr) {
@@ -318,26 +336,20 @@ License URL: http://creativecommons.org/licenses/by/4.0/
 
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="locationInput" class="col-sm-2 control-label">Block Id</label>
-                    <!--<div class="col-sm-8"> -->
-
-                    <!-- </div> -->
+                 <div class="form-group">
+                    <label for="blockInput" class="col-sm-2 control-label">Block</label>
                     <div class="col-sm-8">
+                       <form:select class="form-control1" id="blockInput" path="name">
+                            <form:options items="${blocks}" itemValue="value" itemLabel="label"/>
+                        </form:select>
 
-                        <select  id="blockIdInput" class="form-control1" placeholder="Select block id">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                        </select>
                     </div>
                     <div class="col-sm-2">
 
                     </div>
                 </div>
 
-         </form>
+          </form:form>
 
       </div>
       <div class="modal-footer">
@@ -348,6 +360,51 @@ License URL: http://creativecommons.org/licenses/by/4.0/
 
   </div>
 </div>
+
+
+<!-- Modal Edit-->
+<div id="myModalEdit" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit Block</h4>
+      </div>
+      <div class="modal-body">
+            <form:form id = "form-popup-cell8" class="form-horizontal">
+                       <div class="form-group">
+                       <input type ="hidden" name ="blockid" value ="" id ="blockId"/>
+                           <label for="nameEditInput" class="col-sm-2 control-label">Name</label>
+                           <div class="col-sm-8">
+                               <input type="text" class="form-control1" id="nameEditInput">
+                           </div>
+                           <div class="col-sm-2">
+
+                           </div>
+                       </div>
+                       <div class="form-group">
+                           <label for="editLocation" class="col-sm-2 control-label">Block</label>
+                           <div class="col-sm-8">
+                               <form:select class="form-control1" id="blockInput" path="name">
+                                  <form:options items="${blocks}" itemValue="value" itemLabel="label"/>
+                                </form:select>
+                           </div>
+                           <div class="col-sm-2">
+
+                           </div>
+                       </div>
+
+               </form:form>
+      </div>
+      <div class="modal-footer">
+      <button type="button" class="btn btn-primary" id="editBlockId">Edit</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+ </div>
+
 </div>
 </div>
 
