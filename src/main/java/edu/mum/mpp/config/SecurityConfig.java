@@ -38,11 +38,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        
-        
-        
+
+
+        // authorizeRequests().antMatchers("/jsp/**","/css/**", "/js/**","/images/*",
         http.
-                authorizeRequests().antMatchers("/**","/css/**", "/js/**","/app/**","/images/*",
+                authorizeRequests().antMatchers("/**", "/css/**", "/js/**", "/images/*",
                         "/fonts/*",
                         "/favicon.ico").
                 permitAll().

@@ -161,6 +161,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div id="page-wrapper">
 
 <div class="bs-example4" data-example-id="simple-responsive-table">
+ <div class="alert alert-success alert-dismissable" style="display:none" id="msgAlert">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <div id="resultsSuccess"></div>
+</div>
+
+<div class="alert alert-danger alert-dismissable" style="display:none" id="msgAlertFailed">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <div id="resultsError"></div>
+</div>
+
+
     <div class="clearfix"> </div>
      <div class="clearfix"> </div>
     <div class="table-responsive">
@@ -216,6 +227,73 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!-- Bootstrap Core JavaScript -->
     <script src="${cp}/js/bootstrap.min.js"></script>
 </body>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+             $(document).on("click", "#addBlock", function (e) {
+
+                    // alert( "Here we come");
+                    //alert( $("#nameInput").val());
+                    addBlock();
+                });
+
+   });
+
+
+   function addBlock() {
+              // var token = $("meta[name='_csrf']").attr("content");
+             //  var header = $("meta[name='_csrf_header']").attr("content");
+
+               var jsonRequest = {};
+
+               jsonRequest["name"] =  $("#nameInput").val();
+               jsonRequest["location"] =  $("#nameLocation").val();
+
+
+
+               var param = JSON.stringify(jsonRequest);
+    // xhr.setRequestHeader(header, token);
+               $.ajax({
+                   url: "${cp}/api/v1/zoo/block",
+                   type: "POST",
+                   dataType: "json",
+                   beforeSend: function (xhr) {
+                       xhr.setRequestHeader("Accept", "application/json");
+                       xhr.setRequestHeader("Content-Type", "application/json");
+
+                   },
+                   data: param,
+                   success: function (data) {
+
+                      $('#myModal').modal('hide');
+                       $("#resultsSuccess").html(data.description);
+                       document.getElementById("msgAlert").style.display = '';
+                       document.getElementById("msgAlertFailed").style.display = 'none';
+
+
+
+                   }
+                   ,
+                   error: function (xhr, errorType, exception) {
+
+                        $('#myModal').modal('hide');
+                       document.getElementById("msgAlertFailed").style.display = '';
+                       document.getElementById("msgAlert").style.display = 'none';
+
+                       var responseText = JSON.parse(xhr.responseText);
+
+
+
+                       $("#resultsError").html(responseText.description);
+
+                   }
+               }
+
+           );
+           }
+
+
+ </script>
 
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
@@ -257,7 +335,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" >Add</button>
+        <button type="button" class="btn btn-primary" id="addBlock">Add</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -266,4 +344,5 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </div>
 </div>
 </div>
+
 </html>

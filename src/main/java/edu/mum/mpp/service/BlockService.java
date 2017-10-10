@@ -54,4 +54,20 @@ public class BlockService extends AbstractService<Block> {
     public List<Block> getBlocks() {
         return BlockDataUtil.displayBlocks();
     }
+
+    public Block getSingleBlock(long id) {
+        Block singleBlock = null;
+        try {
+
+            singleBlock = BlockDataUtil.displayBlocks().stream()
+                    .filter(block -> block.getId() == id)
+                    .findAny().get();
+
+        } catch (Exception ex) {
+            logger.error(" [getSingleBlock()]: " + ex.getMessage());
+            LoggerUtil.logError(logger, ex);
+        }
+
+        return singleBlock;
+    }
 }
