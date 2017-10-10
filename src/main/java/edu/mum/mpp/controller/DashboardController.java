@@ -4,6 +4,7 @@ import edu.mum.mpp.model.Block;
 import edu.mum.mpp.model.User;
 import edu.mum.mpp.util.AninalDataUtil;
 import edu.mum.mpp.util.BlockDataUtil;
+import edu.mum.mpp.util.CellDataUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,6 +42,16 @@ public class DashboardController {
         model.setViewName("manageBlock");
         return model;
     }
+
+    @RequestMapping(value = "/manageCell", method = RequestMethod.GET)
+    public ModelAndView manageCell(@ModelAttribute("command") Block block) {
+        ModelAndView model = new ModelAndView();
+        model.addObject("blocks", BlockDataUtil.getBlockListForDropDown());
+        model.addObject("cells", CellDataUtil.displayCells());
+        model.setViewName("manageCell");
+        return model;
+    }
+
 
     @RequestMapping(value = "/manageAnimal", method = RequestMethod.GET)
     public ModelAndView manageAnimal(@ModelAttribute("command") Block block) {

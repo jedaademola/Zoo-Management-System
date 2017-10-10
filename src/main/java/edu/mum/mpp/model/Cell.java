@@ -3,6 +3,7 @@ package edu.mum.mpp.model;
 public class Cell extends AbstractModel {
     private long id;
     private String name;
+    private int blockId;
 
     public int getBlockId() {
         return blockId;
@@ -12,7 +13,6 @@ public class Cell extends AbstractModel {
         this.blockId = blockId;
     }
 
-    private int blockId;
 
     @Override
     public long getId() {
