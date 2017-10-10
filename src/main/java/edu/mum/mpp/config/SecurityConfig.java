@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // authorizeRequests().antMatchers("/jsp/**","/css/**", "/js/**","/images/*",
         http.
-                authorizeRequests().antMatchers("/WEB-INF/**", "/css/**", "/js/**", "/images/*",
+                authorizeRequests().antMatchers("/**", "/css/**", "/js/**", "/images/*",
                         "/fonts/*",
                 "/favicon.ico", "/manageBlock").
                 permitAll().
