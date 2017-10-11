@@ -51,6 +51,14 @@ public class DashboardController {
         return model;
     }
 
+    @RequestMapping(value = "/manageHollydayPackage", method = RequestMethod.GET)
+    public ModelAndView manageHollydayPackage() {
+        ModelAndView model = new ModelAndView();
+        //model.addObject("hollydays", FoodDataUtil.displayFoods());
+        model.setViewName("manageHollydayPackage");
+        return model;
+    }
+
     @RequestMapping(value = "/manageMedicine", method = RequestMethod.GET)
     public ModelAndView manageMedicine() {
         ModelAndView model = new ModelAndView();
@@ -58,6 +66,8 @@ public class DashboardController {
         model.setViewName("manageMedicine");
         return model;
     }
+
+
 
 
 

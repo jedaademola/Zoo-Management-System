@@ -153,6 +153,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                      <li>
                        <a href="${cp}/manageFood"><i class="fa fa-check-square-o nav_icon"></i>Manage Food</a>
                    </li>
+                   <li>
+                                           <a href="${cp}/manageHollydayPackage"><i class="fa fa-check-square-o nav_icon"></i>Manage Hollyday Package</a>
+                                       </li>
                      <li>
                                             <a href="${cp}/manageMedicine"><i class="fa fa-check-square-o nav_icon"></i>Manage Medicine</a>
                                         </li>

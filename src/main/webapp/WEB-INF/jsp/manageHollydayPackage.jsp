@@ -138,28 +138,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-           <li>
-               <a href="${cp}/index"><i class="fa fa-dashboard fa-fw nav_icon"></i>Dashboard</a>
-           </li>
-           <li>
-               <a href="${cp}/manageBlock"><i class="fa fa-check-square-o nav_icon"></i>Manage Block</a>
-           </li>
-             <li>
-                <a href="${cp}/manageCell"><i class="fa fa-check-square-o nav_icon"></i>Manage Cell</a>
-            </li>
-            <li>
-             <a href="${cp}/manageAnimal"><i class="fa fa-check-square-o nav_icon"></i>Manage Animal</a>
-         </li>
-         <li>
-           <a href="${cp}/manageFood"><i class="fa fa-check-square-o nav_icon"></i>Manage Food</a>
-       </li>
-       <li>
-                               <a href="${cp}/manageHollydayPackage"><i class="fa fa-check-square-o nav_icon"></i>Manage Hollyday Package</a>
-                           </li>
- <li>
+                        <li>
+                            <a href="${cp}/index"><i class="fa fa-dashboard fa-fw nav_icon"></i>Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="${cp}/manageBlock"><i class="fa fa-check-square-o nav_icon"></i>Manage Block</a>
+                        </li>
+                          <li>
+                             <a href="${cp}/manageCell"><i class="fa fa-check-square-o nav_icon"></i>Manage Cell</a>
+                         </li>
+                         <li>
+                          <a href="${cp}/manageAnimal"><i class="fa fa-check-square-o nav_icon"></i>Manage Animal</a>
+                      </li>
+                      <li>
+                        <a href="${cp}/manageFood"><i class="fa fa-check-square-o nav_icon"></i>Manage Food</a>
+                    </li>
+                    <li>
+                         <a href="${cp}/manageHollydayPackage"><i class="fa fa-check-square-o nav_icon"></i>Manage Hollyday Package</a>
+                    </li>
+                    <li>
                         <a href="${cp}/manageMedicine"><i class="fa fa-check-square-o nav_icon"></i>Manage Medicine</a>
                     </li>
-
 
 
                     </ul>
@@ -186,7 +185,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
      <div class="clearfix"> </div>
     <div class="table-responsive">
      <a href="#" class="btn btn-primary btn-md pull-right" data-toggle="modal" data-target="#myModal">
-     <b>+</b> Add new Block</a>
+     <b>+</b> Add new Food Item</a>
      <!-- Trigger the modal with a button -->
      <!--button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button -->
      <div class="clearfix"> </div>
@@ -196,25 +195,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           <tr>
             <th>#</th>
             <th>Name</th>
-            <th>Location</th>
-            <th>Date Created</th>
-            <th>Date Modified</th>
-            <th>Modified by</th>
+            <th>Period</th>
+            <th>Amount</th>
+            <!-- <th>Modified by</th> -->
             <th></th>
           </tr>
         </thead>
         <tbody>
-         <c:forEach var="block" items="${blocks}" varStatus="theCount">
+         <c:forEach var="hollyday" items="${hollydays}" varStatus="theCount">
           <tr>
             <th scope="row">${theCount.count}</th>
-            <td>${block.name}</td>
-            <td>${block.location}</td>
+            <td>${hollyday.name}</td>
             <td></td>
             <td></td>
             <td></td>
             <td> <a href="#"
             data-toggle="tooltip" data-placement="top"
-            data-id="${block.id}:${block.name}"   class="editBlock" id="myBtn${block.id}">Edit</td>
+            data-id="${hollyday.id}:${hollyday.name}"   class="editHollyday" id="myBtn${hollyday.id}">Edit</td>
           </tr>
          </c:forEach>
         </tbody>
@@ -242,29 +239,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script type="text/javascript">
     $(document).ready(function () {
 
-             $(document).on("click", "#addBlock", function (e) {
+             $(document).on("click", "#addHollyday", function (e) {
 
-                    // alert( "Here we come");
-                    //alert( $("#nameInput").val());
-                    addBlock();
+
+                    addHollyday();
 
                  //   location.reload();
                 });
 
-            $('.editBlock').click(function () {
+            $('.editHollyday').click(function () {
 
                         var id = $(this).attr('data-id');
 
-                        $('#myModalEdit').find('#blockId').val(id.split(":")[0]);
+                        $('#myModalEdit').find('#hollydayId').val(id.split(":")[0]);
                         $('#myModalEdit').find('#nameEditInput').val(id.split(":")[1]);
 
                         $('#myModalEdit').modal();
                     });
 
-         $(document).on("click", "#editBlockId", function (e) {
+         $(document).on("click", "#editHollydayId", function (e) {
 
 
-                            editBlock();
+                            editHollyday();
 
                          //   location.reload();
                         });
@@ -274,21 +270,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    });
 
 
-   function addBlock() {
-              // var token = $("meta[name='_csrf']").attr("content");
-             //  var header = $("meta[name='_csrf_header']").attr("content");
-
-               var jsonRequest = {};
+   function addHollyday() {
+              var jsonRequest = {};
 
                jsonRequest["name"] =  $("#nameInput").val();
-               jsonRequest["location"] =  $("#nameLocation").val();
+
 
 
 
                var param = JSON.stringify(jsonRequest);
-    // xhr.setRequestHeader(header, token);
+
                $.ajax({
-                   url: "${cp}/api/v1/zoo/block",
+                   url: "${cp}/api/v1/zoo/hollyday",
                    type: "POST",
                    dataType: "json",
                    beforeSend: function (xhr) {
@@ -325,22 +318,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
            );
            }
-function editBlock() {
-              // var token = $("meta[name='_csrf']").attr("content");
-             //  var header = $("meta[name='_csrf_header']").attr("content");
+function editFood() {
 
                var jsonRequest = {};
 
-               jsonRequest["id"] =  $("#blockId").val();
+               jsonRequest["id"] =  $("#hollydayId").val();
                jsonRequest["name"] =  $("#nameEditInput").val();
-               jsonRequest["location"] =  $("#editLocation").val();
+
 
 
 
                var param = JSON.stringify(jsonRequest);
               // xhr.setRequestHeader(header, token);
                $.ajax({
-                   url: "${cp}/api/v1/zoo/block",
+                   url: "${cp}/api/v1/zoo/hollyday",
                    type: "PUT",
                    dataType: "json",
                    beforeSend: function (xhr) {
@@ -389,39 +380,26 @@ function editBlock() {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Add New Block</h4>
+        <h4 class="modal-title">Add New Food Item</h4>
       </div>
       <div class="modal-body">
         <form class="form-horizontal">
                 <div class="form-group">
                     <label for="nameInput" class="col-sm-2 control-label">Name</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control1" id="nameInput" placeholder="Enter Block name">
+                        <input type="text" class="form-control1" id="nameInput" placeholder="Enter Hollyday Package">
                     </div>
                     <div class="col-sm-2">
 
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="locationInput" class="col-sm-2 control-label">Location</label>
-                    <div class="col-sm-8">
-                        <select  id="nameLocation" class="form-control1">
-                            <option>East</option>
-                            <option>West</option>
-                            <option>North</option>
-                            <option>South</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-2">
 
-                    </div>
-                </div>
 
          </form>
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="addBlock">Add</button>
+        <button type="button" class="btn btn-primary" id="addHollyday">Add</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -441,12 +419,12 @@ function editBlock() {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Edit Block</h4>
+        <h4 class="modal-title">Edit Food Item</h4>
       </div>
       <div class="modal-body">
             <form class="form-horizontal">
                        <div class="form-group">
-                       <input type ="hidden" name ="blockid" value ="" id ="blockId"/>
+                       <input type ="hidden" name ="hollydayId" value ="" id ="hollydayId"/>
                            <label for="nameEditInput" class="col-sm-2 control-label">Name</label>
                            <div class="col-sm-8">
                                <input type="text" class="form-control1" id="nameEditInput">
@@ -455,25 +433,12 @@ function editBlock() {
 
                            </div>
                        </div>
-                       <div class="form-group">
-                           <label for="editLocation" class="col-sm-2 control-label">Location</label>
-                           <div class="col-sm-8">
-                               <select  id="editLocation" class="form-control1">
-                                   <option>East</option>
-                                   <option>West</option>
-                                   <option>North</option>
-                                   <option>South</option>
-                               </select>
-                           </div>
-                           <div class="col-sm-2">
 
-                           </div>
-                       </div>
 
                 </form>
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-primary" id="editBlockId">Edit</button>
+      <button type="button" class="btn btn-primary" id="editHollydayId">Edit</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
