@@ -2,10 +2,7 @@ package edu.mum.mpp.controller;
 
 import edu.mum.mpp.model.Block;
 import edu.mum.mpp.model.User;
-import edu.mum.mpp.util.AninalDataUtil;
-import edu.mum.mpp.util.BlockDataUtil;
-import edu.mum.mpp.util.FoodDataUtil;
-import edu.mum.mpp.util.CellDataUtil;
+import edu.mum.mpp.util.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,7 +52,7 @@ public class DashboardController {
     @RequestMapping(value = "/manageHollydayPackage", method = RequestMethod.GET)
     public ModelAndView manageHollydayPackage() {
         ModelAndView model = new ModelAndView();
-        //model.addObject("hollydays", FoodDataUtil.displayFoods());
+        model.addObject("hollydays", HollydayDataUtil.displayHollydays());
         model.setViewName("manageHollydayPackage");
         return model;
     }

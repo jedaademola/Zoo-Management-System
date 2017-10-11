@@ -3,6 +3,8 @@ package edu.mum.mpp.util;
 import edu.mum.mpp.model.Food;
 import edu.mum.mpp.model.Hollyday;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,13 +15,18 @@ public class HollydayDataUtil
 
 
     public static List<Hollyday> displayHollydays() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        String date = "10/11/2017";
+        LocalDate localDate = LocalDate.parse(date, formatter);
 
         if (hollydayList.size() < 1) {
 
             for (int k = 1; k <= 5; ++k) {
                 Hollyday newHollyday= new Hollyday();
                 newHollyday.setId(k);
-                newHollyday.setName("Food" + k);
+                newHollyday.setName("Hollyday" + k);
+                newHollyday.setPeriod(date);
+                newHollyday.setAmount(200.0);
 
                 lastId = k;
 

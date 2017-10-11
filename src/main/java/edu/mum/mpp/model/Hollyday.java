@@ -7,7 +7,7 @@ public class Hollyday extends AbstractModel
     private long id;
     private String name;
 
-    private LocalDate periode;
+    private String period;
     private double amount;
 
 
@@ -29,12 +29,12 @@ public class Hollyday extends AbstractModel
         this.name = name;
     }
 
-    public LocalDate getPeriode() {
-        return periode;
+    public String getPeriod() {
+        return period;
     }
 
-    public void setPeriode(LocalDate periode) {
-        this.periode = periode;
+    public void setPeriod(String period) {
+        this.period = period;
     }
 
     public double getAmount() {

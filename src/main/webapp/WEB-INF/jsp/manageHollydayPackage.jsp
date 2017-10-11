@@ -22,6 +22,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link href="${cp}/css/font-awesome.css" rel="stylesheet">
 <!-- jQuery -->
 <script src="${cp}/js/jquery.min.js"></script>
+<script src="${cp}/js/moment.min.js"></script>
+<script src="${cp}/js/bootstrap-datetimepicker.min.js"></script>
 <!----webfonts--->
 <link href='${cp}/fontCss.css' rel='stylesheet' type='text/css'>
 <!---//webfonts--->
@@ -33,6 +35,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- Graph JavaScript -->
 <script src="${cp}/js/d3.v3.js"></script>
 <script src="${cp}/js/rickshaw.js"></script>
+
+<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" /> -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+-->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+-->
+
 </head>
 <body>
 <div id="wrapper">
@@ -185,7 +197,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
      <div class="clearfix"> </div>
     <div class="table-responsive">
      <a href="#" class="btn btn-primary btn-md pull-right" data-toggle="modal" data-target="#myModal">
-     <b>+</b> Add new Food Item</a>
+     <b>+</b> Add new Hollyday Package Item</a>
      <!-- Trigger the modal with a button -->
      <!--button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button -->
      <div class="clearfix"> </div>
@@ -206,12 +218,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           <tr>
             <th scope="row">${theCount.count}</th>
             <td>${hollyday.name}</td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>${hollyday.period}</td>
+            <td>${hollyday.amount}</td>
+            <!-- <td></td> -->
             <td> <a href="#"
             data-toggle="tooltip" data-placement="top"
-            data-id="${hollyday.id}:${hollyday.name}"   class="editHollyday" id="myBtn${hollyday.id}">Edit</td>
+            data-id="${hollyday.id}:${hollyday.name}:${hollyday.period}:${hollyday.amount}"
+            class="editHollyday" id="myBtn${hollyday.id}">Edit</td>
           </tr>
          </c:forEach>
         </tbody>
@@ -239,6 +252,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script type="text/javascript">
     $(document).ready(function () {
 
+ $(function () {
+                $('#datetimepicker1').datetimepicker();
+                $('#datetimepicker2').datetimepicker();
+            });
+
+
              $(document).on("click", "#addHollyday", function (e) {
 
 
@@ -252,7 +271,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         var id = $(this).attr('data-id');
 
                         $('#myModalEdit').find('#hollydayId').val(id.split(":")[0]);
-                        $('#myModalEdit').find('#nameEditInput').val(id.split(":")[1]);
+                        $('#myModalEdit').find('#txtNameInputEdit').val(id.split(":")[1]);
+                        $('#myModalEdit').find('#txtPeriodInputEdit').val(id.split(":")[2]);
+                        $('#myModalEdit').find('#txtAmountInputEdit').val(id.split(":")[3]);
 
                         $('#myModalEdit').modal();
                     });
@@ -273,7 +294,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    function addHollyday() {
               var jsonRequest = {};
 
-               jsonRequest["name"] =  $("#nameInput").val();
+               jsonRequest["name"]      =   $("#txtNameInput").val();
+               jsonRequest["period"]    =   $("#txtPeriodInput").val();
+               jsonRequest["amount"]    =   $("#txtAmountInput").val();
 
 
 
@@ -318,12 +341,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
            );
            }
-function editFood() {
+
+function editHollyday() {
 
                var jsonRequest = {};
 
                jsonRequest["id"] =  $("#hollydayId").val();
-               jsonRequest["name"] =  $("#nameEditInput").val();
+               jsonRequest["name"] =  $("#txtNameInputEdit").val();
+               jsonRequest["period"]    =   $("#txtPeriodInputEdit").val();
+               jsonRequest["amount"]    =   $("#txtAmountInputEdit").val();
 
 
 
@@ -380,22 +406,57 @@ function editFood() {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Add New Food Item</h4>
+        <h4 class="modal-title">Add New Hollyday Package Item</h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal">
+        <form:form id ="formation" class="form-horizontal">
                 <div class="form-group">
-                    <label for="nameInput" class="col-sm-2 control-label">Name</label>
+                    <label for="lblName" class="col-sm-2 control-label">Name</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control1" id="nameInput" placeholder="Enter Hollyday Package">
+                        <input type="text" class="form-control1" id="txtNameInput" placeholder="Enter Hollyday Package">
                     </div>
                     <div class="col-sm-2">
 
                     </div>
                 </div>
 
+                <!--
+                <div class="form-group">
+                   <label for="lblPeriod" class="col-sm-2 control-label">Period</label>
+                   <div class="col-sm-8">
+                       <input type="text" class="form-control1" id="txtPeriodInput" placeholder="Enter Period">
+                   </div>
+                   <div class="col-sm-2">
 
-         </form>
+                   </div>
+               </div>
+               -->
+
+              <div class="form-group">
+                  <label for="lblPeriod" class="col-sm-2 control-label">Period</label>
+                  <div class="col-sm-8">
+                  <div class='input-group date' id='datetimepicker1'>
+                      <input type='text' class="form-control1" id="txtPeriodInput"  placeholder="Enter date (mm/dd/yyyy)" />
+                      <span class="input-group-addon">
+                          <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                  </div>
+                  </div>
+              </div>
+
+
+               <div class="form-group">
+                  <label for="lblAmount" class="col-sm-2 control-label">Amount</label>
+                  <div class="col-sm-8">
+                      <input type="text" class="form-control1" id="txtAmountInput" placeholder="Enter Amount">
+                  </div>
+                  <div class="col-sm-2">
+
+                  </div>
+               </div>
+
+
+         </form:form>
 
       </div>
       <div class="modal-footer">
@@ -419,23 +480,58 @@ function editFood() {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Edit Food Item</h4>
+        <h4 class="modal-title">Edit Hollyday Package Item</h4>
       </div>
       <div class="modal-body">
-            <form class="form-horizontal">
-                       <div class="form-group">
-                       <input type ="hidden" name ="hollydayId" value ="" id ="hollydayId"/>
-                           <label for="nameEditInput" class="col-sm-2 control-label">Name</label>
-                           <div class="col-sm-8">
-                               <input type="text" class="form-control1" id="nameEditInput">
-                           </div>
-                           <div class="col-sm-2">
+            <form:form id ="formation" class="form-horizontal">
+                    <div class="form-group">
+                        <input type ="hidden" name ="hollydaylId" value ="" id ="hollydayId"/>
+                        <label for="lblName" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control1" id="txtNameInputEdit" placeholder="Enter Hollyday Package">
+                        </div>
+                        <div class="col-sm-2">
 
-                           </div>
+                        </div>
+                    </div>
+
+                    <!--
+                    <div class="form-group">
+                       <label for="lblPeriod" class="col-sm-2 control-label">Period</label>
+                       <div class="col-sm-8">
+                           <input type="text" class="form-control1" id="txtPeriodInputEdit" placeholder="Enter Period">
                        </div>
+                       <div class="col-sm-2">
+
+                       </div>
+                   </div>
+                   -->
+
+                  <div class="form-group">
+                      <label for="lblPeriod" class="col-sm-2 control-label">Period</label>
+                      <div class="col-sm-8">
+                      <div class='input-group date' id='datetimepicker2'>
+                          <input type='text' class="form-control11" id="txtPeriodInputEdit"  placeholder="Enter date (mm/dd/yyyy)" />
+                          <span class="input-group-addon">
+                              <span class="glyphicon glyphicon-calendar"></span>
+                          </span>
+                      </div>
+                      </div>
+                  </div>
 
 
-                </form>
+                   <div class="form-group">
+                      <label for="lblAmount" class="col-sm-2 control-label">Amount</label>
+                      <div class="col-sm-8">
+                          <input type="text" class="form-control1" id="txtAmountInputEdit" placeholder="Enter Amount">
+                      </div>
+                      <div class="col-sm-2">
+
+                      </div>
+                   </div>
+
+
+             </form:form>
       </div>
       <div class="modal-footer">
       <button type="button" class="btn btn-primary" id="editHollydayId">Edit</button>

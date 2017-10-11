@@ -54,7 +54,7 @@ public class HollydayService extends AbstractService<Hollyday>
     }
 
 
-    public List<Hollyday> getFoods() {
+    public List<Hollyday> getHollydays() {
         return HollydayDataUtil.displayHollydays();
     }
 
