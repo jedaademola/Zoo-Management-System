@@ -3,7 +3,12 @@ package edu.mum.mpp.service;
 import edu.mum.mpp.dao.AbstractDao;
 import edu.mum.mpp.dao.UserDao;
 import edu.mum.mpp.model.Page;
+import edu.mum.mpp.model.StockReport;
+import edu.mum.mpp.model.StockRequest;
 import edu.mum.mpp.model.User;
+import edu.mum.mpp.util.LoggerUtil;
+import edu.mum.mpp.util.StockDataUtil;
+import edu.mum.mpp.util.SupplierDataUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +16,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,10 +27,29 @@ public class UserService extends AbstractService<User> {
     private PasswordEncoder passwordEncoder;
 
 
+
     @Autowired
     public UserService(@Qualifier("userDao") AbstractDao<User> dao) {
         super(dao);
     }
+
+
+    public User getSingleUser(long id) {
+        User singleUser = null;
+        try {
+
+            singleUser = SupplierDataUtil.displaySupplierUsers().stream()
+                    .filter(user -> user.getId() == id)
+                    .findAny().get();
+
+        } catch (Exception ex) {
+            logger.error(" [getSingleUser()]: " + ex.getMessage());
+            LoggerUtil.logError(logger, ex);
+        }
+
+        return singleUser;
+    }
+
 
     @Override
     public User create(User user) {

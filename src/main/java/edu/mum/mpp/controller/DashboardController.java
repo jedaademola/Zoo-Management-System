@@ -1,10 +1,12 @@
 package edu.mum.mpp.controller;
 
 import edu.mum.mpp.model.Block;
-import edu.mum.mpp.util.AnimalDataUtil;
-import edu.mum.mpp.util.BlockDataUtil;
-import edu.mum.mpp.util.CellDataUtil;
-import edu.mum.mpp.util.FoodDataUtil;
+import edu.mum.mpp.model.StockRequest;
+import edu.mum.mpp.service.CellService;
+import edu.mum.mpp.service.StockService;
+import edu.mum.mpp.service.UserService;
+import edu.mum.mpp.util.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +18,11 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class DashboardController {
 
+    @Autowired
+    StockService stockService;
+
+    @Autowired
+    CellService cellService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView index() {
@@ -47,10 +54,24 @@ public class DashboardController {
         return model;
     }
 
+
+    @RequestMapping(value = "/manageStock", method = RequestMethod.GET)
+    public ModelAndView manageStock(@ModelAttribute("command") StockRequest stockRequest) {
+        ModelAndView model = new ModelAndView();
+        model.addObject("stocks", stockService.displayStockReport());
+        model.addObject("suppliers", SupplierDataUtil.getSupplierListForDropDown());
+        model.addObject("itemIds", FoodDataUtil.getFoodListForDropDown());
+        //
+        //  food/medicine
+        model.setViewName("manageStock");
+        return model;
+    }
+
+
     @RequestMapping(value = "/manageMedicine", method = RequestMethod.GET)
     public ModelAndView manageMedicine() {
         ModelAndView model = new ModelAndView();
-        model.addObject("medicines", FoodDataUtil.displayFoods());
+        model.addObject("medicines", MedicineDataUtil.displayMedicines());
         model.setViewName("manageMedicine");
         return model;
     }
@@ -61,7 +82,7 @@ public class DashboardController {
     public ModelAndView manageCell(@ModelAttribute("command") Block block) {
         ModelAndView model = new ModelAndView();
         model.addObject("blocks", BlockDataUtil.getBlockListForDropDown());
-        model.addObject("cells", CellDataUtil.displayCells());
+        model.addObject("cells", cellService.displayCellReport());
         model.setViewName("manageCell");
         return model;
     }
@@ -73,7 +94,7 @@ public class DashboardController {
         ModelAndView model = new ModelAndView();
         // model.addObject("states",states);
         model.addObject("blocks", BlockDataUtil.getBlockListForDropDown());
-        model.addObject("cells", null);
+        model.addObject("cells", CellDataUtil.getCellListForDropDown());
         model.addObject("animals", AnimalDataUtil.displayAnimals());
         model.setViewName("manageAnimal");
         return model;

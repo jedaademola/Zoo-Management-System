@@ -5,65 +5,17 @@ import edu.mum.mpp.util.CustomDateSerializer;
 
 import java.time.LocalDateTime;
 
-public class StockRequest extends AbstractModel {
+public class StockReport {
 
     private long id;
-    private long itemId;
+    private String itemName;
     private double price;
     private int quantity;
-    private long supplierId;
+    private String supplier;
     private String category;
 
     @JsonSerialize(using = CustomDateSerializer.class)
     private LocalDateTime createdOn;
-
-    private long createdBy;
-    @JsonSerialize(using = CustomDateSerializer.class)
-    private LocalDateTime lastUpdatedOn;
-
-    private long lastUpdatedBy;
-
-
-    @Override
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public long getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(long itemId) {
-        this.itemId = itemId;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public long getSupplierId() {
-        return supplierId;
-    }
-
-    public void setSupplierId(long supplierId) {
-        this.supplierId = supplierId;
-    }
 
     public LocalDateTime getCreatedOn() {
         return createdOn;
@@ -95,6 +47,53 @@ public class StockRequest extends AbstractModel {
 
     public void setLastUpdatedBy(long lastUpdatedBy) {
         this.lastUpdatedBy = lastUpdatedBy;
+    }
+
+    private long createdBy;
+    @JsonSerialize(using = CustomDateSerializer.class)
+    private LocalDateTime lastUpdatedOn;
+
+    private long lastUpdatedBy;
+
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(String supplier) {
+        this.supplier = supplier;
     }
 
     public String getCategory() {

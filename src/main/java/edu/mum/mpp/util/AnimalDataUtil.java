@@ -9,7 +9,7 @@ import java.util.List;
 public class AnimalDataUtil {
 
     private static List<Animal> animalList = new ArrayList<>();
-    public static long lastId;
+    private static long lastId;
 
     public static List<Animal> displayAnimals() {
 

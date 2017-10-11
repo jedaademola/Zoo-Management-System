@@ -39,7 +39,7 @@ public class AnimalController {
         if (animal.getBlockId() < 0)
             throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Block cannot be empty");
 
-        animal.setCellId(AnimalDataUtil.lastId + 1);//TODO REMOVE LATER JUST FOR TESTING, lastId SHOULD BE RPIVATE
+        //animal.setCellId(AnimalDataUtil.lastId + 1);//TODO REMOVE LATER JUST FOR TESTING, lastId SHOULD BE PRIVATE
 
         if (animal.getCellId() < 0)
             throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Cell cannot be empty");

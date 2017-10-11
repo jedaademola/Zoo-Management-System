@@ -140,18 +140,27 @@ License URL: http://creativecommons.org/licenses/by/4.0/
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="${cp}"><i class="fa fa-dashboard fa-fw nav_icon"></i>Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="${cp}/manageBlock"><i class="fa fa-check-square-o nav_icon"></i>Manage Block</a>
-                        </li>
-                          <li>
-                             <a href="${cp}/manageCell"><i class="fa fa-check-square-o nav_icon"></i>Manage Cell</a>
-                         </li>
                          <li>
-                          <a href="${cp}/"><i class="fa fa-check-square-o nav_icon"></i>Manage Animal</a>
-                      </li>
+                                                <a href="${cp}/index"><i class="fa fa-dashboard fa-fw nav_icon"></i>Dashboard</a>
+                                            </li>
+                                            <li>
+                                                <a href="${cp}/manageBlock"><i class="fa fa-check-square-o nav_icon"></i>Manage Block</a>
+                                            </li>
+                                              <li>
+                                                 <a href="${cp}/manageCell"><i class="fa fa-check-square-o nav_icon"></i>Manage Cell</a>
+                                             </li>
+                                             <li>
+                                              <a href="${cp}/manageAnimal"><i class="fa fa-check-square-o nav_icon"></i>Manage Animal</a>
+                                          </li>
+                                          <li>
+                                            <a href="${cp}/manageFood"><i class="fa fa-check-square-o nav_icon"></i>Manage Food</a>
+                                        </li>
+                                          <li>
+                                                                 <a href="${cp}/manageMedicine"><i class="fa fa-check-square-o nav_icon"></i>Manage Medicine</a>
+                                                             </li>
+                       <li>
+                                             <a href="${cp}/manageStock"><i class="fa fa-check-square-o nav_icon"></i>Manage Stock</a>
+                                         </li>
 
 
                     </ul>
@@ -200,7 +209,7 @@ License URL: http://creativecommons.org/licenses/by/4.0/
           <tr>
             <th scope="row">${theCount.count}</th>
             <td>${cell.name}</td>
-             <td>${cell.blockId}</td>
+             <td>${cell.blockName}</td>
             <td></td>
             <td></td>
             <td></td>

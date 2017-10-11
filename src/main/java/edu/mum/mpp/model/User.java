@@ -22,6 +22,11 @@ public class User extends AbstractModel {
     private String phoneNumber;
     private String address;
     private String ssn;
+    private String fullName;
+
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
 
     private UserCategory userCategory;
 
