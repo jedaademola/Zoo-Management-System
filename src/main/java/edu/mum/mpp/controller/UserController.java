@@ -133,18 +133,19 @@ public class UserController {
 
         User userExist = userService.isUserExists(user.getEmail(), user.getPhoneNumber());
 
-        User userCurrent = TokenService.getCurrentUserFromSecurityContext();
+        //User userCurrent = TokenService.getCurrentUserFromSecurityContext();
 
 
         if (userExist != null) {
 
-            throw new ConflictException(CustomResponseCode.CONFLICT_EXCEPTION, " User account already exist");
+            throw new ConflictException(CustomResponseCode.CONFLICT_EXCEPTION, " Account already exist");
         } else {
             String password = Utility.getSaltString();
             //user.setPassword(passwordEncoder.encode(Utility.convertToSha1(password)));
 
             user.setPassword(passwordEncoder.encode(password));
-            user.setCreatedBy(userCurrent.getId());
+            user.setCreatedBy(1);
+            // user.setCreatedBy(userCurrent.getId());
 
             User response = userService.create(user);
 
@@ -154,10 +155,6 @@ public class UserController {
                     resp.setCode(CustomResponseCode.SUCCESS);
                     resp.setDescription("Successful");
                     httpCode = HttpStatus.OK;
-
-                    //SEND MAIL HERE  TODO
-                    // emailSmsUtil.SendEmail("", user.getEmail(), "Coronation Bank Merchant Online Banking Account Creation",
-                    //      CustomResponseCode.CREATE_USER, password, user.getId(), user.getFirstName() + " " + user.getLastName(), "", "");
 
                 }
             } else {

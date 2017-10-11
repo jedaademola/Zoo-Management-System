@@ -6,6 +6,7 @@ import edu.mum.mpp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -31,8 +32,13 @@ public class UserDao extends AbstractDao<User> {
     public void setDataSource(@Qualifier(value = "DS") DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
         jdbcTemplate.setResultsMapCaseInsensitive(true);
+
+        create = new SimpleJdbcCall(jdbcTemplate).withProcedureName("createUser").withReturnValue();
+        isUserExists = new SimpleJdbcCall(jdbcTemplate).withProcedureName("isUserExists").
+                returningResultSet(SINGLE_RESULT, BeanPropertyRowMapper.newInstance(User.class));
+
 /*
-        create = new SimpleJdbcCall(jdbcTemplate).withProcedureName("create_user").withReturnValue();
+
         update = new SimpleJdbcCall(jdbcTemplate).withProcedureName("update_user").withReturnValue();
         delete = new SimpleJdbcCall(jdbcTemplate).withProcedureName("delete_user").withReturnValue();
         loginUser = new SimpleJdbcCall(jdbcTemplate).withProcedureName("login_user").
@@ -60,8 +66,6 @@ public class UserDao extends AbstractDao<User> {
 
         changeUserPassword = new SimpleJdbcCall(jdbcTemplate).withProcedureName("change_user_password").withReturnValue();
         updatePassword = new SimpleJdbcCall(jdbcTemplate).withProcedureName("updatePassword").withReturnValue();
-        isUserExists = new SimpleJdbcCall(jdbcTemplate).withProcedureName("is_user_exists").
-                returningResultSet(SINGLE_RESULT, BeanPropertyRowMapper.newInstance(User.class));
 
 
 

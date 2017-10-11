@@ -12,16 +12,28 @@ public class User extends AbstractModel {
     @JsonIgnore
     private long id;
 
-    private String email;
 
-    private String password;
 
     private String firstName;
 
     private String lastName;
+    private String email;
+
+    private String password;
+
     private String phoneNumber;
     private String address;
     private String ssn;
+    private char gender;
+
+    public char getGender() {
+        return gender;
+    }
+
+    public void setGender(char gender) {
+        this.gender = gender;
+    }
+
     private String fullName;
 
     public String getFullName() {

@@ -31,7 +31,7 @@ public class FoodService extends AbstractService<Food> {
 
     public boolean checkFood(String foodName) {
 
-        String foodNameTemp = "";
+        String foodNameTemp = foodName;
         try {
 
             foodNameTemp = FoodDataUtil.displayFoods().stream()
