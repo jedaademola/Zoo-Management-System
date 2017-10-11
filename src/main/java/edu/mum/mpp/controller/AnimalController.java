@@ -4,12 +4,10 @@ package edu.mum.mpp.controller;
 import edu.mum.mpp.exceptions.BadRequestException;
 import edu.mum.mpp.exceptions.ConflictException;
 import edu.mum.mpp.model.Animal;
-
 import edu.mum.mpp.model.Response;
 import edu.mum.mpp.service.AnimalService;
-import edu.mum.mpp.util.AninalDataUtil;
+import edu.mum.mpp.util.AnimalDataUtil;
 import edu.mum.mpp.util.CustomResponseCode;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -41,7 +39,7 @@ public class AnimalController {
         if (animal.getBlockId() < 0)
             throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Block cannot be empty");
 
-        animal.setCellId(AninalDataUtil.lastId + 1);//TODO REMOVE LATER JUST FOR TESTING, lastId SHOULD BE RPIVATE
+        animal.setCellId(AnimalDataUtil.lastId + 1);//TODO REMOVE LATER JUST FOR TESTING, lastId SHOULD BE RPIVATE
 
         if (animal.getCellId() < 0)
             throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Cell cannot be empty");

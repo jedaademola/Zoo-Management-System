@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AninalDataUtil {
+public class AnimalDataUtil {
 
     private static List<Animal> animalList = new ArrayList<>();
     public static long lastId;
