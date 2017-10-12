@@ -4,7 +4,6 @@ import edu.mum.mpp.model.Block;
 import edu.mum.mpp.model.StockRequest;
 import edu.mum.mpp.service.CellService;
 import edu.mum.mpp.service.StockService;
-import edu.mum.mpp.service.UserService;
 import edu.mum.mpp.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import edu.mum.mpp.model.User;
@@ -30,6 +29,13 @@ public class DashboardController {
     public ModelAndView index() {
         ModelAndView model = new ModelAndView();
         model.setViewName("index");
+        return model;
+    }
+
+    @RequestMapping(value = "/generalPage", method = RequestMethod.GET)
+    public ModelAndView generalPage() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("generalPage");
         return model;
     }
 
