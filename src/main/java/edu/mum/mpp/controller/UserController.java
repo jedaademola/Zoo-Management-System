@@ -96,7 +96,7 @@ public class UserController {
             }
 
         } else if (user == null) {
-            //NO NEED TO update login failed count and failed login date SINCE IT DOES NOT EXIST
+            //NO NEED TO update login failed count and failed login date SINCE IT(USER) DOES NOT EXIST
             throw new UnauthorizedException(CustomResponseCode.UNAUTHORIZED, "Login details does not exist");
         }
 
