@@ -1,14 +1,15 @@
-<!--
-Author: W3layouts
+<!--A Design by W3layouts
+Author: W3layout
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="cp" value="${pageContext.request.servletContext.contextPath}" scope="request" />
 <html>
 <head>
-<title>Prime Zoo Garden| Home</title>
+<title>Prime Zoo Garden| Gallery </title>
 <link href="${cp}/css/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary JavaScript plugins) -->
 <script src="${cp}/js/js/bootstrap.js"></script>
@@ -24,12 +25,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="${cp}/js/js/jquery.min.js"></script>
  <script src="${cp}/js/js/bootstrap.js"></script>
 
+
 </head>
 <body>
 <!-- banner -->
-<div class="banner">
 <div class="header-top">
-	 <div class="container">
+	  <div class="container">
 		 <div class="logo">
 				 <h1><a href="">PRIME ZOO GARDEN</a></h1>
 		 </div>
@@ -60,8 +61,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		 <div class="top-menu">
 			 <span class="menu"><img src="images/menu.png" alt=""></span>
 			 <ul class="nav1">
-				 <li class="active"><a href="${cp}/index">Home</a></li>
-				 <li><a href="${cp}/gallery">Gallery</a></li>
+				 <li ><a href="${cp}/index">Home</a></li>
+				 <li class="active"><a href="${cp}/gallery">Gallery</a></li>
 				 <li><a href="typo.html">Appointment</a></li>
 				  <li><a href="typo.html">Holiday Packages</a></li>
 				 <li><a href="${cp}/contact">Contact</a></li>
@@ -76,10 +77,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								 });
 							</script>
 		 <!-- /script-for-menu -->
-
 		 <div class="search">
 				<form>
-				 <input type="text" value="" placeholder="Search Animal">
+				 <input type="text" value="" placeholder="Search...">
 				 <input type="submit" value="">
 				</form>
 		 </div>
@@ -87,87 +87,60 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	 </div>
 </div>
 <!---->
-<div class="banner-sec">
-	 <div class="banner-grids">
-			 <div class="col-md-7 banner-left">
-				 <div class="banner_lft_info">
-					 <p><a href="projects.html">Safari Park</a></p>
-					 <h3></h3>
-				 </div>
-			 </div>
-			 <div class="col-md-5 banner-right">
-				 <div class="bnr-right grid1">
-					 <div class="banner_rght_info">
-						 <p><a href="projects.html">Elephants</a></p>
-						 <h4>Elephantidae and the order Proboscidea.</h4>
-					 </div>
-				 </div>
-				 <div class="bnr-right grid2">
-					 <div class="banner_rght_info bnr_rht">
-						 <p><a href="projects.html">Wild Cats</a></p>
-						 <h4>The wildcat (Felis silvestris) is a small cat native.</h4>
-					 </div>
-				 </div>
-				 <div class="clearfix"></div>
-				 <div class="bnr-right grid3">
-					 <div class="banner_rght_info">
-						 <p><a href="projects.html">Birds</a></p>
-						 <h4>Birds are a group of endothermic vertebrates, characterised by feathers.</h4>
-					 </div>
-				 </div>
-				 <div class="bnr-right grid4">
-					 <div class="banner_rght_info bnr_rht">
-						 <p><a href="projects.html">Reptiles</a></p>
-						<h4>Reptiles are tetrapod animals in the class Reptilia</h4>
-					 </div>
-				 </div>
-				 <div class="clearfix"></div>
-			 </div>
-			 <div class="clearfix"></div>
-	 </div>
-	</div>
-</div>
-<!---->
+<div class="gallery">
+		<div class="container">
+			<h3>Our Gallery</h3>
+			<div class="gallery-bottom">
+				<div class="gallery-1">
+					<div class="col-md-3 gallery-grid">
+						<a class="example-image-link" href="images/r2.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image" src="images/r2.jpg" alt=""/></a>
+					</div>
+					<div class="col-md-3 gallery-grid">
+						<a class="example-image-link" href="images/gl7.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image" src="images/gl7.jpg" alt=""/></a>
+					</div>
+					<div class="col-md-3 gallery-grid">
+						<a class="example-image-link" href="images/gl4.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image" src="images/gl4.jpg" alt=""/></a>
+					</div>
+					<div class="col-md-3 gallery-grid">
+						<a class="example-image-link" href="images/gl5.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image" src="images/gl5.jpg" alt=""/></a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="gallery-1">
+					<div class="col-md-3 gallery-grid">
+						<a class="example-image-link" href="images/gl6.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image" src="images/gl6.jpg" alt=""/></a>
+					</div>
+					<div class="col-md-3 gallery-grid">
+						<a class="example-image-link" href="images/gl2.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image" src="images/gl2.jpg" alt=""/></a>
+					</div>
+					<div class="col-md-3 gallery-grid">
+						<a class="example-image-link" href="images/r6.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image" src="images/r6.jpg" alt=""/></a>
+					</div>
+					<div class="col-md-3 gallery-grid">
+						<a class="example-image-link" href="images/r5.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image" src="images/r5.jpg" alt=""/></a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="gallery-1">
+					<div class="col-md-3 gallery-grid">
+						<a class="example-image-link" href="images/r1.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image" src="images/r1.jpg" alt=""/></a>
+					</div>
+					<div class="col-md-3 gallery-grid">
+						<a class="example-image-link" href="images/r3.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image" src="images/r3.jpg" alt=""/></a>
+					</div>
+					<div class="col-md-3 gallery-grid">
+						<a class="example-image-link" href="images/r4.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image" src="images/r4.jpg" alt=""/></a>
+					</div>
+					<div class="col-md-3 gallery-grid">
+						<a class="example-image-link" href="images/gl11.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image" src="images/gl11.jpg" alt=""/></a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
 
-<!---->
-<div class="service">
-	 <div class="container">
-		 <h3>Services</h3>
-		  <div class="works">
-			  <div class="prjt-grid">
-				 <div class="box maxheight">
-					  <a class="example-image-link" href="images/s1.jpg" data-lightbox="example-1" data-title="Guidance."><img class="example-image" src="images/s1.jpg"></a>
-					  <div class="project-info">
-					   <a href="single.html">Guidance</a>
-					   <p>Our well trained staff are ready to guid you around the zoo </p>
-					  </div>
-				 </div>
-			  </div>
-			  <div class="prjt-grid">
-				 <div class="box maxheight">
-					  <a class="example-image-link" href="images/s2.jpg" data-lightbox="example-2" data-title="Mobile Tents."><img class="example-image" src="images/s2.jpg"></a>
-					  <div class="project-info">
-					  <a href="single.html">Mobile Tents</a>
-					  <p>We set up Mobile Tents for our visitors and tourist </p>
-					  </div>
-				  </div>
-			  </div>
-			  <div class="prjt-grid span66">
-				 <div class="box maxheight">
-					  	<a class="example-image-link" href="images/s3.jpg" data-lightbox="example-3" data-title="Animal Care."><img class="example-image" src="images/s3.jpg"></a>
-					  <div class="project-info">
-					  <a href="single.html">Animal Care</a>
-					  <p>Animal Care: our staff care for our animals</p>
-					  </div>
-				  </div>
-			  </div>
-			 <div class="clearfix"></div>
 		 </div>
 	 </div>
 </div>
 <script src="${cp}/js/js/lightbox-plus-jquery.min.js"></script>
-<!---->
-
 <!---->
 <div class="footer">
 	 <div class="container">

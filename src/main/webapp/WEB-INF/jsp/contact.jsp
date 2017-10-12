@@ -1,5 +1,5 @@
-<!--
-Author: W3layouts
+<!--A Design by W3layouts
+Author: W3layout
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
@@ -8,7 +8,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <c:set var="cp" value="${pageContext.request.servletContext.contextPath}" scope="request" />
 <html>
 <head>
-<title>Prime Zoo Garden| Home</title>
+<title>Prime Zoo Garden| Contact</title>
 <link href="${cp}/css/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary JavaScript plugins) -->
 <script src="${cp}/js/js/bootstrap.js"></script>
@@ -27,9 +27,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </head>
 <body>
 <!-- banner -->
-<div class="banner">
 <div class="header-top">
-	 <div class="container">
+	<div class="container">
 		 <div class="logo">
 				 <h1><a href="">PRIME ZOO GARDEN</a></h1>
 		 </div>
@@ -60,11 +59,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		 <div class="top-menu">
 			 <span class="menu"><img src="images/menu.png" alt=""></span>
 			 <ul class="nav1">
-				 <li class="active"><a href="${cp}/index">Home</a></li>
+				 <li><a href="${cp}/index">Home</a></li>
 				 <li><a href="${cp}/gallery">Gallery</a></li>
 				 <li><a href="typo.html">Appointment</a></li>
 				  <li><a href="typo.html">Holiday Packages</a></li>
-				 <li><a href="${cp}/contact">Contact</a></li>
+				 <li class="active"><a href="${cp}/contact">Contact</a></li>
 			 </ul>
 		 </div>
 		 <!-- script-for-menu -->
@@ -76,10 +75,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								 });
 							</script>
 		 <!-- /script-for-menu -->
-
 		 <div class="search">
 				<form>
-				 <input type="text" value="" placeholder="Search Animal">
+				 <input type="text" value="" placeholder="Search...">
 				 <input type="submit" value="">
 				</form>
 		 </div>
@@ -87,88 +85,46 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	 </div>
 </div>
 <!---->
-<div class="banner-sec">
-	 <div class="banner-grids">
-			 <div class="col-md-7 banner-left">
-				 <div class="banner_lft_info">
-					 <p><a href="projects.html">Safari Park</a></p>
-					 <h3></h3>
-				 </div>
+<div class="contact">
+		<div class="container">
+			<div class="contact-top">
+				<h2>Contact</h2>
+			</div>
+			<div class="contact-bottom">
+				 <div class="contact-text">
+					<div class="col-md-3 contact-right">
+						<div class="address">
+							<h5>Address</h5>
+							<p>Prime Zoo Garden,
+							<span>1000 North 4th street,</span>
+							Fairfield, IA</p>
+						</div>
+						<div class="address">
+							<h5>Address1</h5>
+							<p>Tel:9115550341,
+							<span>Fax:9115550341</span>
+							Email: <a href="mailto:zoo@garden.com">zoo@garden.com</a></p>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="col-md-9 contact-left">
+						<form>
+						<input type="text" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" />
+						<input type="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" />
+						<input type="text" value="Phone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}" />
+						<textarea value="Message:" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message';}">Message..</textarea>
+							<div class="submit-btn">
+									<input type="submit" value="SUBMIT">
+							</div>
+						</form>
+					</div>
+					<div class="clearfix"></div>
 			 </div>
-			 <div class="col-md-5 banner-right">
-				 <div class="bnr-right grid1">
-					 <div class="banner_rght_info">
-						 <p><a href="projects.html">Elephants</a></p>
-						 <h4>Elephantidae and the order Proboscidea.</h4>
-					 </div>
-				 </div>
-				 <div class="bnr-right grid2">
-					 <div class="banner_rght_info bnr_rht">
-						 <p><a href="projects.html">Wild Cats</a></p>
-						 <h4>The wildcat (Felis silvestris) is a small cat native.</h4>
-					 </div>
-				 </div>
-				 <div class="clearfix"></div>
-				 <div class="bnr-right grid3">
-					 <div class="banner_rght_info">
-						 <p><a href="projects.html">Birds</a></p>
-						 <h4>Birds are a group of endothermic vertebrates, characterised by feathers.</h4>
-					 </div>
-				 </div>
-				 <div class="bnr-right grid4">
-					 <div class="banner_rght_info bnr_rht">
-						 <p><a href="projects.html">Reptiles</a></p>
-						<h4>Reptiles are tetrapod animals in the class Reptilia</h4>
-					 </div>
-				 </div>
-				 <div class="clearfix"></div>
-			 </div>
-			 <div class="clearfix"></div>
-	 </div>
-	</div>
-</div>
-<!---->
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3010.3396850890695!2d-91.96947928493154!3d41.017823779299874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87e666733021a1fd%3A0xbd109f9c0f5e4fce!2sMaharishi+University+Of+Management!5e0!3m2!1sen!2sus!4v1507825025229" frameborder="0" style="border:0"></iframe>
 
-<!---->
-<div class="service">
-	 <div class="container">
-		 <h3>Services</h3>
-		  <div class="works">
-			  <div class="prjt-grid">
-				 <div class="box maxheight">
-					  <a class="example-image-link" href="images/s1.jpg" data-lightbox="example-1" data-title="Guidance."><img class="example-image" src="images/s1.jpg"></a>
-					  <div class="project-info">
-					   <a href="single.html">Guidance</a>
-					   <p>Our well trained staff are ready to guid you around the zoo </p>
-					  </div>
-				 </div>
-			  </div>
-			  <div class="prjt-grid">
-				 <div class="box maxheight">
-					  <a class="example-image-link" href="images/s2.jpg" data-lightbox="example-2" data-title="Mobile Tents."><img class="example-image" src="images/s2.jpg"></a>
-					  <div class="project-info">
-					  <a href="single.html">Mobile Tents</a>
-					  <p>We set up Mobile Tents for our visitors and tourist </p>
-					  </div>
-				  </div>
-			  </div>
-			  <div class="prjt-grid span66">
-				 <div class="box maxheight">
-					  	<a class="example-image-link" href="images/s3.jpg" data-lightbox="example-3" data-title="Animal Care."><img class="example-image" src="images/s3.jpg"></a>
-					  <div class="project-info">
-					  <a href="single.html">Animal Care</a>
-					  <p>Animal Care: our staff care for our animals</p>
-					  </div>
-				  </div>
-			  </div>
-			 <div class="clearfix"></div>
 		 </div>
 	 </div>
 </div>
-<script src="${cp}/js/js/lightbox-plus-jquery.min.js"></script>
-<!---->
-
-<!---->
 <div class="footer">
 	 <div class="container">
 		 <div class="footer-sec">
@@ -209,10 +165,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <div class="copywrite">
 	 <div class="container">
 		 <div class="ftr-logo">
-			 <h3><a href=""></a></h3>
+			 <h3></h3>
 		 </div>
 		 <div class="ftr-right">
-			 <p>Copyright 2017. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+			 <p>Copyright 2017 Wild Life. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
 		 </div>
 		 <div class="clearfix"></div>
 	 </div>

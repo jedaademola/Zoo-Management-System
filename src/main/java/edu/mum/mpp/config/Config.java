@@ -12,20 +12,11 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 public class Config extends WebMvcConfigurerAdapter {
-         /*  @Bean
-        public UrlBasedViewResolver setupViewResolver() {
-            UrlBasedViewResolver resolver = new UrlBasedViewResolver();
-            resolver.setPrefix("/WEB-INF/jsp/");
-            resolver.setSuffix(".jsp");
-            resolver.setViewClass(JstlView.class);
-            return resolver;
-        }
-    */
-        @Bean
+
+    @Bean
     public InternalResourceViewResolver setupViewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        //resolver.setPrefix ("/ui/jsp/");
-        //resolver.setSuffix (".jsp");
+
         resolver.setPrefix("/WEB-INF/jsp/");
         resolver.setSuffix(".jsp");
         resolver.setViewClass(JstlView.class);
