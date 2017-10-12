@@ -172,7 +172,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <a href="${cp}/manageMedicine"><i class="fa fa-check-square-o nav_icon"></i>Manage Medicine</a>
                     </li>
                     <li>
-                        <a href="${cp}/manageAppointment"><i class="fa fa-check-square-o nav_icon"></i>Manage Medicine</a>
+                        <a href="${cp}/manageAppointment"><i class="fa fa-check-square-o nav_icon"></i>Manage Appointment</a>
                     </li>
 
 
@@ -220,14 +220,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
          <c:forEach var="appointment" items="${appointments}" varStatus="theCount">
           <tr>
             <th scope="row">${theCount.count}</th>
-            <td>${appointment.name}</td>
-            <td>${appointment.period}</td>
-            <td>${appointment.amount}</td>
+            <td>${appointment.visitorId}</td>
+            <td>${appointment.date}</td>
+            <td>${appointment.numberOfVisitor}</td>
             <!-- <td></td> -->
             <td> <a href="#"
             data-toggle="tooltip" data-placement="top"
-            data-id="${appointment.id}:${appointment.name}:${hollyday.period}:${hollyday.amount}"
-            class="editHollyday" id="myBtn${hollyday.id}">Edit</td>
+            data-id="${appointment.id}:${appointment.visitorId}:${appointment.date}:${appointment.numberOfVisitor}"
+            class="editAppointment" id="myBtn${appointment.id}">Edit</td>
           </tr>
          </c:forEach>
         </tbody>
@@ -261,30 +261,30 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             });
 
 
-             $(document).on("click", "#addHollyday", function (e) {
+             $(document).on("click", "#addAppointment", function (e) {
 
 
-                    addHollyday();
+                    addAppointment();
 
                  //   location.reload();
                 });
 
-            $('.editHollyday').click(function () {
+            $('.editAppointment').click(function () {
 
                         var id = $(this).attr('data-id');
 
-                        $('#myModalEdit').find('#hollydayId').val(id.split(":")[0]);
-                        $('#myModalEdit').find('#txtNameInputEdit').val(id.split(":")[1]);
-                        $('#myModalEdit').find('#txtPeriodInputEdit').val(id.split(":")[2]);
-                        $('#myModalEdit').find('#txtAmountInputEdit').val(id.split(":")[3]);
+                        $('#myModalEdit').find('#appointmentId').val(id.split(":")[0]);
+                        $('#myModalEdit').find('#txtVisitorIdInputEdit').val(id.split(":")[1]);
+                        $('#myModalEdit').find('#txtAppointmentDateInputEdit').val(id.split(":")[2]);
+                        $('#myModalEdit').find('#txtNumberOfVisitorInputEdit').val(id.split(":")[3]);
 
                         $('#myModalEdit').modal();
                     });
 
-         $(document).on("click", "#editHollydayId", function (e) {
+         $(document).on("click", "#editAppointmentId", function (e) {
 
 
-                            editHollyday();
+                            editAppointment();
 
                          //   location.reload();
                         });
@@ -294,12 +294,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    });
 
 
-   function addHollyday() {
+   function addAppointment() {
               var jsonRequest = {};
 
-               jsonRequest["name"]      =   $("#txtNameInput").val();
-               jsonRequest["period"]    =   $("#txtPeriodInput").val();
-               jsonRequest["amount"]    =   $("#txtAmountInput").val();
+               jsonRequest["visitorId"]      =   $("#txtVisitorIdInput").val();
+               jsonRequest["date"]    =   $("#txtAppointmentDateInput").val();
+               jsonRequest["numberOfVisitor"]    =   $("#txtNumberOfVisitorInput").val();
 
 
 
@@ -307,7 +307,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                var param = JSON.stringify(jsonRequest);
 
                $.ajax({
-                   url: "${cp}/api/v1/zoo/hollyday",
+                   url: "${cp}/api/v1/zoo/appointment",
                    type: "POST",
                    dataType: "json",
                    beforeSend: function (xhr) {
@@ -345,14 +345,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
            );
            }
 
-function editHollyday() {
+function editAppointment() {
 
                var jsonRequest = {};
 
-               jsonRequest["id"] =  $("#hollydayId").val();
-               jsonRequest["name"] =  $("#txtNameInputEdit").val();
-               jsonRequest["period"]    =   $("#txtPeriodInputEdit").val();
-               jsonRequest["amount"]    =   $("#txtAmountInputEdit").val();
+               jsonRequest["id"] =  $("#appointmentId").val();
+               jsonRequest["visitorId"]      =   $("#txtVisitorIdInputEdit").val();
+               jsonRequest["date"]    =   $("#txtAppointmentDateInputEdit").val();
+               jsonRequest["numberOfVisitor"]    =   $("#txtNumberOfVisitorInputEdit").val();
 
 
 
@@ -360,7 +360,7 @@ function editHollyday() {
                var param = JSON.stringify(jsonRequest);
               // xhr.setRequestHeader(header, token);
                $.ajax({
-                   url: "${cp}/api/v1/zoo/hollyday",
+                   url: "${cp}/api/v1/zoo/appointment",
                    type: "PUT",
                    dataType: "json",
                    beforeSend: function (xhr) {
@@ -409,14 +409,14 @@ function editHollyday() {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Add New Hollyday Package Item</h4>
+        <h4 class="modal-title">Add New Appointment</h4>
       </div>
       <div class="modal-body">
         <form:form id ="formation" class="form-horizontal">
                 <div class="form-group">
-                    <label for="lblName" class="col-sm-2 control-label">Name</label>
+                    <label for="lblVisitorId" class="col-sm-2 control-label">Visitor Id</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control1" id="txtNameInput" placeholder="Enter Hollyday Package">
+                        <input type="text" class="form-control1" id="txtVisitorIdInput" placeholder="Enter Visitor Id">
                     </div>
                     <div class="col-sm-2">
 
@@ -436,10 +436,10 @@ function editHollyday() {
                -->
 
               <div class="form-group">
-                  <label for="lblPeriod" class="col-sm-2 control-label">Period</label>
+                  <label for="lblAppointmentDate" class="col-sm-2 control-label">Appointment Date</label>
                   <div class="col-sm-8">
                   <div class='input-group date' id='datetimepicker1'>
-                      <input type='text' class="form-control1" id="txtPeriodInput"  placeholder="Enter date (mm/dd/yyyy)" />
+                      <input type='text' class="form-control1" id="txtAppointmentDateInput"  placeholder="Enter date (mm/dd/yyyy)" />
                       <span class="input-group-addon">
                           <span class="glyphicon glyphicon-calendar"></span>
                       </span>
@@ -449,9 +449,9 @@ function editHollyday() {
 
 
                <div class="form-group">
-                  <label for="lblAmount" class="col-sm-2 control-label">Amount</label>
+                  <label for="lblNumberOfVisitor" class="col-sm-2 control-label">Number Of Visitor</label>
                   <div class="col-sm-8">
-                      <input type="text" class="form-control1" id="txtAmountInput" placeholder="Enter Amount">
+                      <input type="text" class="form-control1" id="txtNumberOfVisitorInput" placeholder="Enter Number of Visitor">
                   </div>
                   <div class="col-sm-2">
 
@@ -463,7 +463,7 @@ function editHollyday() {
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="addHollyday">Add</button>
+        <button type="button" class="btn btn-primary" id="addAppointment">Add</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -483,15 +483,15 @@ function editHollyday() {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Edit Hollyday Package Item</h4>
+        <h4 class="modal-title">Edit Appointment</h4>
       </div>
       <div class="modal-body">
             <form:form id ="formation" class="form-horizontal">
                     <div class="form-group">
-                        <input type ="hidden" name ="hollydaylId" value ="" id ="hollydayId"/>
-                        <label for="lblName" class="col-sm-2 control-label">Name</label>
+                        <input type ="hidden" name ="appointmentId" value ="" id ="appointmentId"/>
+                        <label for="lblVisitorIdEdit" class="col-sm-2 control-label">Visitor Id</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control1" id="txtNameInputEdit" placeholder="Enter Hollyday Package">
+                            <input type="text" class="form-control1" id="txtVisitorIdInputEdit" placeholder="Enter ">
                         </div>
                         <div class="col-sm-2">
 
@@ -511,10 +511,10 @@ function editHollyday() {
                    -->
 
                   <div class="form-group">
-                      <label for="lblPeriod" class="col-sm-2 control-label">Period</label>
+                      <label for="lblAppointmentDateEdit" class="col-sm-2 control-label">Appointment Date</label>
                       <div class="col-sm-8">
                       <div class='input-group date' id='datetimepicker2'>
-                          <input type='text' class="form-control11" id="txtPeriodInputEdit"  placeholder="Enter date (mm/dd/yyyy)" />
+                          <input type='text' class="form-control11" id="txtAppointmentDateInputEdit"  placeholder="Enter date (mm/dd/yyyy)" />
                           <span class="input-group-addon">
                               <span class="glyphicon glyphicon-calendar"></span>
                           </span>
@@ -524,9 +524,9 @@ function editHollyday() {
 
 
                    <div class="form-group">
-                      <label for="lblAmount" class="col-sm-2 control-label">Amount</label>
+                      <label for="lblNumberOfVisitorEdit" class="col-sm-2 control-label">Number Of Visitor</label>
                       <div class="col-sm-8">
-                          <input type="text" class="form-control1" id="txtAmountInputEdit" placeholder="Enter Amount">
+                          <input type="text" class="form-control1" id="txtNumberOfVisitorInputEdit" placeholder="Enter Number of Visitor">
                       </div>
                       <div class="col-sm-2">
 
@@ -537,7 +537,7 @@ function editHollyday() {
              </form:form>
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-primary" id="editHollydayId">Edit</button>
+      <button type="button" class="btn btn-primary" id="editAppointmentId">Edit</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>

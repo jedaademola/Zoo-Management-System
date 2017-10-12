@@ -76,6 +76,14 @@ public class DashboardController {
         return model;
     }
 
+    @RequestMapping(value = "/manageAppointment", method = RequestMethod.GET)
+    public ModelAndView manageAppointment() {
+        ModelAndView model = new ModelAndView();
+        model.addObject("appointments", AppointmentDataUtil.displayAppointments());
+        model.setViewName("manageAppointment");
+        return model;
+    }
+
 
 
 
