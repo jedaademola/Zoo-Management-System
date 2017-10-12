@@ -160,6 +160,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
  <li>
                         <a href="${cp}/manageMedicine"><i class="fa fa-check-square-o nav_icon"></i>Manage Medicine</a>
                     </li>
+                      <li>
+                                            <a href="${cp}/manageStock"><i class="fa fa-check-square-o nav_icon"></i>Manage Stock</a>
+                                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -448,7 +451,7 @@ function editAnimal() {
              <div class="form-group">
                 <label for="cellInput" class="col-sm-2 control-label">Cell</label>
                 <div class="col-sm-8">
-                   <form:select class="form-control1" id="cellInput" path="id">
+                   <form:select class="form-control1" id="cellInput" path="name">
                         <form:options items="${cells}" itemValue="value" itemLabel="label"/>
                     </form:select>
 

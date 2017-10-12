@@ -30,7 +30,7 @@ public class BlockService extends AbstractService<Block> {
 
     public boolean checkBlock(String blockName, String location) {
 
-        String blockNameTemp = "";
+        String blockNameTemp = blockName;
         try {
 
             blockNameTemp = BlockDataUtil.displayBlocks().stream()

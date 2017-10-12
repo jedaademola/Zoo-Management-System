@@ -163,6 +163,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <a href="${cp}/manageAppointment"><i class="fa fa-check-square-o nav_icon"></i>Manage Appointment</a>
                     </li>
 
+                                            <a href="${cp}/manageMedicine"><i class="fa fa-check-square-o nav_icon"></i>Manage Medicine</a>
+                                        </li>
+  <li>
+                        <a href="${cp}/manageStock"><i class="fa fa-check-square-o nav_icon"></i>Manage Stock</a>
+                    </li>
 
 
                     </ul>
@@ -178,8 +183,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         		<div class="r3_counter_box">
                     <i class="pull-left fa fa-thumbs-up icon-rounded"></i>
                     <div class="stats">
-                      <h5><strong>45%</strong></h5>
-                      <span>New Orders</span>
+                      <h5><strong>45</strong></h5>
+                      <span>New Appointments</span>
                     </div>
                 </div>
         	</div>
@@ -187,7 +192,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         		<div class="r3_counter_box">
                     <i class="pull-left fa fa-users user1 icon-rounded"></i>
                     <div class="stats">
-                      <h5><strong>1019</strong></h5>
+                      <h5><strong>523</strong></h5>
                       <span>New Visitors</span>
                     </div>
                 </div>
@@ -196,7 +201,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         		<div class="r3_counter_box">
                     <i class="pull-left fa fa-comment user2 icon-rounded"></i>
                     <div class="stats">
-                      <h5><strong>1012</strong></h5>
+                      <h5><strong>20</strong></h5>
                       <span>New Users</span>
                     </div>
                 </div>
@@ -223,8 +228,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	                 <div class="col-xs-1"><i class="fa fa-thumbs-up text-info icon_13"> </i>  </div>
 	                 <div class="col-xs-3 activity-img"><img src='images/5.png' class="img-responsive" alt=""/></div>
 	                 <div class="col-xs-8 activity-desc">
-	                 	<h5><a href="#">Lorem Ipsum</a> liked <a href="#">random</a></h5>
-	                    <p>Lorem Ipsum is simply dummy</p>
+	                 	<h5><a href="#">Lukman</a> liked <a href="#">Zoo Management system</a></h5>
+	                    <p>This is great</p>
 	                    <h6>8:03</h6>
 	                 </div>
 	                 <div class="clearfix"> </div>
@@ -233,8 +238,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	                 <div class="col-xs-1"><i class="fa fa-comment text-info"></i> </div>
 	                 <div class="col-xs-3 activity-img"><img src='images/3.png' class="img-responsive" alt=""/></div>
 	                 <div class="col-xs-8 activity-desc">
-	                 	<h5><a href="#">simply random</a> liked <a href="#">passages</a></h5>
-	                    <p>Lorem Ipsum is simply dummy</p>
+	                 	<h5><a href="#">Kristna</a> liked <a href="#">Zoo Management system</a></h5>
+                        	                    <p>This is great</p>
 	                    <h6>8:03</h6>
 	                 </div>
 	                 <div class="clearfix"> </div>
@@ -243,8 +248,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	                 <div class="col-xs-1"><i class="fa fa-check text-info icon_11"></i></div>
 	                 <div class="col-xs-3 activity-img"><img src='images/1.png' class="img-responsive" alt=""/></div>
 	                 <div class="col-xs-8 activity-desc">
-	                 	<h5><a href="#">standard chunk</a> liked <a href="#">model</a></h5>
-	                    <p>Lorem Ipsum is simply dummy</p>
+	                 	<h5><a href="#">Stanley</a> liked <a href="#">Zoo Management system</a></h5>
+                        	                    <p>This is great</p>
 	                    <h6>8:03</h6>
 	                 </div>
 	                 <div class="clearfix"> </div>
@@ -253,8 +258,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	                 <div class="col-xs-1"><i class="fa fa-user text-info icon_12"></i></div>
 	                 <div class="col-xs-3 activity-img"><img src='images/4.png' class="img-responsive" alt=""/></div>
 	                 <div class="col-xs-8 activity-desc">
-	                 	<h5><a href="#">perspiciatis</a> liked <a href="#">donating</a></h5>
-	                    <p>Lorem Ipsum is simply dummy</p>
+	                 	<h5><a href="#">Dewan</a> liked <a href="#">Zoo Management system</a></h5>
+                        	                    <p>This is great</p>
 	                    <h6>8:03</h6>
 	                 </div>
 	                 <div class="clearfix"> </div>

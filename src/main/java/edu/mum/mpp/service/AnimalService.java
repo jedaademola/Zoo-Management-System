@@ -2,7 +2,7 @@ package edu.mum.mpp.service;
 
 import edu.mum.mpp.dao.AbstractDao;
 import edu.mum.mpp.model.Animal;
-import edu.mum.mpp.util.AninalDataUtil;
+import edu.mum.mpp.util.AnimalDataUtil;
 import edu.mum.mpp.util.LoggerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +25,7 @@ public class AnimalService extends AbstractService<Animal> {
 
     public Animal create(Animal animal) {
 
-        AninalDataUtil.addAnimal(animal);
+        AnimalDataUtil.addAnimal(animal);
         return animal;
     }
 
@@ -34,7 +34,7 @@ public class AnimalService extends AbstractService<Animal> {
         long idTemp = cellId;
         try {
 
-            idTemp = AninalDataUtil.displayAnimals().stream()
+            idTemp = AnimalDataUtil.displayAnimals().stream()
                     .filter(
                             animal -> animal.getCellId() == cellId)
                     .map(Animal::getCellId)
@@ -52,14 +52,14 @@ public class AnimalService extends AbstractService<Animal> {
 
 
     public List<Animal> getAnimals() {
-        return AninalDataUtil.displayAnimals();
+        return AnimalDataUtil.displayAnimals();
     }
 
     public Animal getSingleAnimal(long id) {
         Animal singleAnimal = null;
         try {
 
-            singleAnimal = AninalDataUtil.displayAnimals().stream()
+            singleAnimal = AnimalDataUtil.displayAnimals().stream()
                     .filter(animal -> animal.getId() == id)
                     .findAny().get();
 
@@ -73,7 +73,7 @@ public class AnimalService extends AbstractService<Animal> {
 
 
     public Animal editAnimal(Animal animal) {
-        AninalDataUtil.editAnimal(animal);
+        AnimalDataUtil.editAnimal(animal);
         return animal;
 
     }

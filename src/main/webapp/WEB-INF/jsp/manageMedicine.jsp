@@ -154,12 +154,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <a href="${cp}/manageFood"><i class="fa fa-check-square-o nav_icon"></i>Manage Food</a>
                     </li>
                     <li>
-                                            <a href="${cp}/manageHollydayPackage"><i class="fa fa-check-square-o nav_icon"></i>Manage Hollyday Package</a>
-                                        </li>
-                    <li>
                         <a href="${cp}/manageMedicine"><i class="fa fa-check-square-o nav_icon"></i>Manage Medicine</a>
                     </li>
 
+                     <li>
+                         <a href="${cp}/manageStock"><i class="fa fa-check-square-o nav_icon"></i>Manage Stock</a>
+                     </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -204,7 +204,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
          <c:forEach var="med" items="${medicines}" varStatus="theCount">
           <tr>
             <th scope="row">${theCount.count}</th>
-            <td>${food.name}</td>
+            <td>${med.name}</td>
             <td></td>
             <td></td>
             <td></td>
@@ -241,7 +241,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
              $(document).on("click", "#addMed", function (e) {
 
 
-                    addFood();
+                    addMed();
 
                  //   location.reload();
                 });

@@ -1,7 +1,8 @@
 package edu.mum.mpp.util;
 
-import edu.mum.mpp.model.Block;
+
 import edu.mum.mpp.model.Cell;
+import edu.mum.mpp.model.LabelValue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,24 @@ import java.util.List;
 public class CellDataUtil {
     public static List<Cell> cellList = new ArrayList<>();
     private static long lastId;
+
+
+    public static List<LabelValue> getCellListForDropDown() {
+
+        List<LabelValue> selectItems = new ArrayList<>();
+
+        for (Cell c : displayCells()) {
+
+            LabelValue l = new LabelValue();
+            l.setLabel(c.getName());
+            l.setValue(c.getId());
+            selectItems.add(l);
+
+
+        }
+
+        return selectItems;
+    }
 
     public static void addCell(Cell newCell) {
         lastId = lastId + 1;
@@ -30,7 +49,7 @@ public class CellDataUtil {
                 Cell newCell = new Cell();
                 newCell.setId(k);
                 newCell.setName("Cell" + k);
-                //newCell.setLocation("East");
+                newCell.setBlockId(k);
                 lastId = k;
 
                 cellList.add(newCell);
