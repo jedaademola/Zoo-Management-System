@@ -162,10 +162,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <li>
                         <a href="${cp}/manageAppointment"><i class="fa fa-check-square-o nav_icon"></i>Manage Appointment</a>
                     </li>
-                    <li>
-
-                        <a href="${cp}/manageMedicine"><i class="fa fa-check-square-o nav_icon"></i>Manage Medicine</a>
-                    </li>
                      <li>
                         <a href="${cp}/manageStock"><i class="fa fa-check-square-o nav_icon"></i>Manage Stock</a>
                     </li>
