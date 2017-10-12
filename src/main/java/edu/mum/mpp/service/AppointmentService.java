@@ -3,7 +3,6 @@ package edu.mum.mpp.service;
 import edu.mum.mpp.dao.AbstractDao;
 import edu.mum.mpp.model.Animal;
 import edu.mum.mpp.model.Appointment;
-import edu.mum.mpp.util.AninalDataUtil;
 import edu.mum.mpp.util.AppointmentDataUtil;
 import edu.mum.mpp.util.LoggerUtil;
 import org.slf4j.Logger;

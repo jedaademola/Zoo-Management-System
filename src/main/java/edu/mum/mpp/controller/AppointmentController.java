@@ -8,7 +8,6 @@ import edu.mum.mpp.model.Appointment;
 import edu.mum.mpp.model.Response;
 import edu.mum.mpp.service.AnimalService;
 import edu.mum.mpp.service.AppointmentService;
-import edu.mum.mpp.util.AninalDataUtil;
 import edu.mum.mpp.util.CustomResponseCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
