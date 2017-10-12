@@ -6,6 +6,8 @@ import edu.mum.mpp.service.CellService;
 import edu.mum.mpp.service.StockService;
 import edu.mum.mpp.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import edu.mum.mpp.model.User;
+import edu.mum.mpp.util.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,6 +62,14 @@ public class DashboardController {
         return model;
     }
 
+    @RequestMapping(value = "/manageHollydayPackage", method = RequestMethod.GET)
+    public ModelAndView manageHollydayPackage() {
+        ModelAndView model = new ModelAndView();
+        model.addObject("hollydays", HollydayDataUtil.displayHollydays());
+        model.setViewName("manageHollydayPackage");
+        return model;
+    }
+
 
     @RequestMapping(value = "/manageStock", method = RequestMethod.GET)
     public ModelAndView manageStock(@ModelAttribute("command") StockRequest stockRequest) {
@@ -92,6 +102,16 @@ public class DashboardController {
         model.setViewName("manageCell");
         return model;
     }
+
+    @RequestMapping(value = "/manageAppointment", method = RequestMethod.GET)
+    public ModelAndView manageAppointment() {
+        ModelAndView model = new ModelAndView();
+        model.addObject("appointments", AppointmentDataUtil.displayAppointments());
+        model.setViewName("manageAppointment");
+        return model;
+    }
+
+
 
 
     @RequestMapping(value = "/manageAnimal", method = RequestMethod.GET)

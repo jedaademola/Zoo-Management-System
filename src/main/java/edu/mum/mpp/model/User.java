@@ -151,7 +151,6 @@ public class User extends AbstractModel {
     private long lastUpdatedBy;
 
 
-
     @Override
     public long getId() {
         return id;
@@ -259,7 +258,6 @@ public class User extends AbstractModel {
     public void setLoginAttempts(long loginAttempts) {
         this.loginAttempts = loginAttempts;
     }
-
 
 
     public void setLastUpdatedBy(long lastUpdatedBy) {

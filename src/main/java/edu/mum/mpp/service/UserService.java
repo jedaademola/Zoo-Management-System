@@ -23,7 +23,6 @@ public class UserService extends AbstractService<User> {
     private PasswordEncoder passwordEncoder;
 
 
-
     @Autowired
     public UserService(@Qualifier("userDao") AbstractDao<User> dao) {
         super(dao);
