@@ -46,6 +46,22 @@ public class DashboardController {
         return model;
     }
 
+    @RequestMapping(value = "/contact", method = RequestMethod.GET)
+    public ModelAndView contact() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("contact");
+        return model;
+    }
+
+
+    @RequestMapping(value = "/gallery", method = RequestMethod.GET)
+    public ModelAndView gallery() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("gallery");
+        return model;
+    }
+
+
     @RequestMapping(value = "/manageBlock", method = RequestMethod.GET)
     public ModelAndView manageBlock() {
         ModelAndView model = new ModelAndView();

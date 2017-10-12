@@ -60,11 +60,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		 <div class="top-menu">
 			 <span class="menu"><img src="images/menu.png" alt=""></span>
 			 <ul class="nav1">
-				 <li class="active"><a href="index.html">Home</a></li>
-				 <li><a href="gallery.html">Gallery</a></li>
+				 <li class="active"><a href="${cp}/index">Home</a></li>
+				 <li><a href="${cp}/gallery">Gallery</a></li>
 				 <li><a href="typo.html">Appointment</a></li>
 				  <li><a href="typo.html">Holiday Packages</a></li>
-				 <li><a href="contact.html">Contact</a></li>
+				 <li><a href="${cp}/contact">Contact</a></li>
 			 </ul>
 		 </div>
 		 <!-- script-for-menu -->
@@ -212,7 +212,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			 <h3><a href=""></a></h3>
 		 </div>
 		 <div class="ftr-right">
-			 <p>Copyright©2017. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+			 <p>Copyright 2017. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
 		 </div>
 		 <div class="clearfix"></div>
 	 </div>

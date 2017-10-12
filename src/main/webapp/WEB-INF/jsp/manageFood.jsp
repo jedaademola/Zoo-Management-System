@@ -139,8 +139,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="${cp}/index"><i class="fa fa-dashboard fa-fw nav_icon"></i>Dashboard</a>
-                        </li>
+                                                   <a href="${cp}/dashboard"><i class="fa fa-dashboard fa-fw nav_icon"></i>Dashboard</a>
+                                               </li>
                         <li>
                             <a href="${cp}/manageBlock"><i class="fa fa-check-square-o nav_icon"></i>Manage Block</a>
                         </li>
