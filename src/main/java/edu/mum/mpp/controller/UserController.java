@@ -57,7 +57,7 @@ public class UserController {
         if (user != null) {
 
             if (user.isLoginStatus()) {
-
+/*
                 //FIRST TIME LOGIN
                 if (user.getPasswordChangedOn() == null || user.getPasswordExpired()
                         || CustomResponseCode.INACTIVE_USER == user.getActive()) {
@@ -68,7 +68,7 @@ public class UserController {
                     resp.setDescription("Change password Required");
                     return new ResponseEntity<>(resp, HttpStatus.ACCEPTED);//202
                 }
-
+*/
                 if (CustomResponseCode.DEACTIVE_USER == user.getActive()) {
 
                     Response resp = new Response();
@@ -90,8 +90,6 @@ public class UserController {
             } else {
                 //update login failed count and failed login date
                 loginStatus = "failed";
-                //  emailSmsUtil.SendEmail("", user.getEmail(), "Coronation Bank Merchant Online Banking Account Login Alert",
-                //     CustomResponseCode.LOGIN, "", user.getId(), user.getFirstName() + " " + user.getLastName(), "", loginStatus);
 
                 userService.updateFailedLogin(loginRequest.getUsername());
                 throw new UnauthorizedException(CustomResponseCode.UNAUTHORIZED, "Invalid Login details.");
@@ -113,10 +111,6 @@ public class UserController {
         userService.updateLogin(loginRequest.getUsername(), true);
 
         AccessTokenWithUserDetails details = new AccessTokenWithUserDetails(newToken, user);
-
-        loginStatus = " successful";
-        // emailSmsUtil.SendEmail("", user.getEmail(), "Coronation Bank Merchant Online Banking Account Login Alert",
-        //     CustomResponseCode.LOGIN, "", user.getId(), user.getFirstName() + " " + user.getLastName(), "", loginStatus);
 
         return new ResponseEntity<>(details, HttpStatus.OK);
 
@@ -141,7 +135,7 @@ public class UserController {
             throw new ConflictException(CustomResponseCode.CONFLICT_EXCEPTION, " Account already exist");
         } else {
             String password = Utility.getSaltString();
-            //user.setPassword(passwordEncoder.encode(Utility.convertToSha1(password)));
+            // user.setPassword(passwordEncoder.encode(Utility.convertToSha1(password)));
 
             user.setPassword(passwordEncoder.encode(password));
             user.setCreatedBy(1);

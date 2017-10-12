@@ -75,7 +75,7 @@ public class ValidateUser {
             throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Invalid Mobile Number Length");
 
 
-        if (user.getUserCategory() != null) {
+        if (user.getCategory() == null) {
             throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Invalid Category");
 
         }

@@ -5,14 +5,81 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import edu.mum.mpp.util.CustomDateSerializer;
 import edu.mum.mpp.util.UserCategory;
 
-import java.time.LocalDateTime;
+import java.sql.Date;
+
 
 public class User extends AbstractModel {
 
     @JsonIgnore
     private long id;
 
+    public Date getLastLogin() {
+        return lastLogin;
+    }
 
+    public void setLastLogin(Date lastLogin) {
+        this.lastLogin = lastLogin;
+    }
+
+    public Date getLockedDate() {
+        return lockedDate;
+    }
+
+    public void setLockedDate(Date lockedDate) {
+        this.lockedDate = lockedDate;
+    }
+
+    public Date getFailedLoginDate() {
+        return failedLoginDate;
+    }
+
+    public void setFailedLoginDate(Date failedLoginDate) {
+        this.failedLoginDate = failedLoginDate;
+    }
+
+    public Date getAccountCreatedOn() {
+        return accountCreatedOn;
+    }
+
+    public void setAccountCreatedOn(Date accountCreatedOn) {
+        this.accountCreatedOn = accountCreatedOn;
+    }
+
+    public Date getPasswordChangedOn() {
+        return passwordChangedOn;
+    }
+
+    public void setPasswordChangedOn(Date passwordChangedOn) {
+        this.passwordChangedOn = passwordChangedOn;
+    }
+
+    public Date getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(Date createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public long getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(long createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Date getLastUpdatedOn() {
+        return lastUpdatedOn;
+    }
+
+    public void setLastUpdatedOn(Date lastUpdatedOn) {
+        this.lastUpdatedOn = lastUpdatedOn;
+    }
+
+    public long getLastUpdatedBy() {
+        return lastUpdatedBy;
+    }
 
     private String firstName;
 
@@ -25,6 +92,7 @@ public class User extends AbstractModel {
     private String address;
     private String ssn;
     private char gender;
+
 
     public char getGender() {
         return gender;
@@ -40,49 +108,48 @@ public class User extends AbstractModel {
         return firstName + " " + lastName;
     }
 
-    private UserCategory userCategory;
+    private UserCategory category;
 
+    public UserCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(UserCategory category) {
+        this.category = category;
+    }
 
     private int active;
 
     private boolean loginStatus;
 
     @JsonSerialize(using = CustomDateSerializer.class)
-    private LocalDateTime lastLogin;
+    private Date lastLogin;
 
     private Boolean passwordExpired = Boolean.FALSE;
 
     private int passwordExpirationDaysRemaining;
 
-    private LocalDateTime lockedDate;
+    private Date lockedDate;
     private long loginAttempts;
 
     @JsonSerialize(using = CustomDateSerializer.class)
-    private LocalDateTime failedLoginDate;
+    private Date failedLoginDate;
 
     @JsonSerialize(using = CustomDateSerializer.class)
-    private LocalDateTime accountCreatedOn;
+    private Date accountCreatedOn;
 
     @JsonSerialize(using = CustomDateSerializer.class)
-    private LocalDateTime passwordChangedOn;
+    private Date passwordChangedOn;
 
     @JsonSerialize(using = CustomDateSerializer.class)
-    private LocalDateTime createdOn;
+    private Date createdOn;
 
     private long createdBy;
     @JsonSerialize(using = CustomDateSerializer.class)
-    private LocalDateTime lastUpdatedOn;
+    private Date lastUpdatedOn;
 
     private long lastUpdatedBy;
 
-
-    public UserCategory getUserCategory() {
-        return userCategory;
-    }
-
-    public void setUserCategory(UserCategory userCategory) {
-        this.userCategory = userCategory;
-    }
 
 
     @Override
@@ -167,13 +234,6 @@ public class User extends AbstractModel {
         this.loginStatus = loginStatus;
     }
 
-    public LocalDateTime getLastLogin() {
-        return lastLogin;
-    }
-
-    public void setLastLogin(LocalDateTime lastLogin) {
-        this.lastLogin = lastLogin;
-    }
 
     public Boolean getPasswordExpired() {
         return passwordExpired;
@@ -191,13 +251,6 @@ public class User extends AbstractModel {
         this.passwordExpirationDaysRemaining = passwordExpirationDaysRemaining;
     }
 
-    public LocalDateTime getLockedDate() {
-        return lockedDate;
-    }
-
-    public void setLockedDate(LocalDateTime lockedDate) {
-        this.lockedDate = lockedDate;
-    }
 
     public long getLoginAttempts() {
         return loginAttempts;
@@ -207,57 +260,7 @@ public class User extends AbstractModel {
         this.loginAttempts = loginAttempts;
     }
 
-    public LocalDateTime getFailedLoginDate() {
-        return failedLoginDate;
-    }
 
-    public void setFailedLoginDate(LocalDateTime failedLoginDate) {
-        this.failedLoginDate = failedLoginDate;
-    }
-
-    public LocalDateTime getAccountCreatedOn() {
-        return accountCreatedOn;
-    }
-
-    public void setAccountCreatedOn(LocalDateTime accountCreatedOn) {
-        this.accountCreatedOn = accountCreatedOn;
-    }
-
-    public LocalDateTime getPasswordChangedOn() {
-        return passwordChangedOn;
-    }
-
-    public void setPasswordChangedOn(LocalDateTime passwordChangedOn) {
-        this.passwordChangedOn = passwordChangedOn;
-    }
-
-    public LocalDateTime getCreatedOn() {
-        return createdOn;
-    }
-
-    public void setCreatedOn(LocalDateTime createdOn) {
-        this.createdOn = createdOn;
-    }
-
-    public long getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(long createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public LocalDateTime getLastUpdatedOn() {
-        return lastUpdatedOn;
-    }
-
-    public void setLastUpdatedOn(LocalDateTime lastUpdatedOn) {
-        this.lastUpdatedOn = lastUpdatedOn;
-    }
-
-    public long getLastUpdatedBy() {
-        return lastUpdatedBy;
-    }
 
     public void setLastUpdatedBy(long lastUpdatedBy) {
         this.lastUpdatedBy = lastUpdatedBy;

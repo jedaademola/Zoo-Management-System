@@ -1,5 +1,6 @@
 package edu.mum.mpp.util;
 
+//ADMINISTRATOR, VISITOR, SUPPLIER
 public enum UserCategory {
-    ADMINISTRATOR, VISITOR, SUPPLIER;
+    E, V, S
 }

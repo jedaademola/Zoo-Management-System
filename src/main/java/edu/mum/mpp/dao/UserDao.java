@@ -36,29 +36,30 @@ public class UserDao extends AbstractDao<User> {
         create = new SimpleJdbcCall(jdbcTemplate).withProcedureName("createUser").withReturnValue();
         isUserExists = new SimpleJdbcCall(jdbcTemplate).withProcedureName("isUserExists").
                 returningResultSet(SINGLE_RESULT, BeanPropertyRowMapper.newInstance(User.class));
+        loginUser = new SimpleJdbcCall(jdbcTemplate).withProcedureName("loginUser").
+                returningResultSet(SINGLE_RESULT, BeanPropertyRowMapper.newInstance(User.class));
+
+        updateLogin = new SimpleJdbcCall(jdbcTemplate).withProcedureName("updateLogin").withReturnValue();
+
+
+        lockLogin = new SimpleJdbcCall(jdbcTemplate).withProcedureName("loginLock").withReturnValue();
+        updateFailedLogin = new SimpleJdbcCall(jdbcTemplate).withProcedureName("updateFailedLogin").withReturnValue();
+
+
+        unlockLogin = new SimpleJdbcCall(jdbcTemplate).withProcedureName("loginUnlock").withReturnValue();
+
 
 /*
 
         update = new SimpleJdbcCall(jdbcTemplate).withProcedureName("update_user").withReturnValue();
         delete = new SimpleJdbcCall(jdbcTemplate).withProcedureName("delete_user").withReturnValue();
-        loginUser = new SimpleJdbcCall(jdbcTemplate).withProcedureName("login_user").
-                returningResultSet(SINGLE_RESULT, BeanPropertyRowMapper.newInstance(User.class));
 
 
 
         find = new SimpleJdbcCall(jdbcTemplate).withProcedureName("get_user")
                 .returningResultSet(SINGLE_RESULT, BeanPropertyRowMapper.newInstance(User.class));
 
-        updateLogin = new SimpleJdbcCall(jdbcTemplate).withProcedureName("update_login").withReturnValue();
 
-        updateRetailLogin = new SimpleJdbcCall(jdbcTemplate).withProcedureName("updateRetailLogin").withReturnValue();
-
-        lockLogin = new SimpleJdbcCall(jdbcTemplate).withProcedureName("login_lock").withReturnValue();
-        update_failed_login = new SimpleJdbcCall(jdbcTemplate).withProcedureName("update_failed_login").withReturnValue();
-
-
-
-        unlockLogin = new SimpleJdbcCall(jdbcTemplate).withProcedureName("login_unlock").withReturnValue();
 
 
         getUserPreviousPasswords = new SimpleJdbcCall(jdbcTemplate).withProcedureName("get_user_previous_passwords")
@@ -187,8 +188,8 @@ public class UserDao extends AbstractDao<User> {
         return (Long) m.get("userid");
     }
 
-    public User loginUser(long id) throws DataAccessException {
-        SqlParameterSource in = new MapSqlParameterSource().addValue("id", id);
+    public User loginUser(String username) throws DataAccessException {
+        SqlParameterSource in = new MapSqlParameterSource().addValue("username", username);
         Map<String, Object> m = loginUser.execute(in);
         List<User> result = (List<User>) m.get(SINGLE_RESULT);
 

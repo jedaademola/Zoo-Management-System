@@ -7,7 +7,7 @@ import edu.mum.mpp.util.CustomDateSerializer;
 import edu.mum.mpp.util.UserCategory;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.sql.Date;
 
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -32,7 +32,7 @@ public class AccessTokenWithUserDetails implements Serializable {
 
     @JsonSerialize(using = CustomDateSerializer.class)
     @JsonProperty("lastLogin")
-    private LocalDateTime lastLogin;
+    private Date lastLogin;
 
 
     @JsonProperty("passwordExpirationDaysRemaining")
@@ -40,11 +40,11 @@ public class AccessTokenWithUserDetails implements Serializable {
 
     @JsonSerialize(using = CustomDateSerializer.class)
     @JsonProperty("failedLoginDate")
-    private LocalDateTime failedLoginDate;
+    private Date failedLoginDate;
 
     @JsonSerialize(using = CustomDateSerializer.class)
     @JsonProperty("passwordChangedOn")
-    private LocalDateTime passwordChangedOn;
+    private Date passwordChangedOn;
 
 
     @JsonProperty("userCategory")
@@ -55,7 +55,7 @@ public class AccessTokenWithUserDetails implements Serializable {
         this.accessToken = token;
 
         this.email = user.getEmail();
-        this.category = user.getUserCategory();
+        this.category = user.getCategory();
 
         this.phoneNumber = user.getPhoneNumber();
         this.firstName = user.getFirstName();
