@@ -22,6 +22,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link href="${cp}/css/font-awesome.css" rel="stylesheet">
 <!-- jQuery -->
 <script src="${cp}/js/jquery.min.js"></script>
+<script src="${cp}/js/moment.min.js"></script>
+<script src="${cp}/js/bootstrap-datetimepicker.min.js"></script>
 <!----webfonts--->
 <link href='${cp}/fontCss.css' rel='stylesheet' type='text/css'>
 <!---//webfonts--->
@@ -33,6 +35,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- Graph JavaScript -->
 <script src="${cp}/js/d3.v3.js"></script>
 <script src="${cp}/js/rickshaw.js"></script>
+
+<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" /> -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+-->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+-->
+
 </head>
 <body>
 <div id="wrapper">
@@ -138,31 +150,31 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-           <li>
-               <a href="${cp}/index"><i class="fa fa-dashboard fa-fw nav_icon"></i>Dashboard</a>
-           </li>
-           <li>
-               <a href="${cp}/manageBlock"><i class="fa fa-check-square-o nav_icon"></i>Manage Block</a>
-           </li>
-             <li>
-                <a href="${cp}/manageCell"><i class="fa fa-check-square-o nav_icon"></i>Manage Cell</a>
-            </li>
-            <li>
-             <a href="${cp}/manageAnimal"><i class="fa fa-check-square-o nav_icon"></i>Manage Animal</a>
-         </li>
-         <li>
-           <a href="${cp}/manageFood"><i class="fa fa-check-square-o nav_icon"></i>Manage Food</a>
-       </li>
-       <li>
-                               <a href="${cp}/manageHollydayPackage"><i class="fa fa-check-square-o nav_icon"></i>Manage Hollyday Package</a>
-                           </li>
- <li>
+                        <li>
+                            <a href="${cp}/index"><i class="fa fa-dashboard fa-fw nav_icon"></i>Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="${cp}/manageBlock"><i class="fa fa-check-square-o nav_icon"></i>Manage Block</a>
+                        </li>
+                          <li>
+                             <a href="${cp}/manageCell"><i class="fa fa-check-square-o nav_icon"></i>Manage Cell</a>
+                         </li>
+                         <li>
+                          <a href="${cp}/manageAnimal"><i class="fa fa-check-square-o nav_icon"></i>Manage Animal</a>
+                      </li>
+                      <li>
+                        <a href="${cp}/manageFood"><i class="fa fa-check-square-o nav_icon"></i>Manage Food</a>
+                    </li>
+                    <li>
+                         <a href="${cp}/manageHollydayPackage"><i class="fa fa-check-square-o nav_icon"></i>Manage Hollyday Package</a>
+                    </li>
+                    <li>
                         <a href="${cp}/manageMedicine"><i class="fa fa-check-square-o nav_icon"></i>Manage Medicine</a>
                     </li>
-
-  <li>
-                        <a href="${cp}/manageStock"><i class="fa fa-check-square-o nav_icon"></i>Manage Stock</a>
+                    <li>
+                        <a href="${cp}/manageAppointment"><i class="fa fa-check-square-o nav_icon"></i>Manage Appointment</a>
                     </li>
+
 
                     </ul>
                 </div>
@@ -188,7 +200,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
      <div class="clearfix"> </div>
     <div class="table-responsive">
      <a href="#" class="btn btn-primary btn-md pull-right" data-toggle="modal" data-target="#myModal">
-     <b>+</b> Add new Block</a>
+     <b>+</b> Add new Appointment</a>
      <!-- Trigger the modal with a button -->
      <!--button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button -->
      <div class="clearfix"> </div>
@@ -197,26 +209,25 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <thead>
           <tr>
             <th>#</th>
-            <th>Name</th>
-            <th>Location</th>
-            <th>Date Created</th>
-            <th>Date Modified</th>
-            <th>Modified by</th>
+            <th>Visitor</th>
+            <th>Appointment Date</th>
+            <th>Number of Visitor</th>
+            <!-- <th>Modified by</th> -->
             <th></th>
           </tr>
         </thead>
         <tbody>
-         <c:forEach var="block" items="${blocks}" varStatus="theCount">
+         <c:forEach var="appointment" items="${appointments}" varStatus="theCount">
           <tr>
             <th scope="row">${theCount.count}</th>
-            <td>${block.name}</td>
-            <td>${block.location}</td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>${appointment.visitorId}</td>
+            <td>${appointment.date}</td>
+            <td>${appointment.numberOfVisitor}</td>
+            <!-- <td></td> -->
             <td> <a href="#"
             data-toggle="tooltip" data-placement="top"
-            data-id="${block.id}:${block.name}"   class="editBlock" id="myBtn${block.id}">Edit</td>
+            data-id="${appointment.id}:${appointment.visitorId}:${appointment.date}:${appointment.numberOfVisitor}"
+            class="editAppointment" id="myBtn${appointment.id}">Edit</td>
           </tr>
          </c:forEach>
         </tbody>
@@ -244,29 +255,36 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script type="text/javascript">
     $(document).ready(function () {
 
-             $(document).on("click", "#addBlock", function (e) {
+ $(function () {
+                $('#datetimepicker1').datetimepicker();
+                $('#datetimepicker2').datetimepicker();
+            });
 
-                    // alert( "Here we come");
-                    //alert( $("#nameInput").val());
-                    addBlock();
+
+             $(document).on("click", "#addAppointment", function (e) {
+
+
+                    addAppointment();
 
                  //   location.reload();
                 });
 
-            $('.editBlock').click(function () {
+            $('.editAppointment').click(function () {
 
                         var id = $(this).attr('data-id');
 
-                        $('#myModalEdit').find('#blockId').val(id.split(":")[0]);
-                        $('#myModalEdit').find('#nameEditInput').val(id.split(":")[1]);
+                        $('#myModalEdit').find('#appointmentId').val(id.split(":")[0]);
+                        $('#myModalEdit').find('#txtVisitorIdInputEdit').val(id.split(":")[1]);
+                        $('#myModalEdit').find('#txtAppointmentDateInputEdit').val(id.split(":")[2]);
+                        $('#myModalEdit').find('#txtNumberOfVisitorInputEdit').val(id.split(":")[3]);
 
                         $('#myModalEdit').modal();
                     });
 
-         $(document).on("click", "#editBlockId", function (e) {
+         $(document).on("click", "#editAppointmentId", function (e) {
 
 
-                            editBlock();
+                            editAppointment();
 
                          //   location.reload();
                         });
@@ -276,21 +294,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    });
 
 
-   function addBlock() {
-              // var token = $("meta[name='_csrf']").attr("content");
-             //  var header = $("meta[name='_csrf_header']").attr("content");
+   function addAppointment() {
+              var jsonRequest = {};
 
-               var jsonRequest = {};
+               jsonRequest["visitorId"]      =   $("#txtVisitorIdInput").val();
+               jsonRequest["date"]    =   $("#txtAppointmentDateInput").val();
+               jsonRequest["numberOfVisitor"]    =   $("#txtNumberOfVisitorInput").val();
 
-               jsonRequest["name"] =  $("#nameInput").val();
-               jsonRequest["location"] =  $("#nameLocation").val();
 
 
 
                var param = JSON.stringify(jsonRequest);
-    // xhr.setRequestHeader(header, token);
+
                $.ajax({
-                   url: "${cp}/api/v1/zoo/block",
+                   url: "${cp}/api/v1/zoo/appointment",
                    type: "POST",
                    dataType: "json",
                    beforeSend: function (xhr) {
@@ -327,22 +344,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
            );
            }
-function editBlock() {
-              // var token = $("meta[name='_csrf']").attr("content");
-             //  var header = $("meta[name='_csrf_header']").attr("content");
+
+function editAppointment() {
 
                var jsonRequest = {};
 
-               jsonRequest["id"] =  $("#blockId").val();
-               jsonRequest["name"] =  $("#nameEditInput").val();
-               jsonRequest["location"] =  $("#editLocation").val();
+               jsonRequest["id"] =  $("#appointmentId").val();
+               jsonRequest["visitorId"]      =   $("#txtVisitorIdInputEdit").val();
+               jsonRequest["date"]    =   $("#txtAppointmentDateInputEdit").val();
+               jsonRequest["numberOfVisitor"]    =   $("#txtNumberOfVisitorInputEdit").val();
+
 
 
 
                var param = JSON.stringify(jsonRequest);
               // xhr.setRequestHeader(header, token);
                $.ajax({
-                   url: "${cp}/api/v1/zoo/block",
+                   url: "${cp}/api/v1/zoo/appointment",
                    type: "PUT",
                    dataType: "json",
                    beforeSend: function (xhr) {
@@ -391,39 +409,61 @@ function editBlock() {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Add New Block</h4>
+        <h4 class="modal-title">Add New Appointment</h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal">
+        <form:form id ="formation" class="form-horizontal">
                 <div class="form-group">
-                    <label for="nameInput" class="col-sm-2 control-label">Name</label>
+                    <label for="lblVisitorId" class="col-sm-2 control-label">Visitor Id</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control1" id="nameInput" placeholder="Enter Block name">
-                    </div>
-                    <div class="col-sm-2">
-
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="locationInput" class="col-sm-2 control-label">Location</label>
-                    <div class="col-sm-8">
-                        <select  id="nameLocation" class="form-control1">
-                            <option>East</option>
-                            <option>West</option>
-                            <option>North</option>
-                            <option>South</option>
-                        </select>
+                        <input type="text" class="form-control1" id="txtVisitorIdInput" placeholder="Enter Visitor Id">
                     </div>
                     <div class="col-sm-2">
 
                     </div>
                 </div>
 
-         </form>
+                <!--
+                <div class="form-group">
+                   <label for="lblPeriod" class="col-sm-2 control-label">Period</label>
+                   <div class="col-sm-8">
+                       <input type="text" class="form-control1" id="txtPeriodInput" placeholder="Enter Period">
+                   </div>
+                   <div class="col-sm-2">
+
+                   </div>
+               </div>
+               -->
+
+              <div class="form-group">
+                  <label for="lblAppointmentDate" class="col-sm-2 control-label">Appointment Date</label>
+                  <div class="col-sm-8">
+                  <div class='input-group date' id='datetimepicker1'>
+                      <input type='text' class="form-control1" id="txtAppointmentDateInput"  placeholder="Enter date (mm/dd/yyyy)" />
+                      <span class="input-group-addon">
+                          <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                  </div>
+                  </div>
+              </div>
+
+
+               <div class="form-group">
+                  <label for="lblNumberOfVisitor" class="col-sm-2 control-label">Number Of Visitor</label>
+                  <div class="col-sm-8">
+                      <input type="text" class="form-control1" id="txtNumberOfVisitorInput" placeholder="Enter Number of Visitor">
+                  </div>
+                  <div class="col-sm-2">
+
+                  </div>
+               </div>
+
+
+         </form:form>
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="addBlock">Add</button>
+        <button type="button" class="btn btn-primary" id="addAppointment">Add</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -443,39 +483,61 @@ function editBlock() {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Edit Block</h4>
+        <h4 class="modal-title">Edit Appointment</h4>
       </div>
       <div class="modal-body">
-            <form class="form-horizontal">
-                       <div class="form-group">
-                       <input type ="hidden" name ="blockid" value ="" id ="blockId"/>
-                           <label for="nameEditInput" class="col-sm-2 control-label">Name</label>
-                           <div class="col-sm-8">
-                               <input type="text" class="form-control1" id="nameEditInput">
-                           </div>
-                           <div class="col-sm-2">
+            <form:form id ="formation" class="form-horizontal">
+                    <div class="form-group">
+                        <input type ="hidden" name ="appointmentId" value ="" id ="appointmentId"/>
+                        <label for="lblVisitorIdEdit" class="col-sm-2 control-label">Visitor Id</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control1" id="txtVisitorIdInputEdit" placeholder="Enter ">
+                        </div>
+                        <div class="col-sm-2">
 
-                           </div>
+                        </div>
+                    </div>
+
+                    <!--
+                    <div class="form-group">
+                       <label for="lblPeriod" class="col-sm-2 control-label">Period</label>
+                       <div class="col-sm-8">
+                           <input type="text" class="form-control1" id="txtPeriodInputEdit" placeholder="Enter Period">
                        </div>
-                       <div class="form-group">
-                           <label for="editLocation" class="col-sm-2 control-label">Location</label>
-                           <div class="col-sm-8">
-                               <select  id="editLocation" class="form-control1">
-                                   <option>East</option>
-                                   <option>West</option>
-                                   <option>North</option>
-                                   <option>South</option>
-                               </select>
-                           </div>
-                           <div class="col-sm-2">
+                       <div class="col-sm-2">
 
-                           </div>
                        </div>
+                   </div>
+                   -->
 
-                </form>
+                  <div class="form-group">
+                      <label for="lblAppointmentDateEdit" class="col-sm-2 control-label">Appointment Date</label>
+                      <div class="col-sm-8">
+                      <div class='input-group date' id='datetimepicker2'>
+                          <input type='text' class="form-control11" id="txtAppointmentDateInputEdit"  placeholder="Enter date (mm/dd/yyyy)" />
+                          <span class="input-group-addon">
+                              <span class="glyphicon glyphicon-calendar"></span>
+                          </span>
+                      </div>
+                      </div>
+                  </div>
+
+
+                   <div class="form-group">
+                      <label for="lblNumberOfVisitorEdit" class="col-sm-2 control-label">Number Of Visitor</label>
+                      <div class="col-sm-8">
+                          <input type="text" class="form-control1" id="txtNumberOfVisitorInputEdit" placeholder="Enter Number of Visitor">
+                      </div>
+                      <div class="col-sm-2">
+
+                      </div>
+                   </div>
+
+
+             </form:form>
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-primary" id="editBlockId">Edit</button>
+      <button type="button" class="btn btn-primary" id="editAppointmentId">Edit</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
