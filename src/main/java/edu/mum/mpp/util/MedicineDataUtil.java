@@ -36,7 +36,7 @@ public class MedicineDataUtil {
             for (int k = 1; k <= 5; ++k) {
                 Medicine newMedicine = new Medicine();
                 newMedicine.setId(k);
-                newMedicine.setName("Food" + k);
+                newMedicine.setName("Medicine" + k);
 
                 lastId = k;
 

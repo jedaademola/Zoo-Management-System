@@ -1,25 +1,15 @@
 package edu.mum.mpp.model;
 
-public class Cell extends AbstractModel {
+public class CellReport {
+
     private long id;
     private String name;
-    private int blockId;
+    private String blockName;
 
-    public int getBlockId() {
-        return blockId;
-    }
-
-    public void setBlockId(int blockId) {
-        this.blockId = blockId;
-    }
-
-
-    @Override
     public long getId() {
         return id;
     }
 
-    @Override
     public void setId(long id) {
         this.id = id;
     }
@@ -30,5 +20,13 @@ public class Cell extends AbstractModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getBlockName() {
+        return blockName;
+    }
+
+    public void setBlockName(String blockName) {
+        this.blockName = blockName;
     }
 }

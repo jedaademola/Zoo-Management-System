@@ -1,25 +1,28 @@
 package edu.mum.mpp.controller;
 
 import edu.mum.mpp.model.Block;
-import edu.mum.mpp.model.User;
-import edu.mum.mpp.util.AninalDataUtil;
-import edu.mum.mpp.util.BlockDataUtil;
-import edu.mum.mpp.util.FoodDataUtil;
+import edu.mum.mpp.model.StockRequest;
+import edu.mum.mpp.service.CellService;
+import edu.mum.mpp.service.StockService;
+import edu.mum.mpp.service.UserService;
+import edu.mum.mpp.util.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.List;
-
 
 
 @Controller
 public class DashboardController {
 
+    @Autowired
+    StockService stockService;
+
+    @Autowired
+    CellService cellService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView index() {
@@ -51,14 +54,38 @@ public class DashboardController {
         return model;
     }
 
+
+    @RequestMapping(value = "/manageStock", method = RequestMethod.GET)
+    public ModelAndView manageStock(@ModelAttribute("command") StockRequest stockRequest) {
+        ModelAndView model = new ModelAndView();
+        model.addObject("stocks", stockService.displayStockReport());
+        model.addObject("suppliers", SupplierDataUtil.getSupplierListForDropDown());
+        model.addObject("itemIds", FoodDataUtil.getFoodListForDropDown());
+        //
+        //  food/medicine
+        model.setViewName("manageStock");
+        return model;
+    }
+
+
     @RequestMapping(value = "/manageMedicine", method = RequestMethod.GET)
     public ModelAndView manageMedicine() {
         ModelAndView model = new ModelAndView();
-        model.addObject("medicines", FoodDataUtil.displayFoods());
+        model.addObject("medicines", MedicineDataUtil.displayMedicines());
         model.setViewName("manageMedicine");
         return model;
     }
 
+
+
+    @RequestMapping(value = "/manageCell", method = RequestMethod.GET)
+    public ModelAndView manageCell(@ModelAttribute("command") Block block) {
+        ModelAndView model = new ModelAndView();
+        model.addObject("blocks", BlockDataUtil.getBlockListForDropDown());
+        model.addObject("cells", cellService.displayCellReport());
+        model.setViewName("manageCell");
+        return model;
+    }
 
 
     @RequestMapping(value = "/manageAnimal", method = RequestMethod.GET)
@@ -67,8 +94,8 @@ public class DashboardController {
         ModelAndView model = new ModelAndView();
         // model.addObject("states",states);
         model.addObject("blocks", BlockDataUtil.getBlockListForDropDown());
-        model.addObject("cells", null);
-        model.addObject("animals", AninalDataUtil.displayAnimals());
+        model.addObject("cells", CellDataUtil.getCellListForDropDown());
+        model.addObject("animals", AnimalDataUtil.displayAnimals());
         model.setViewName("manageAnimal");
         return model;
     }
@@ -94,7 +121,7 @@ public class DashboardController {
         return model;
     }
 
-    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+  /*  @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public ModelAndView dashboard() {
         ModelAndView model = new ModelAndView();
         model.addObject("users", getUsers());
@@ -120,6 +147,6 @@ public class DashboardController {
         user3.setName("Prakash Ranjan");
         user3.setAddress("Chennai, Tamilnadu");
         return Arrays.asList(user, user1, user2, user3);
-    }
+    }*/
 
 }

@@ -142,24 +142,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
               <ul class="nav" id="side-menu">
-               <li>
-                   <a href="${cp}/index"><i class="fa fa-dashboard fa-fw nav_icon"></i>Dashboard</a>
-               </li>
-               <li>
-                   <a href="${cp}/manageBlock"><i class="fa fa-check-square-o nav_icon"></i>Manage Block</a>
-               </li>
-                 <li>
-                    <a href="${cp}/manageCell"><i class="fa fa-check-square-o nav_icon"></i>Manage Cell</a>
-                </li>
                 <li>
-                 <a href="${cp}/manageAnimal"><i class="fa fa-check-square-o nav_icon"></i>Manage Animal</a>
-             </li>
- <li>
-                        <a href="${cp}/manageMedicine"><i class="fa fa-check-square-o nav_icon"></i>Manage Medicine</a>
-                    </li>
-                      <li>
-                                            <a href="${cp}/manageStock"><i class="fa fa-check-square-o nav_icon"></i>Manage Stock</a>
-                                        </li>
+                                                              <a href="${cp}/index"><i class="fa fa-dashboard fa-fw nav_icon"></i>Dashboard</a>
+                                                          </li>
+                                                          <li>
+                                                              <a href="${cp}/manageBlock"><i class="fa fa-check-square-o nav_icon"></i>Manage Block</a>
+                                                          </li>
+                                                            <li>
+                                                               <a href="${cp}/manageCell"><i class="fa fa-check-square-o nav_icon"></i>Manage Cell</a>
+                                                           </li>
+                                                           <li>
+                                                            <a href="${cp}/manageAnimal"><i class="fa fa-check-square-o nav_icon"></i>Manage Animal</a>
+                                                        </li>
+                                                        <li>
+                                                          <a href="${cp}/manageFood"><i class="fa fa-check-square-o nav_icon"></i>Manage Food</a>
+                                                      </li>
+                                                        <li>
+                                                                               <a href="${cp}/manageMedicine"><i class="fa fa-check-square-o nav_icon"></i>Manage Medicine</a>
+                                                                           </li>
+                                     <li>
+                                                           <a href="${cp}/manageStock"><i class="fa fa-check-square-o nav_icon"></i>Manage Stock</a>
+                                                       </li>
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -184,7 +188,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
      <div class="clearfix"> </div>
     <div class="table-responsive">
      <a href="#" class="btn btn-primary btn-md pull-right" data-toggle="modal" data-target="#myModal">
-     <b>+</b> Add new Animal</a>
+     <b>+</b> Add new Stock</a>
      <!-- Trigger the modal with a button -->
      <!--button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button -->
      <div class="clearfix"> </div>
@@ -195,31 +199,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <thead>
           <tr>
             <th>#</th>
-            <th>Name</th>
-            <th>Species</th>
-            <th>Tag</th>
-            <th>Date Of Birth</th>
-            <th>Date Of Death</th>
-            <th>Block</th>
-            <th>Cell</th>
+            <th>Item Name</th>
+            <th>Item Category</th>
+            <th>Supplier</th>
+            <th>Quantity</th>
+            <th>Price</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-         <c:forEach var="animal" items="${animals}" varStatus="theCount">
+         <c:forEach var="stock" items="${stocks}" varStatus="theCount">
           <tr>
             <th scope="row">${theCount.count}</th>
-            <td>${animal.name}</td>
-            <td>${animal.specy}</td>
-            <td>${animal.tag}</td>
-            <td>${animal.dateOfBirth}</td>
-            <td>${animal.dateOfDeath}</td>
-            <td>${animal.blockId}</td>
-            <td>${animal.cellId}</td>
+            <td>${stock.itemName}</td>
+            <td>${stock.category}</td>
+            <td>${stock.supplier}</td>
+            <td>${stock.quantity}</td>
+            <td>${stock.price}</td>
+
             <td> <a href="#"
             data-toggle="tooltip" data-placement="top"
-            data-id="${animal.id}:${animal.name}:${animal.specy}:${animal.tag}:${animal.dateOfBirth}:${animal.dateOfDeath}"
-            class="editAnimal" id="myBtn${animal.id}">Edit</td>
+            data-id="${stock.id}:${stock.itemName}:${stock.category}:${stock.supplier}:${stock.quantity}:${stock.price}"
+            class="editStock" id="myBtn${stock.id}">Edit</td>
           </tr>
          </c:forEach>
         </tbody>
@@ -247,31 +248,29 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script type="text/javascript">
     $(document).ready(function () {
 
-             $(document).on("click", "#addAnimal", function (e) {
+             $(document).on("click", "#addStock", function (e) {
 
 
-                    addAnimal();
+                    addStock();
 
                  //   location.reload();
                 });
 
-            $('.editAnimal').click(function () {
+            $('.editStock').click(function () {
 
                         var id = $(this).attr('data-id');
-                        //${animal.id}:${animal.name}:${animal.specy}:${animal.tag}:${animal.dateOfBirth}:${animal.dateOfDeath}
-                        $('#myModalEdit').find('#animalId').val(id.split(":")[0]);
-                        $('#myModalEdit').find('#nameInputEdit').val(id.split(":")[1]);
-                        $('#myModalEdit').find('#speciesInputEdit').val(id.split(":")[2]);
-                        $('#myModalEdit').find('#tagInputEdit').val(id.split(":")[3]);
-
+                      //${stock.id}:${stock.itemId}:${stock.category}:${stock.supplierId}:${stock.quantity}:${stock.price}
+                        $('#myModalEdit').find('#stockId').val(id.split(":")[0]);
+                        $('#myModalEdit').find('#quantityInputEdit').val(id.split(":")[4]);
+                        $('#myModalEdit').find('#priceInputEdit').val(id.split(":")[5]);
 
                         $('#myModalEdit').modal();
                     });
 
-         $(document).on("click", "#editAnimalId", function (e) {
+         $(document).on("click", "#editStockId", function (e) {
 
 
-                            editAnimal();
+                            editStock();
 
                          //   location.reload();
                         });
@@ -281,22 +280,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    });
 
 
-   function addAnimal() {
+   function addStock() {
 
                var jsonRequest = {};
 
-               jsonRequest["name"] =  $("#nameInput").val();
-               jsonRequest["specy"] =  $("#speciesInput").val();
+               jsonRequest["category"] =  $("#itemCatInput").val();
+               jsonRequest["itemId"] =  $("#itemIdInput").val();
                 //dateOfBirth should be captured
 
-               jsonRequest["tag"] =  $("#tagInput").val();
-               jsonRequest["blockId"] =  $("#blockInput").val();
-               jsonRequest["cellId"] =  $("#cellInput").val();
+               jsonRequest["quantity"] =  $("#quantityInput").val();
+               jsonRequest["price"] =  $("#priceInput").val();
+               jsonRequest["supplierId"] =  $("#supplierInput").val();
 
                var param = JSON.stringify(jsonRequest);
               // xhr.setRequestHeader(header, token);
                $.ajax({
-                   url: "${cp}/api/v1/zoo/animal",
+                   url: "${cp}/api/v1/zoo/stock",
                    type: "POST",
                    dataType: "json",
                    beforeSend: function (xhr) {
@@ -333,25 +332,25 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
            );
            }
-function editAnimal() {
+function editStock() {
 
                var jsonRequest = {};
 
-              jsonRequest["id"] =  $("#animalId").val();
-              jsonRequest["name"] =  $("#nameInputEdit").val();
-              jsonRequest["specy"] =  $("#speciesInputEdit").val();
-               //dateOfBirth should be captured
+             jsonRequest["id"] =  $("#stockId").val();
+             jsonRequest["category"] =  $("#itemCatInputEdit").val();
+             jsonRequest["itemId"] =  $("#itemIdInputEdit").val();
 
-              jsonRequest["tag"] =  $("#tagInputEdit").val();
-              jsonRequest["blockId"] =  $("#blockInputEdit").val();
-              jsonRequest["cellId"] =  $("#cellInputEdit").val();
+
+             jsonRequest["quantity"] =  $("#quantityInputEdit").val();
+             jsonRequest["price"] =  $("#priceInputEdit").val();
+             jsonRequest["supplierId"] =  $("#supplierInputEdit").val();
 
 
 
                var param = JSON.stringify(jsonRequest);
 
                $.ajax({
-                   url: "${cp}/api/v1/zoo/animal",
+                   url: "${cp}/api/v1/zoo/stock",
                    type: "PUT",
                    dataType: "json",
                    beforeSend: function (xhr) {
@@ -400,44 +399,29 @@ function editAnimal() {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Add New Animal</h4>
+        <h4 class="modal-title">Add Stock Item</h4>
       </div>
       <div class="modal-body">
         <form:form id ="formaction" class="form-horizontal">
                 <div class="form-group">
-                    <label for="nameInput" class="col-sm-2 control-label">Name</label>
+                    <label for="itemCatInput" class="col-sm-2 control-label">Category</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control1" id="nameInput" placeholder="Animal Name">
-                    </div>
-                    <div class="col-sm-2">
+                        <select  id="itemCatInput" class="form-control1">
+                            <option>Food</option>
+                            <option>Medicine</option>
 
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="speciesInput" class="col-sm-2 control-label">Species</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control1" id="speciesInput" placeholder="Enter Species">
+                        </select>
                     </div>
                     <div class="col-sm-2">
 
                     </div>
                 </div>
 
-
-                  <div class="form-group">
-                         <label for="tagInput" class="col-sm-2 control-label">Tag</label>
-                         <div class="col-sm-8">
-                             <input type="text" class="form-control1" id="tagInput" placeholder="Enter Tag">
-                         </div>
-                         <div class="col-sm-2">
-
-                         </div>
-                     </div>
-                <div class="form-group">
-                    <label for="blockInput" class="col-sm-2 control-label">Block</label>
+                 <div class="form-group">
+                    <label for="itemIdInput" class="col-sm-2 control-label">Item Name</label>
                     <div class="col-sm-8">
-                       <form:select class="form-control1" id="blockInput" path="name">
-                            <form:options items="${blocks}" itemValue="value" itemLabel="label"/>
+                       <form:select class="form-control1" id="itemIdInput" path="id">
+                            <form:options items="${itemIds}" itemValue="value" itemLabel="label"/>
                         </form:select>
 
                     </div>
@@ -445,11 +429,30 @@ function editAnimal() {
 
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="quantityInput" class="col-sm-2 control-label">Quantity</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control1" id="quantityInput" placeholder="Enter Quantity">
+                    </div>
+                    <div class="col-sm-2">
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="priceInput" class="col-sm-2 control-label">Price</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control1" id="priceInput" placeholder="Enter Price">
+                    </div>
+                    <div class="col-sm-2">
+
+                    </div>
+                </div>
+
              <div class="form-group">
-                <label for="cellInput" class="col-sm-2 control-label">Cell</label>
+                <label for="supplierInput" class="col-sm-2 control-label">Supplier</label>
                 <div class="col-sm-8">
-                   <form:select class="form-control1" id="cellInput" path="name">
-                        <form:options items="${cells}" itemValue="value" itemLabel="label"/>
+                   <form:select class="form-control1" id="supplierInput" path="id">
+                        <form:options items="${suppliers}" itemValue="value" itemLabel="label"/>
                     </form:select>
 
                 </div>
@@ -457,11 +460,12 @@ function editAnimal() {
 
                 </div>
             </div>
+
            </form:form>
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="addAnimal">Add</button>
+        <button type="button" class="btn btn-primary" id="addStock">Add</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -481,68 +485,73 @@ function editAnimal() {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Edit Block</h4>
+        <h4 class="modal-title">Edit Stock Item</h4>
       </div>
       <div class="modal-body">
-            <form:form id ="formaction" class="form-horizontal">
+            <form:form id ="formactionEdit" class="form-horizontal">
                            <div class="form-group">
-                            <input type ="hidden" name ="animalId" value ="" id ="animalId"/>
-                               <label for="nameInput" class="col-sm-2 control-label">Name</label>
-                               <div class="col-sm-8">
-                                   <input type="text" class="form-control1" id="nameInputEdit" >
-                               </div>
-                               <div class="col-sm-2">
+                            <input type ="hidden" name ="stockId" value ="" id ="stockId"/>
+                                               <label for="itemCatInputEdit" class="col-sm-2 control-label">Category</label>
+                                               <div class="col-sm-8">
+                                                   <select  id="itemCatInputEdit" class="form-control1">
+                                                       <option>Food</option>
+                                                       <option>Medicine</option>
 
-                               </div>
-                           </div>
-                           <div class="form-group">
-                               <label for="speciesInput" class="col-sm-2 control-label">Species</label>
-                               <div class="col-sm-8">
-                                   <input type="text" class="form-control1" id="speciesInputEdit">
-                               </div>
-                               <div class="col-sm-2">
+                                                   </select>
+                                               </div>
+                                               <div class="col-sm-2">
 
-                               </div>
-                           </div>
+                                               </div>
+                                           </div>
 
+                                            <div class="form-group">
+                                               <label for="itemIdInputEdit" class="col-sm-2 control-label">Item Name</label>
+                                               <div class="col-sm-8">
+                                                  <form:select class="form-control1" id="itemIdInputEdit" path="id">
+                                                       <form:options items="${itemIds}" itemValue="value" itemLabel="label"/>
+                                                   </form:select>
 
-                             <div class="form-group">
-                                    <label for="tagInput" class="col-sm-2 control-label">Tag</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control1" id="tagInputEdit" >
-                                    </div>
-                                    <div class="col-sm-2">
+                                               </div>
+                                               <div class="col-sm-2">
 
-                                    </div>
-                                </div>
-                           <div class="form-group">
-                               <label for="blockInput" class="col-sm-2 control-label">Block</label>
-                               <div class="col-sm-8">
-                                  <form:select class="form-control1" id="blockInputEdit" path="name">
-                                       <form:options items="${blocks}" itemValue="value" itemLabel="label"/>
-                                   </form:select>
+                                               </div>
+                                           </div>
+                                           <div class="form-group">
+                                               <label for="quantityInputEdit" class="col-sm-2 control-label">Quantity</label>
+                                               <div class="col-sm-8">
+                                                   <input type="text" class="form-control1" id="quantityInputEdit" placeholder="Enter Quantity">
+                                               </div>
+                                               <div class="col-sm-2">
 
-                               </div>
-                               <div class="col-sm-2">
+                                               </div>
+                                           </div>
+                                           <div class="form-group">
+                                               <label for="priceInputEdit" class="col-sm-2 control-label">Price</label>
+                                               <div class="col-sm-8">
+                                                   <input type="text" class="form-control1" id="priceInputEdit" placeholder="Enter Price">
+                                               </div>
+                                               <div class="col-sm-2">
 
-                               </div>
-                           </div>
-                        <div class="form-group">
-                           <label for="cellInput" class="col-sm-2 control-label">Cell</label>
-                           <div class="col-sm-8">
-                              <form:select class="form-control1" id="cellInputEdit" path="id">
-                                   <form:options items="${cells}" itemValue="value" itemLabel="label"/>
-                               </form:select>
+                                               </div>
+                                           </div>
 
-                           </div>
-                           <div class="col-sm-2">
+                                        <div class="form-group">
+                                           <label for="supplierInputEdit" class="col-sm-2 control-label">Supplier</label>
+                                           <div class="col-sm-8">
+                                              <form:select class="form-control1" id="supplierInputEdit" path="id">
+                                                   <form:options items="${suppliers}" itemValue="value" itemLabel="label"/>
+                                               </form:select>
 
-                           </div>
-                       </div>
+                                           </div>
+                                           <div class="col-sm-2">
+
+                                           </div>
+                                       </div>
+
                       </form:form>
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-primary" id="editAnimalId">Edit</button>
+      <button type="button" class="btn btn-primary" id="editStockId">Edit</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>

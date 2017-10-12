@@ -45,12 +45,12 @@ public abstract class AbstractDao<T extends AbstractModel> {
         update.execute(in);
     }
 
-    public void delete(Long id) throws DataAccessException {
+    public void delete(long id) throws DataAccessException {
         SqlParameterSource in = new MapSqlParameterSource().addValue("id", id);
         delete.execute(in);
     }
 
-    public T find(Long id) throws DataAccessException {
+    public T find(long id) throws DataAccessException {
         SqlParameterSource in = new MapSqlParameterSource().addValue("id", id);
         Map<String, Object> m = find.execute(in);
         List<T> result = (List<T>) m.get(SINGLE_RESULT);
