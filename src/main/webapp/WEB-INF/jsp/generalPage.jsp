@@ -62,10 +62,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			 <span class="menu"><img src="images/menu.png" alt=""></span>
 			 <ul class="nav1">
 				 <li class="active"><a href="index.html">Home</a></li>
-				 <li><a href="about.html">About</a></li>
-				 <li><a href="projects.html">Projects</a></li>
 				 <li><a href="gallery.html">Gallery</a></li>
-				 <li><a href="typo.html">Typo</a></li>
+				 <li><a href="typo.html">Appointment</a></li>
+				  <li><a href="typo.html">Holiday Packages</a></li>
 				 <li><a href="contact.html">Contact</a></li>
 			 </ul>
 		 </div>
@@ -101,7 +100,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				 <div class="bnr-right grid1">
 					 <div class="banner_rght_info">
 						 <p><a href="projects.html">Elephants</a></p>
-						 <h4>Elephants are large mammals of the family Elephantidae and the order Proboscidea.</h4>
+						 <h4>Elephantidae and the order Proboscidea.</h4>
 					 </div>
 				 </div>
 				 <div class="bnr-right grid2">
@@ -141,7 +140,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					  <a class="example-image-link" href="images/s1.jpg" data-lightbox="example-1" data-title="Guidance."><img class="example-image" src="images/s1.jpg"></a>
 					  <div class="project-info">
 					   <a href="single.html">Guidance</a>
-					   <p>Kuspendisse laoreet augue iderti wer  interdum merti oremolo lectusto odio, sedorolu fringilla estero libero orciwe. </p>
+					   <p>Our well trained staff are ready to guid you around the zoo </p>
 					  </div>
 				 </div>
 			  </div>
@@ -150,7 +149,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					  <a class="example-image-link" href="images/s2.jpg" data-lightbox="example-2" data-title="Mobile Tents."><img class="example-image" src="images/s2.jpg"></a>
 					  <div class="project-info">
 					  <a href="single.html">Mobile Tents</a>
-					  <p>Kuspendisse laoreet augue iderti wer  interdum merti oremolo lectusto odio, sedorolu fringilla estero libero orciwe. </p>
+					  <p>We set up Mobile Tents for our visitors and tourist </p>
 					  </div>
 				  </div>
 			  </div>
@@ -159,7 +158,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					  	<a class="example-image-link" href="images/s3.jpg" data-lightbox="example-3" data-title="Animal Care."><img class="example-image" src="images/s3.jpg"></a>
 					  <div class="project-info">
 					  <a href="single.html">Animal Care</a>
-					  <p>Kuspendisse laoreet augue iderti wer  interdum merti oremolo lectusto odio, sedorolu fringilla estero libero orciwe.</p>
+					  <p>Animal Care: our staff care for our animals</p>
 					  </div>
 				  </div>
 			  </div>
@@ -177,18 +176,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			 <div class="col-md-4 ftr-grid1">
 				 <h3>Latest Tweets</h3>
 				 <div class="twts">
-					 <h5>Nunc porta justo eu varius mattis.</h5>
-					 <a href="mailto:example@gmail.com">http://www.example.com</a>
+					 <h5>Animal care</h5>
+					 <a href=""></a>
 				 </div>
 				 <div class="twts">
-					 <h5>Nunc porta justo eu varius mattis.</h5>
-					 <a href="mailto:example@gmail.com">http://www.example.com</a>
+					 <h5>Animal right</h5>
+					 <a href=""></a>
 				 </div>
 			 </div>
 			 <div class="col-md-4 news-ltr">
 				 <h3>NewsLetter</h3>
-				 <p>Praesent ex lectus, luctus ut enim sed, scelerisque laoreet massa. Fusce rhoncus massa dignissim suscipit varius.
-				 Donec vel congue libero. </p>
+				 <p>NGOs to donate more Animal to our garden
+				  </p>
 				 <form>
 					  <input type="text" class="text" value="Enter Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Email';}">
 					 <input type="submit" value="Go">
@@ -214,7 +213,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			 <h3><a href=""></a></h3>
 		 </div>
 		 <div class="ftr-right">
-			 <p>Copyright © 2017. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+			 <p>Copyright©2017. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
 		 </div>
 		 <div class="clearfix"></div>
 	 </div>
