@@ -32,17 +32,17 @@ public class DashboardController {
         return model;
     }
 
-    @RequestMapping(value = "/generalPage", method = RequestMethod.GET)
-    public ModelAndView generalPage() {
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public ModelAndView dashboardPage() {
         ModelAndView model = new ModelAndView();
-        model.setViewName("generalPage");
+        model.setViewName("index");
         return model;
     }
 
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public ModelAndView indexpage() {
+    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+    public ModelAndView dashboad() {
         ModelAndView model = new ModelAndView();
-        model.setViewName("index");
+        model.setViewName("dashboard");
         return model;
     }
 
