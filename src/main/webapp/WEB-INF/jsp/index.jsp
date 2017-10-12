@@ -1,5 +1,5 @@
-<!--
-Author: W3layouts
+<!--A Design by W3layouts
+Author: W3layout
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
@@ -8,335 +8,215 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <c:set var="cp" value="${pageContext.request.servletContext.contextPath}" scope="request" />
 <html>
 <head>
-<title>Zoo System:::Admin Panel</title>
+<title>Prime Zoo Garden| Home</title>
+<link href="${cp}/css/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- jQuery (necessary JavaScript plugins) -->
+<script src="${cp}/js/js/bootstrap.js"></script>
+<!-- Custom Theme files -->
+<link rel="stylesheet" href="${cp}/css/css/lightbox.css">
+<link href="${cp}/css/css/style.css" rel='stylesheet' type='text/css' />
+<!-- Custom Theme files -->
+<!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Zoo Management system" />
+<meta name="keywords" content="Prime Zoo Garden" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
- <!-- Bootstrap Core CSS -->
-<link href="${cp}/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
-<!-- Custom CSS -->
-<link href="${cp}/css/style.css" rel='stylesheet' type='text/css' />
-<!-- Graph CSS -->
-<link href="${cp}/css/lines.css" rel='stylesheet' type='text/css' />
-<link href="${cp}/css/font-awesome.css" rel="stylesheet">
-<!-- jQuery -->
-<script src="${cp}/js/jquery.min.js"></script>
-<!----webfonts--->
-<link href='${cp}/fontCss.css' rel='stylesheet' type='text/css'>
-<!---//webfonts--->
-<!-- Nav CSS -->
-<link href="${cp}/css/custom.css" rel="stylesheet">
-<!-- Metis Menu Plugin JavaScript -->
-<script src="${cp}/js/metisMenu.min.js"></script>
-<script src="${cp}/js/custom.js"></script>
-<!-- Graph JavaScript -->
-<script src="${cp}/js/d3.v3.js"></script>
-<script src="${cp}/js/rickshaw.js"></script>
+<script src="${cp}/js/js/jquery.min.js"></script>
+ <script src="${cp}/js/js/bootstrap.js"></script>
+
 </head>
 <body>
-<div id="wrapper">
-     <!-- Navigation -->
-        <nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="${cp}">Zoo Management System</a>
-            </div>
-            <!-- /.navbar-header -->
-            <ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-	        		<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-comments-o"></i><span class="badge">4</span></a>
-	        		<ul class="dropdown-menu">
-						<li class="dropdown-menu-header">
-							<strong>Messages</strong>
-							<div class="progress thin">
-							  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-							    <span class="sr-only">40% Complete (success)</span>
-							  </div>
-							</div>
-						</li>
-						<li class="avatar">
-							<a href="#">
-								<img src="images/1.png" alt=""/>
-								<div>New message</div>
-								<small>1 minute ago</small>
-								<span class="label label-info">NEW</span>
-							</a>
-						</li>
-						<li class="avatar">
-							<a href="#">
-								<img src="images/2.png" alt=""/>
-								<div>New message</div>
-								<small>1 minute ago</small>
-								<span class="label label-info">NEW</span>
-							</a>
-						</li>
-						<li class="avatar">
-							<a href="#">
-								<img src="images/3.png" alt=""/>
-								<div>New message</div>
-								<small>1 minute ago</small>
-							</a>
-						</li>
-						<li class="avatar">
-							<a href="#">
-								<img src="images/4.png" alt=""/>
-								<div>New message</div>
-								<small>1 minute ago</small>
-							</a>
-						</li>
-						<li class="avatar">
-							<a href="#">
-								<img src="images/5.png" alt=""/>
-								<div>New message</div>
-								<small>1 minute ago</small>
-							</a>
-						</li>
-						<li class="avatar">
-							<a href="#">
-								<img src="images/pic1.png" alt=""/>
-								<div>New message</div>
-								<small>1 minute ago</small>
-							</a>
-						</li>
-						<li class="dropdown-menu-footer text-center">
-							<a href="#">View all messages</a>
-						</li>
-	        		</ul>
-	      		</li>
-			    <li class="dropdown">
-	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="images/1.png"><span class="badge">9</span></a>
-	        		<ul class="dropdown-menu">
-						<li class="dropdown-menu-header text-center">
-							<strong>Account</strong>
-						</li>
-						<li class="m_2"><a href="#"><i class="fa fa-bell-o"></i> Updates <span class="label label-info">42</span></a></li>
-						<li class="m_2"><a href="#"><i class="fa fa-envelope-o"></i> Messages <span class="label label-success">42</span></a></li>
-						<li class="m_2"><a href="#"><i class="fa fa-tasks"></i> Tasks <span class="label label-danger">42</span></a></li>
-						<li><a href="#"><i class="fa fa-comments"></i> Comments <span class="label label-warning">42</span></a></li>
-						<li class="dropdown-menu-header text-center">
-							<strong>Settings</strong>
-						</li>
-						<li class="m_2"><a href="#"><i class="fa fa-user"></i> Profile</a></li>
-						<li class="m_2"><a href="#"><i class="fa fa-wrench"></i> Settings</a></li>
-						<li class="m_2"><a href="#"><i class="fa fa-usd"></i> Payments <span class="label label-default">42</span></a></li>
-						<li class="m_2"><a href="#"><i class="fa fa-file"></i> Projects <span class="label label-primary">42</span></a></li>
-						<li class="divider"></li>
-						<li class="m_2"><a href="#"><i class="fa fa-shield"></i> Lock Profile</a></li>
-						<li class="m_2"><a href="#"><i class="fa fa-lock"></i> Logout</a></li>
-	        		</ul>
-	      		</li>
-			</ul>
-			<form class="navbar-form navbar-right">
-              <input type="text" class="form-control" value="Search..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search...';}">
-            </form>
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                    <li>
-                           <a href="${cp}/index"><i class="fa fa-dashboard fa-fw nav_icon"></i>Dashboard</a>
-                       </li>
-                       <li>
-                           <a href="${cp}/manageBlock"><i class="fa fa-check-square-o nav_icon"></i>Manage Block</a>
-                       </li>
-                         <li>
-                            <a href="${cp}/manageCell"><i class="fa fa-check-square-o nav_icon"></i>Manage Cell</a>
-                        </li>
-                        <li>
-                         <a href="${cp}/manageAnimal"><i class="fa fa-check-square-o nav_icon"></i>Manage Animal</a>
-                     </li>
-                     <li>
-                       <a href="${cp}/manageFood"><i class="fa fa-check-square-o nav_icon"></i>Manage Food</a>
-                   </li>
-                   <li>
-                       <a href="${cp}/manageHollydayPackage"><i class="fa fa-check-square-o nav_icon"></i>Manage Hollyday Package</a>
-                   </li>
-                     <li>
-                        <a href="${cp}/manageMedicine"><i class="fa fa-check-square-o nav_icon"></i>Manage Medicine</a>
-                    </li>
-                    <li>
-                        <a href="${cp}/manageAppointment"><i class="fa fa-check-square-o nav_icon"></i>Manage Appointment</a>
-                    </li>
-                    <li>
+<!-- banner -->
+<div class="banner">
+<div class="header-top">
+	 <div class="container">
+		 <div class="logo">
+				 <h1><a href="">PRIME ZOO GARDEN</a></h1>
+		 </div>
+		 <div class="details">
+				<div class="locate">
+					 <div class="detail-grid">
+						 <div class="lctr">
+								<img src="images/lct.png" alt=""/>
+						 </div>
+						 <p>1000 North 4th street,
+						 <span>Fairfield, IA</span></p>
+						 <div class="clearfix"></div>
+					 </div>
+					 <div class="detail-grid">
+						 <div class="lctr">
+								<img src="images/phn.png" alt=""/>
+						 </div>
+						 <p>Tel:9115550341</p>
+						 <div class="clearfix"></div>
+					 </div>
+				</div>
+		 </div>
+		 <div class="clearfix"></div>
+	 </div>
+</div>
+<div class="header">
+	 <div class="container">
+		 <div class="top-menu">
+			 <span class="menu"><img src="images/menu.png" alt=""></span>
+			 <ul class="nav1">
+				 <li class="active"><a href="index.html">Home</a></li>
+				 <li><a href="gallery.html">Gallery</a></li>
+				 <li><a href="typo.html">Appointment</a></li>
+				  <li><a href="typo.html">Holiday Packages</a></li>
+				 <li><a href="contact.html">Contact</a></li>
+			 </ul>
+		 </div>
+		 <!-- script-for-menu -->
+							 <script>
+							   $( "span.menu" ).click(function() {
+								 $( "ul.nav1" ).slideToggle( 300, function() {
+								 // Animation complete.
+								  });
+								 });
+							</script>
+		 <!-- /script-for-menu -->
 
-                        <a href="${cp}/manageMedicine"><i class="fa fa-check-square-o nav_icon"></i>Manage Medicine</a>
-                    </li>
-                     <li>
-                        <a href="${cp}/manageStock"><i class="fa fa-check-square-o nav_icon"></i>Manage Stock</a>
-                    </li>
+		 <div class="search">
+				<form>
+				 <input type="text" value="" placeholder="Search Animal">
+				 <input type="submit" value="">
+				</form>
+		 </div>
+		 <div class="clearfix"></div>
+	 </div>
+</div>
+<!---->
+<div class="banner-sec">
+	 <div class="banner-grids">
+			 <div class="col-md-7 banner-left">
+				 <div class="banner_lft_info">
+					 <p><a href="projects.html">Safari Park</a></p>
+					 <h3></h3>
+				 </div>
+			 </div>
+			 <div class="col-md-5 banner-right">
+				 <div class="bnr-right grid1">
+					 <div class="banner_rght_info">
+						 <p><a href="projects.html">Elephants</a></p>
+						 <h4>Elephantidae and the order Proboscidea.</h4>
+					 </div>
+				 </div>
+				 <div class="bnr-right grid2">
+					 <div class="banner_rght_info bnr_rht">
+						 <p><a href="projects.html">Wild Cats</a></p>
+						 <h4>The wildcat (Felis silvestris) is a small cat native.</h4>
+					 </div>
+				 </div>
+				 <div class="clearfix"></div>
+				 <div class="bnr-right grid3">
+					 <div class="banner_rght_info">
+						 <p><a href="projects.html">Birds</a></p>
+						 <h4>Birds are a group of endothermic vertebrates, characterised by feathers.</h4>
+					 </div>
+				 </div>
+				 <div class="bnr-right grid4">
+					 <div class="banner_rght_info bnr_rht">
+						 <p><a href="projects.html">Reptiles</a></p>
+						<h4>Reptiles are tetrapod animals in the class Reptilia</h4>
+					 </div>
+				 </div>
+				 <div class="clearfix"></div>
+			 </div>
+			 <div class="clearfix"></div>
+	 </div>
+	</div>
+</div>
+<!---->
 
+<!---->
+<div class="service">
+	 <div class="container">
+		 <h3>Services</h3>
+		  <div class="works">
+			  <div class="prjt-grid">
+				 <div class="box maxheight">
+					  <a class="example-image-link" href="images/s1.jpg" data-lightbox="example-1" data-title="Guidance."><img class="example-image" src="images/s1.jpg"></a>
+					  <div class="project-info">
+					   <a href="single.html">Guidance</a>
+					   <p>Our well trained staff are ready to guid you around the zoo </p>
+					  </div>
+				 </div>
+			  </div>
+			  <div class="prjt-grid">
+				 <div class="box maxheight">
+					  <a class="example-image-link" href="images/s2.jpg" data-lightbox="example-2" data-title="Mobile Tents."><img class="example-image" src="images/s2.jpg"></a>
+					  <div class="project-info">
+					  <a href="single.html">Mobile Tents</a>
+					  <p>We set up Mobile Tents for our visitors and tourist </p>
+					  </div>
+				  </div>
+			  </div>
+			  <div class="prjt-grid span66">
+				 <div class="box maxheight">
+					  	<a class="example-image-link" href="images/s3.jpg" data-lightbox="example-3" data-title="Animal Care."><img class="example-image" src="images/s3.jpg"></a>
+					  <div class="project-info">
+					  <a href="single.html">Animal Care</a>
+					  <p>Animal Care: our staff care for our animals</p>
+					  </div>
+				  </div>
+			  </div>
+			 <div class="clearfix"></div>
+		 </div>
+	 </div>
+</div>
+<script src="${cp}/js/js/lightbox-plus-jquery.min.js"></script>
+<!---->
 
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
-        <div id="page-wrapper">
-        <div class="graphs">
-     	<div class="col_3">
-        	<div class="col-md-3 widget widget1">
-        		<div class="r3_counter_box">
-                    <i class="pull-left fa fa-thumbs-up icon-rounded"></i>
-                    <div class="stats">
-                      <h5><strong>45</strong></h5>
-                      <span>New Appointments</span>
-                    </div>
-                </div>
-        	</div>
-        	<div class="col-md-3 widget widget1">
-        		<div class="r3_counter_box">
-                    <i class="pull-left fa fa-users user1 icon-rounded"></i>
-                    <div class="stats">
-                      <h5><strong>523</strong></h5>
-                      <span>New Visitors</span>
-                    </div>
-                </div>
-        	</div>
-        	<div class="col-md-3 widget widget1">
-        		<div class="r3_counter_box">
-                    <i class="pull-left fa fa-comment user2 icon-rounded"></i>
-                    <div class="stats">
-                      <h5><strong>20</strong></h5>
-                      <span>New Users</span>
-                    </div>
-                </div>
-        	</div>
-        	<div class="col-md-3 widget">
-        		<div class="r3_counter_box">
-                    <i class="pull-left fa fa-dollar dollar1 icon-rounded"></i>
-                    <div class="stats">
-                      <h5><strong>$450</strong></h5>
-                      <span>Profit Today</span>
-                    </div>
-                </div>
-        	 </div>
-        	<div class="clearfix"> </div>
-      </div>
-      <div class="col_1">
-		    <div class="col-md-4 span_7">
-		      <div class="cal1 cal_2"><div class="clndr"><div class="clndr-controls"><div class="clndr-control-button"><p class="clndr-previous-button">previous</p></div><div class="month">July 2015</div><div class="clndr-control-button rightalign"><p class="clndr-next-button">next</p></div></div><table class="clndr-table" border="0" cellspacing="0" cellpadding="0"><thead><tr class="header-days"><td class="header-day">S</td><td class="header-day">M</td><td class="header-day">T</td><td class="header-day">W</td><td class="header-day">T</td><td class="header-day">F</td><td class="header-day">S</td></tr></thead><tbody><tr><td class="day adjacent-month last-month calendar-day-2015-06-28"><div class="day-contents">28</div></td><td class="day adjacent-month last-month calendar-day-2015-06-29"><div class="day-contents">29</div></td><td class="day adjacent-month last-month calendar-day-2015-06-30"><div class="day-contents">30</div></td><td class="day calendar-day-2015-07-01"><div class="day-contents">1</div></td><td class="day calendar-day-2015-07-02"><div class="day-contents">2</div></td><td class="day calendar-day-2015-07-03"><div class="day-contents">3</div></td><td class="day calendar-day-2015-07-04"><div class="day-contents">4</div></td></tr><tr><td class="day calendar-day-2015-07-05"><div class="day-contents">5</div></td><td class="day calendar-day-2015-07-06"><div class="day-contents">6</div></td><td class="day calendar-day-2015-07-07"><div class="day-contents">7</div></td><td class="day calendar-day-2015-07-08"><div class="day-contents">8</div></td><td class="day calendar-day-2015-07-09"><div class="day-contents">9</div></td><td class="day calendar-day-2015-07-10"><div class="day-contents">10</div></td><td class="day calendar-day-2015-07-11"><div class="day-contents">11</div></td></tr><tr><td class="day calendar-day-2015-07-12"><div class="day-contents">12</div></td><td class="day calendar-day-2015-07-13"><div class="day-contents">13</div></td><td class="day calendar-day-2015-07-14"><div class="day-contents">14</div></td><td class="day calendar-day-2015-07-15"><div class="day-contents">15</div></td><td class="day calendar-day-2015-07-16"><div class="day-contents">16</div></td><td class="day calendar-day-2015-07-17"><div class="day-contents">17</div></td><td class="day calendar-day-2015-07-18"><div class="day-contents">18</div></td></tr><tr><td class="day calendar-day-2015-07-19"><div class="day-contents">19</div></td><td class="day calendar-day-2015-07-20"><div class="day-contents">20</div></td><td class="day calendar-day-2015-07-21"><div class="day-contents">21</div></td><td class="day calendar-day-2015-07-22"><div class="day-contents">22</div></td><td class="day calendar-day-2015-07-23"><div class="day-contents">23</div></td><td class="day calendar-day-2015-07-24"><div class="day-contents">24</div></td><td class="day calendar-day-2015-07-25"><div class="day-contents">25</div></td></tr><tr><td class="day calendar-day-2015-07-26"><div class="day-contents">26</div></td><td class="day calendar-day-2015-07-27"><div class="day-contents">27</div></td><td class="day calendar-day-2015-07-28"><div class="day-contents">28</div></td><td class="day calendar-day-2015-07-29"><div class="day-contents">29</div></td><td class="day calendar-day-2015-07-30"><div class="day-contents">30</div></td><td class="day calendar-day-2015-07-31"><div class="day-contents">31</div></td><td class="day adjacent-month next-month calendar-day-2015-08-01"><div class="day-contents">1</div></td></tr></tbody></table></div></div>
-		    </div>
-		    <div class="col-md-4 span_8">
-		       <div class="activity_box">
-		        <div class="scrollbar" id="style-2">
-                   <div class="activity-row">
-	                 <div class="col-xs-1"><i class="fa fa-thumbs-up text-info icon_13"> </i>  </div>
-	                 <div class="col-xs-3 activity-img"><img src='images/5.png' class="img-responsive" alt=""/></div>
-	                 <div class="col-xs-8 activity-desc">
-	                 	<h5><a href="#">Lukman</a> liked <a href="#">Zoo Management system</a></h5>
-	                    <p>This is great</p>
-	                    <h6>8:03</h6>
-	                 </div>
-	                 <div class="clearfix"> </div>
-                    </div>
-	  			    <div class="activity-row">
-	                 <div class="col-xs-1"><i class="fa fa-comment text-info"></i> </div>
-	                 <div class="col-xs-3 activity-img"><img src='images/3.png' class="img-responsive" alt=""/></div>
-	                 <div class="col-xs-8 activity-desc">
-	                 	<h5><a href="#">Kristna</a> liked <a href="#">Zoo Management system</a></h5>
-                        	                    <p>This is great</p>
-	                    <h6>8:03</h6>
-	                 </div>
-	                 <div class="clearfix"> </div>
-                    </div>
-                    <div class="activity-row">
-	                 <div class="col-xs-1"><i class="fa fa-check text-info icon_11"></i></div>
-	                 <div class="col-xs-3 activity-img"><img src='images/1.png' class="img-responsive" alt=""/></div>
-	                 <div class="col-xs-8 activity-desc">
-	                 	<h5><a href="#">Stanley</a> liked <a href="#">Zoo Management system</a></h5>
-                        	                    <p>This is great</p>
-	                    <h6>8:03</h6>
-	                 </div>
-	                 <div class="clearfix"> </div>
-                    </div>
-                    <div class="activity-row1">
-	                 <div class="col-xs-1"><i class="fa fa-user text-info icon_12"></i></div>
-	                 <div class="col-xs-3 activity-img"><img src='images/4.png' class="img-responsive" alt=""/></div>
-	                 <div class="col-xs-8 activity-desc">
-	                 	<h5><a href="#">Dewan</a> liked <a href="#">Zoo Management system</a></h5>
-                        	                    <p>This is great</p>
-	                    <h6>8:03</h6>
-	                 </div>
-	                 <div class="clearfix"> </div>
-                     </div>
-	  		        </div>
-		          </div>
-		    </div>
-			<div class="col-md-4 stats-info">
-                <div class="panel-heading">
-                    <h4 class="panel-title">Browser Stats</h4>
-                </div>
-                <div class="panel-body">
-                    <ul class="list-unstyled">
-                        <li>Google Chrome<div class="text-success pull-right">12%<i class="fa fa-level-up"></i></div></li>
-                        <li>Firefox<div class="text-success pull-right">15%<i class="fa fa-level-up"></i></div></li>
-                        <li>Internet Explorer<div class="text-success pull-right">18%<i class="fa fa-level-up"></i></div></li>
-                        <li>Safari<div class="text-danger pull-right">17%<i class="fa fa-level-down"></i></div></li>
-                        <li>Opera<div class="text-danger pull-right">10%<i class="fa fa-level-down"></i></div></li>
-                        <li>Mobile &amp; tablet<div class="text-success pull-right">14%<i class="fa fa-level-up"></i></div></li>
-                        <li class="last">Others<div class="text-success pull-right">5%<i class="fa fa-level-up"></i></div></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="clearfix"> </div>
-	  </div>
-	  <div class="span_11">
-		<div class="col-md-6 col_4">
-		  <div class="map_container">
-
-		  <!----Calender -------->
-			<link rel="stylesheet" href="css/clndr.css" type="text/css" />
-			<script src="js/underscore-min.js" type="text/javascript"></script>
-			<script src= "js/moment-2.2.1.js" type="text/javascript"></script>
-			<script src="js/clndr.js" type="text/javascript"></script>
-			<script src="js/site.js" type="text/javascript"></script>
-			<!----End Calender -------->
-		</div>
-
-	      <!-- map -->
-<link href="${cp}/css/jqvmap.css" rel='stylesheet' type='text/css' />
-<script src="${cp}/js/jquery.vmap.js"></script>
-<script src="${cp}/js/jquery.vmap.sampledata.js" type="text/javascript"></script>
-<script src="${cp}/js/jquery.vmap.world.js" type="text/javascript"></script>
-<script type="text/javascript">
-	jQuery(document).ready(function() {
-		jQuery('#vmap').vectorMap({
-		    map: 'world_en',
-		    backgroundColor: '#333333',
-		    color: '#ffffff',
-		    hoverOpacity: 0.7,
-		    selectedColor: '#666666',
-		    enableZoom: true,
-		    showTooltip: true,
-		    values: sample_data,
-		    scaleColors: ['#C8EEFF', '#006491'],
-		    normalizeFunction: 'polynomial'
-		});
-	});
-</script>
-<!-- //map -->
-       </div>
-       <div class="clearfix"> </div>
-    </div>
-    <div class="content_bottom">
-
-
-
-		<div class="copy">
-            <p>Copyright &copy; 2017 All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
-	    </div>
-		</div>
-       </div>
-      <!-- /#page-wrapper -->
-   </div>
-    <!-- /#wrapper -->
-    <!-- Bootstrap Core JavaScript -->
-    <script src="${cp}/js/bootstrap.min.js"></script>
+<!---->
+<div class="footer">
+	 <div class="container">
+		 <div class="footer-sec">
+			 <div class="col-md-4 ftr-grid1">
+				 <h3>Latest Tweets</h3>
+				 <div class="twts">
+					 <h5>Animal care</h5>
+					 <a href=""></a>
+				 </div>
+				 <div class="twts">
+					 <h5>Animal right</h5>
+					 <a href=""></a>
+				 </div>
+			 </div>
+			 <div class="col-md-4 news-ltr">
+				 <h3>NewsLetter</h3>
+				 <p>NGOs to donate more Animal to our garden
+				  </p>
+				 <form>
+					  <input type="text" class="text" value="Enter Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Email';}">
+					 <input type="submit" value="Go">
+					 <div class="clearfix"></div>
+				 </form>
+			 </div>
+			 <div class="col-md-4 social">
+				 <h3>Social Media</h3>
+				 <a href="#"><i class="facebook"></i></a>
+				 <a href="#"><i class="twitter"></i></a>
+				 <a href="#"><i class="dribble"></i></a>
+				 <a href="#"><i class="google"></i></a>
+				 <a href="#"><i class="youtube"></i></a>
+			 </div>
+			 <div class="clearfix"></div>
+     	 </div>
+	 </div>
+</div>
+<!---->
+<div class="copywrite">
+	 <div class="container">
+		 <div class="ftr-logo">
+			 <h3><a href=""></a></h3>
+		 </div>
+		 <div class="ftr-right">
+			 <p>Copyright©2017. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+		 </div>
+		 <div class="clearfix"></div>
+	 </div>
+</div>
+<!---->
 </body>
 </html>
