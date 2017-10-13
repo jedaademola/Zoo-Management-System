@@ -2,12 +2,12 @@ package edu.mum.mpp.controller;
 
 import edu.mum.mpp.model.Block;
 import edu.mum.mpp.model.StockRequest;
+import edu.mum.mpp.model.User;
 import edu.mum.mpp.service.CellService;
 import edu.mum.mpp.service.StockService;
+import edu.mum.mpp.service.TokenService;
 import edu.mum.mpp.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import edu.mum.mpp.model.User;
-import edu.mum.mpp.util.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,7 +42,13 @@ public class DashboardController {
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public ModelAndView dashboad() {
         ModelAndView model = new ModelAndView();
-        model.setViewName("dashboard");
+        String page = "index";
+
+        User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
+        if (loggedInUser != null)
+            page = "dashboard";
+
+        model.setViewName("redirect:" + page);
         return model;
     }
 
@@ -65,24 +71,50 @@ public class DashboardController {
     @RequestMapping(value = "/manageBlock", method = RequestMethod.GET)
     public ModelAndView manageBlock() {
         ModelAndView model = new ModelAndView();
-        model.addObject("blocks", BlockDataUtil.displayBlocks());
-        model.setViewName("manageBlock");
+
+        String page = "index";
+
+        User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
+        if (loggedInUser != null) {
+            page = "manageBlock";
+            model.addObject("blocks", BlockDataUtil.displayBlocks());
+        }
+
+        model.setViewName("redirect:" + page);
         return model;
     }
 
     @RequestMapping(value = "/manageFood", method = RequestMethod.GET)
     public ModelAndView manageFood() {
         ModelAndView model = new ModelAndView();
-        model.addObject("foods", FoodDataUtil.displayFoods());
-        model.setViewName("manageFood");
+
+        String page = "index";
+
+
+        User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
+        if (loggedInUser != null) {
+            page = "manageFood";
+            model.addObject("foods", FoodDataUtil.displayFoods());
+        }
+
+        model.setViewName("redirect:" + page);
+
         return model;
     }
 
     @RequestMapping(value = "/manageHollydayPackage", method = RequestMethod.GET)
     public ModelAndView manageHollydayPackage() {
         ModelAndView model = new ModelAndView();
-        model.addObject("hollydays", HollydayDataUtil.displayHollydays());
-        model.setViewName("manageHollydayPackage");
+
+        String page = "index";
+        User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
+        if (loggedInUser != null) {
+            page = "manageHollydayPackage";
+            model.addObject("hollydays", HollydayDataUtil.displayHollydays());
+        }
+
+        model.setViewName("redirect:" + page);
+
         return model;
     }
 
@@ -90,12 +122,18 @@ public class DashboardController {
     @RequestMapping(value = "/manageStock", method = RequestMethod.GET)
     public ModelAndView manageStock(@ModelAttribute("command") StockRequest stockRequest) {
         ModelAndView model = new ModelAndView();
-        model.addObject("stocks", stockService.displayStockReport());
-        model.addObject("suppliers", SupplierDataUtil.getSupplierListForDropDown());
-        model.addObject("itemIds", FoodDataUtil.getFoodListForDropDown());
-        //
-        //  food/medicine
-        model.setViewName("manageStock");
+
+
+        String page = "index";
+        User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
+        if (loggedInUser != null) {
+            page = "manageStock";
+            model.addObject("stocks", stockService.displayStockReport());
+            model.addObject("suppliers", SupplierDataUtil.getSupplierListForDropDown());
+            model.addObject("itemIds", FoodDataUtil.getFoodListForDropDown());
+        }
+
+        model.setViewName("redirect:" + page);
         return model;
     }
 
@@ -103,8 +141,16 @@ public class DashboardController {
     @RequestMapping(value = "/manageMedicine", method = RequestMethod.GET)
     public ModelAndView manageMedicine() {
         ModelAndView model = new ModelAndView();
-        model.addObject("medicines", MedicineDataUtil.displayMedicines());
-        model.setViewName("manageMedicine");
+
+        String page = "index";
+        User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
+        if (loggedInUser != null) {
+            page = "manageMedicine";
+            model.addObject("medicines", MedicineDataUtil.displayMedicines());
+        }
+
+        model.setViewName("redirect:" + page);
+
         return model;
     }
 
@@ -113,17 +159,34 @@ public class DashboardController {
     @RequestMapping(value = "/manageCell", method = RequestMethod.GET)
     public ModelAndView manageCell(@ModelAttribute("command") Block block) {
         ModelAndView model = new ModelAndView();
-        model.addObject("blocks", BlockDataUtil.getBlockListForDropDown());
-        model.addObject("cells", cellService.displayCellReport());
-        model.setViewName("manageCell");
+
+        String page = "index";
+        User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
+        if (loggedInUser != null) {
+            page = "manageCell";
+            model.addObject("blocks", BlockDataUtil.getBlockListForDropDown());
+            model.addObject("cells", cellService.displayCellReport());
+        }
+
+        model.setViewName("redirect:" + page);
+
         return model;
     }
 
     @RequestMapping(value = "/manageAppointment", method = RequestMethod.GET)
     public ModelAndView manageAppointment() {
         ModelAndView model = new ModelAndView();
-        model.addObject("appointments", AppointmentDataUtil.displayAppointments());
-        model.setViewName("manageAppointment");
+
+
+        String page = "index";
+        User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
+        if (loggedInUser != null) {
+            page = "manageAppointment";
+            model.addObject("appointments", AppointmentDataUtil.displayAppointments());
+        }
+
+        model.setViewName("redirect:" + page);
+
         return model;
     }
 
@@ -134,11 +197,19 @@ public class DashboardController {
     public ModelAndView manageAnimal(@ModelAttribute("command") Block block) {
 
         ModelAndView model = new ModelAndView();
-        // model.addObject("states",states);
-        model.addObject("blocks", BlockDataUtil.getBlockListForDropDown());
-        model.addObject("cells", CellDataUtil.getCellListForDropDown());
-        model.addObject("animals", AnimalDataUtil.displayAnimals());
-        model.setViewName("manageAnimal");
+
+
+        String page = "index";
+        User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
+        if (loggedInUser != null) {
+            page = "manageAnimal";
+            model.addObject("blocks", BlockDataUtil.getBlockListForDropDown());
+            model.addObject("cells", CellDataUtil.getCellListForDropDown());
+            model.addObject("animals", AnimalDataUtil.displayAnimals());
+        }
+
+        model.setViewName("redirect:" + page);
+
         return model;
     }
 
