@@ -326,7 +326,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                        $("#resultsSuccess").html(data.description);
                        document.getElementById("msgAlert").style.display = '';
                        document.getElementById("msgAlertFailed").style.display = 'none';
-
+                        setTimeout(
+                          function(){ 
+                            location.reload(); 
+                          }, 7000);
 
 
                    }
@@ -379,7 +382,10 @@ function editAppointment() {
                        $("#resultsSuccess").html(data.description);
                        document.getElementById("msgAlert").style.display = '';
                        document.getElementById("msgAlertFailed").style.display = 'none';
-
+                        setTimeout(
+                          function(){ 
+                            location.reload(); 
+                          }, 7000);
 
 
                    }

@@ -42,7 +42,7 @@ public class DashboardController {
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public ModelAndView dashboad() {
         ModelAndView model = new ModelAndView();
-        String page = "index";
+        String page = "login";
 
         User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
         if (loggedInUser != null)
@@ -72,7 +72,7 @@ public class DashboardController {
     public ModelAndView manageBlock() {
         ModelAndView model = new ModelAndView();
 
-        String page = "index";
+        String page = "login";
 
         User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
         if (loggedInUser != null) {
@@ -88,7 +88,7 @@ public class DashboardController {
     public ModelAndView manageFood() {
         ModelAndView model = new ModelAndView();
 
-        String page = "index";
+        String page = "login";
 
 
         User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
@@ -106,7 +106,7 @@ public class DashboardController {
     public ModelAndView manageHollydayPackage() {
         ModelAndView model = new ModelAndView();
 
-        String page = "index";
+        String page = "login";
         User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
         if (loggedInUser != null) {
             page = "manageHollydayPackage";
@@ -124,7 +124,7 @@ public class DashboardController {
         ModelAndView model = new ModelAndView();
 
 
-        String page = "index";
+        String page = "login";
         User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
         if (loggedInUser != null) {
             page = "manageStock";
@@ -142,7 +142,7 @@ public class DashboardController {
     public ModelAndView manageMedicine() {
         ModelAndView model = new ModelAndView();
 
-        String page = "index";
+        String page = "login";
         User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
         if (loggedInUser != null) {
             page = "manageMedicine";
@@ -160,7 +160,7 @@ public class DashboardController {
     public ModelAndView manageCell(@ModelAttribute("command") Block block) {
         ModelAndView model = new ModelAndView();
 
-        String page = "index";
+        String page = "login";
         User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
         if (loggedInUser != null) {
             page = "manageCell";
@@ -178,7 +178,7 @@ public class DashboardController {
         ModelAndView model = new ModelAndView();
 
 
-        String page = "index";
+        String page = "login";
         User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
         if (loggedInUser != null) {
             page = "manageAppointment";
@@ -199,7 +199,7 @@ public class DashboardController {
         ModelAndView model = new ModelAndView();
 
 
-        String page = "index";
+        String page = "login";
         User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
         if (loggedInUser != null) {
             page = "manageAnimal";

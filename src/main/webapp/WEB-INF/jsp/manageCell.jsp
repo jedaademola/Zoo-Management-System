@@ -305,6 +305,11 @@ License URL: http://creativecommons.org/licenses/by/4.0/
                        document.getElementById("msgAlert").style.display = '';
                        document.getElementById("msgAlertFailed").style.display = 'none';
 
+                        setTimeout(
+                          function(){ 
+                            location.reload(); 
+                          }, 7000);
+
 
 
                    }
@@ -356,6 +361,10 @@ function editCell() {
                        $("#resultsSuccess").html(data.description);
                        document.getElementById("msgAlert").style.display = '';
                        document.getElementById("msgAlertFailed").style.display = 'none';
+                       setTimeout(
+                          function(){ 
+                            location.reload(); 
+                          }, 7000);
 
 
 
