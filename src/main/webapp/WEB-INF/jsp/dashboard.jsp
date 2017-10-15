@@ -23,7 +23,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- jQuery -->
 <script src="${cp}/js/jquery.min.js"></script>
 <!----webfonts--->
-<link href='${cp}/fontCss.css' rel='stylesheet' type='text/css'>
+<link href='${cp}/css/fontCss.css' rel='stylesheet' type='text/css'>
 <!---//webfonts--->
 <!-- Nav CSS -->
 <link href="${cp}/css/custom.css" rel="stylesheet">

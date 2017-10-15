@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 public class Utility {
 
 
-    public static final String APP_NAME = "Internet Banking";
+    public static final String APP_NAME = "mpp-project-zoo-system";
     private static final Logger logger = LoggerFactory.getLogger(Utility.class);
     static SecureRandom number = null;
     private static String terminalIdValue;

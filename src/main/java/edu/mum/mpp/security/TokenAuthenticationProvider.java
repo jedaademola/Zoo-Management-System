@@ -1,8 +1,5 @@
 package edu.mum.mpp.security;
 
-/**
- * s.
- */
 
 import com.google.common.base.Optional;
 import edu.mum.mpp.service.TokenService;

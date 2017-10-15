@@ -17,7 +17,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link href="${cp}/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 <!-- Custom CSS -->
 <link href="${cp}/css/style.css" rel='stylesheet' type='text/css' />
-<link href="css/font-awesome.css" rel="stylesheet"> 
+<link href="${cp}/css/font-awesome.css" rel="stylesheet"> 
 <!-- jQuery -->
 <script src="${cp}/js/jquery.min.js"></script>
 <!----webfonts--->
@@ -38,9 +38,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <div class="app-cam">
 
 	  <form >
+      
+        <c:if test="${not empty emr}">
+          <font color="red" style ='vertical-align: auto'>${emr}</font>    
+        </c:if>
+   
+
 	  	<div class="alert alert-danger alert-dismissable" style="display:none" id="msgAlertFailed">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <div id="resultsError"></div>
+    
+    <div id="resultsError">
+      
+    </div>
 		</div>
 		<input type="text" class="text"  id="txtUsername">
 		<input type="password"  id="txtPassowrd">
@@ -89,8 +97,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                jsonRequest["username"] =  $("#txtUsername").val();
                jsonRequest["password"] =  $("#txtPassowrd").val();
 
-
-
+              
                var param = JSON.stringify(jsonRequest);
 
                $.ajax({
@@ -100,13 +107,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                    beforeSend: function (xhr) {
                        xhr.setRequestHeader("Accept", "application/json");
                        xhr.setRequestHeader("Content-Type", "application/json");
+                       
 
                    },
                    data: param,
                    success: function (data) {
 
                      localStorage.setItem("user", JSON.stringify(data));
-                     window.location.href = "${pageContext.request.servletContext.contextPath}/dashboard";
+                     //window.location.href = "${pageContext.request.servletContext.contextPath}/dashboard";
+                     redirct();
 
 
                    }
@@ -128,5 +137,53 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
            );
            }
+
+ function redirct() {
+
+               var userJson = JSON.parse(localStorage.getItem("user"));
+
+               console.log(userJson.accessToken);
+
+               var param ='';
+
+               $.ajax({
+                   url: "${cp}/confirmLogin",
+                   type: "GET",
+                   dataType: "json",
+                   beforeSend: function (xhr) {
+                      // xhr.setRequestHeader("Accept", "application/json");
+                       //xhr.setRequestHeader("Content-Type", "application/json");
+                       xhr.setRequestHeader("X-Auth-Token", userJson.accessToken);
+
+                   },
+                   data: param,
+                   success: function (data) {
+
+                    // localStorage.setItem("user", JSON.stringify(data));
+                    // window.location.href = "${pageContext.request.servletContext.contextPath}/dashboard";
+
+
+                   }
+                   ,
+                   error: function (xhr, errorType, exception) {
+
+                      
+                       //document.getElementById("msgAlertFailed").style.display = '';
+                      
+
+                       //var responseText = JSON.parse(xhr.responseText);
+                        console.log(xhr.responseText);
+
+
+                       //$("#resultsError").html(responseText.description);
+
+                   }
+               }
+
+           );
+           }
+
+
+
    </script>               
 </html>

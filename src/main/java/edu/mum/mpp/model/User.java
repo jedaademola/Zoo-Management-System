@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import edu.mum.mpp.util.CustomDateSerializer;
 import edu.mum.mpp.util.UserCategory;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 
 public class User extends AbstractModel {
@@ -13,51 +13,51 @@ public class User extends AbstractModel {
     @JsonIgnore
     private long id;
 
-    public Date getLastLogin() {
+    public Timestamp getLastLogin() {
         return lastLogin;
     }
 
-    public void setLastLogin(Date lastLogin) {
+    public void setLastLogin(Timestamp lastLogin) {
         this.lastLogin = lastLogin;
     }
 
-    public Date getLockedDate() {
+    public Timestamp getLockedDate() {
         return lockedDate;
     }
 
-    public void setLockedDate(Date lockedDate) {
+    public void setLockedDate(Timestamp lockedDate) {
         this.lockedDate = lockedDate;
     }
 
-    public Date getFailedLoginDate() {
+    public Timestamp getFailedLoginDate() {
         return failedLoginDate;
     }
 
-    public void setFailedLoginDate(Date failedLoginDate) {
+    public void setFailedLoginDate(Timestamp failedLoginDate) {
         this.failedLoginDate = failedLoginDate;
     }
 
-    public Date getAccountCreatedOn() {
+    public Timestamp getAccountCreatedOn() {
         return accountCreatedOn;
     }
 
-    public void setAccountCreatedOn(Date accountCreatedOn) {
+    public void setAccountCreatedOn(Timestamp accountCreatedOn) {
         this.accountCreatedOn = accountCreatedOn;
     }
 
-    public Date getPasswordChangedOn() {
+    public Timestamp getPasswordChangedOn() {
         return passwordChangedOn;
     }
 
-    public void setPasswordChangedOn(Date passwordChangedOn) {
+    public void setPasswordChangedOn(Timestamp passwordChangedOn) {
         this.passwordChangedOn = passwordChangedOn;
     }
 
-    public Date getCreatedOn() {
+    public Timestamp getCreatedOn() {
         return createdOn;
     }
 
-    public void setCreatedOn(Date createdOn) {
+    public void setCreatedOn(Timestamp createdOn) {
         this.createdOn = createdOn;
     }
 
@@ -69,11 +69,11 @@ public class User extends AbstractModel {
         this.createdBy = createdBy;
     }
 
-    public Date getLastUpdatedOn() {
+    public Timestamp getLastUpdatedOn() {
         return lastUpdatedOn;
     }
 
-    public void setLastUpdatedOn(Date lastUpdatedOn) {
+    public void setLastUpdatedOn(Timestamp lastUpdatedOn) {
         this.lastUpdatedOn = lastUpdatedOn;
     }
 
@@ -123,30 +123,30 @@ public class User extends AbstractModel {
     private boolean loginStatus;
 
     @JsonSerialize(using = CustomDateSerializer.class)
-    private Date lastLogin;
+    private Timestamp lastLogin;
 
     private Boolean passwordExpired = Boolean.FALSE;
 
     private int passwordExpirationDaysRemaining;
 
-    private Date lockedDate;
+    private Timestamp lockedDate;
     private long loginAttempts;
 
     @JsonSerialize(using = CustomDateSerializer.class)
-    private Date failedLoginDate;
+    private Timestamp failedLoginDate;
 
     @JsonSerialize(using = CustomDateSerializer.class)
-    private Date accountCreatedOn;
+    private Timestamp accountCreatedOn;
 
     @JsonSerialize(using = CustomDateSerializer.class)
-    private Date passwordChangedOn;
+    private Timestamp passwordChangedOn;
 
     @JsonSerialize(using = CustomDateSerializer.class)
-    private Date createdOn;
+    private Timestamp createdOn;
 
     private long createdBy;
     @JsonSerialize(using = CustomDateSerializer.class)
-    private Date lastUpdatedOn;
+    private Timestamp lastUpdatedOn;
 
     private long lastUpdatedBy;
 
