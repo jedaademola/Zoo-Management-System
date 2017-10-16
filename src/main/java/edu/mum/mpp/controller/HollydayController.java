@@ -2,11 +2,9 @@ package edu.mum.mpp.controller;
 
 import edu.mum.mpp.exceptions.BadRequestException;
 import edu.mum.mpp.exceptions.ConflictException;
-import edu.mum.mpp.model.Animal;
-import edu.mum.mpp.model.Food;
-import edu.mum.mpp.model.Hollyday;
-import edu.mum.mpp.model.Response;
+import edu.mum.mpp.model.*;
 import edu.mum.mpp.service.HollydayService;
+import edu.mum.mpp.service.TokenService;
 import edu.mum.mpp.util.CustomResponseCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -24,6 +23,34 @@ public class HollydayController
 {
     @Autowired
     HollydayService hollydayService;
+    //@Autowired
+    //private TokenService tokenService;
+
+
+    @RequestMapping(value = "/holidayRequest", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> addHolidayRequest(@RequestBody @Valid HolidayRequest holidayRequest) throws Exception {
+
+//TODO PLS VALIDATE INPUTS
+
+        User userCurrent = TokenService.getCurrentUserFromSecurityContext();
+        holidayRequest.setPaidBy(userCurrent.getId());
+        holidayRequest.setDiscount(0);
+
+        long id = hollydayService.addHolidayRequest(holidayRequest);
+
+        Response resp = new Response();
+
+
+        HttpStatus httpCode = (id > 0L) ? HttpStatus.CREATED : HttpStatus.INTERNAL_SERVER_ERROR;
+        resp.setDescription((id > 0L) ? "Request successful" : "Request failed");
+
+        return new ResponseEntity<>(resp, httpCode);
+
+    }
+
+
+
 
     @RequestMapping(value = "/hollyday", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)

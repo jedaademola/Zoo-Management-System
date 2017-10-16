@@ -62,8 +62,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			 <ul class="nav1">
 				 <li class="active"><a href="${cp}/index">Home</a></li>
 				 <li><a href="${cp}/gallery">Gallery</a></li>
-				 <li><a href="typo.html">Appointment</a></li>
-				  <li><a href="typo.html">Holiday Packages</a></li>
+				  <li><a href="${cp}/holidayPackage">Holiday Packages</a></li>
 				 <li><a href="${cp}/contact">Contact</a></li>
 			 </ul>
 		 </div>
@@ -98,26 +97,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			 <div class="col-md-5 banner-right">
 				 <div class="bnr-right grid1">
 					 <div class="banner_rght_info">
-						 <p><a href="projects.html">Elephants</a></p>
+						 <p><a href="">Elephants</a></p>
 						 <h4>Elephantidae and the order Proboscidea.</h4>
 					 </div>
 				 </div>
 				 <div class="bnr-right grid2">
 					 <div class="banner_rght_info bnr_rht">
-						 <p><a href="projects.html">Wild Cats</a></p>
+						 <p><a href="">Wild Cats</a></p>
 						 <h4>The wildcat (Felis silvestris) is a small cat native.</h4>
 					 </div>
 				 </div>
 				 <div class="clearfix"></div>
 				 <div class="bnr-right grid3">
 					 <div class="banner_rght_info">
-						 <p><a href="projects.html">Birds</a></p>
+						 <p><a href="">Birds</a></p>
 						 <h4>Birds are a group of endothermic vertebrates, characterised by feathers.</h4>
 					 </div>
 				 </div>
 				 <div class="bnr-right grid4">
 					 <div class="banner_rght_info bnr_rht">
-						 <p><a href="projects.html">Reptiles</a></p>
+						 <p><a href="">Reptiles</a></p>
 						<h4>Reptiles are tetrapod animals in the class Reptilia</h4>
 					 </div>
 				 </div>
@@ -138,7 +137,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				 <div class="box maxheight">
 					  <a class="example-image-link" href="images/s1.jpg" data-lightbox="example-1" data-title="Guidance."><img class="example-image" src="images/s1.jpg"></a>
 					  <div class="project-info">
-					   <a href="single.html">Guidance</a>
+					   <a href="">Guidance</a>
 					   <p>Our well trained staff are ready to guid you around the zoo </p>
 					  </div>
 				 </div>
@@ -147,7 +146,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				 <div class="box maxheight">
 					  <a class="example-image-link" href="images/s2.jpg" data-lightbox="example-2" data-title="Mobile Tents."><img class="example-image" src="images/s2.jpg"></a>
 					  <div class="project-info">
-					  <a href="single.html">Mobile Tents</a>
+					  <a href="">Mobile Tents</a>
 					  <p>We set up Mobile Tents for our visitors and tourist </p>
 					  </div>
 				  </div>
@@ -156,7 +155,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				 <div class="box maxheight">
 					  	<a class="example-image-link" href="images/s3.jpg" data-lightbox="example-3" data-title="Animal Care."><img class="example-image" src="images/s3.jpg"></a>
 					  <div class="project-info">
-					  <a href="single.html">Animal Care</a>
+					  <a href="">Animal Care</a>
 					  <p>Animal Care: our staff care for our animals</p>
 					  </div>
 				  </div>
