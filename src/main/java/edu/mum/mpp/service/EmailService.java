@@ -22,9 +22,9 @@ public class EmailService extends AbstractService<EmailDetails> {
     private static final Logger logger = LoggerFactory.getLogger(EmailService.class);
     private final static String httpMethod = "POST";
 
-    @Value("${client.id}")
+    //@Value("${client.id}")
     private String clientId;
-    @Value("${client.secret}")
+    //@Value("${client.secret}")
     private String clientSecret;
 
 

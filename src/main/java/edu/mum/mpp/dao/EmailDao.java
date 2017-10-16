@@ -23,7 +23,7 @@ public class EmailDao extends AbstractDao<EmailDetails> {
 
     @Autowired
     @Override
-    public void setDataSource(@Qualifier(value = "internetBankingDS") DataSource dataSource) {
+    public void setDataSource(@Qualifier(value = "DS") DataSource dataSource) {
 
         this.jdbcTemplate = new JdbcTemplate(dataSource);
         jdbcTemplate.setResultsMapCaseInsensitive(true);
