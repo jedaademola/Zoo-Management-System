@@ -93,7 +93,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                     } 
 
-                     window.location.href = "${pageContext.request.servletContext.contextPath}/dashboard";
+                     callLogin();  
+                     
 
                 });
 
@@ -104,7 +105,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
    function callLogin() {
 
-   			 document.getElementById("msgAlertFailed").style.display = 'none';
+   			       document.getElementById("msgAlertFailed").style.display = 'none';
 
                var jsonRequest = {};
 
@@ -128,8 +129,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                    success: function (data) {
 
                      localStorage.setItem("user", JSON.stringify(data));
-                     //window.location.href = "${pageContext.request.servletContext.contextPath}/dashboard";
-                     redirct();
+                     
+                     //redirct();
+                     window.location.href = "${pageContext.request.servletContext.contextPath}/dashboard";
 
 
                    }
@@ -156,7 +158,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                var userJson = JSON.parse(localStorage.getItem("user"));
 
-               console.log(userJson.accessToken);
+              // console.log(userJson.accessToken);
 
                var param ='';
 

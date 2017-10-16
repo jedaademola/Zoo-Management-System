@@ -187,8 +187,9 @@ IF NOT EXISTS(SELECT *
     id         BIGINT               IDENTITY (1, 1) PRIMARY KEY,
     amount      float,
     paymentMethod    VARCHAR(100),
-    paymentDate    date,
-    paidBy    BIGINT      NOT NULL REFERENCES users (id),
+    paymentDate    DATETIME NOT NULL DEFAULT GETDATE(),
+    paidBy    BIGINT      NOT NULL REFERENCES users (id)
+     ON DELETE CASCADE,
     description    VARCHAR(100),
     discount  float
 
@@ -198,5 +199,27 @@ IF NOT EXISTS(SELECT *
     PRINT 'Payment Table created successfully'
 GO
 
+
+
+
+IF NOT EXISTS(SELECT *
+              FROM sys.objects
+              WHERE object_id = OBJECT_ID(N'PaymentDetails') AND type IN (N'U'))
+  CREATE TABLE PaymentDetails
+  (
+    id         BIGINT               IDENTITY (1, 1) PRIMARY KEY,
+    amount      float,
+    paymentMethod    VARCHAR(100),
+    paymentDate    DATETIME NOT NULL DEFAULT GETDATE(),
+    paidBy    BIGINT      NOT NULL REFERENCES users (id)
+     ON DELETE CASCADE,
+    description    VARCHAR(100),
+    discount  float
+
+  )
+
+  CREATE NONCLUSTERED  INDEX IX_PaymentDetails ON PaymentDetails (id);
+    PRINT 'PaymentDetails Table created successfully'
+GO
 
 

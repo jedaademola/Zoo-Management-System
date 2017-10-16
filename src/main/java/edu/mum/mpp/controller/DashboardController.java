@@ -49,6 +49,16 @@ public class DashboardController {
         return model;
     }
 
+    @RequestMapping(value = "/holidayPackage", method = RequestMethod.GET)
+    public ModelAndView holidayPackage() {
+        ModelAndView model = new ModelAndView();
+
+        model.addObject("holidays", HollydayDataUtil.displayHollydays());
+        model.setViewName("holidayPackage");
+        return model;
+    }
+
+
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public ModelAndView indexPage() {
         ModelAndView model = new ModelAndView();

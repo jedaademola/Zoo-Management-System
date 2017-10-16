@@ -1,7 +1,9 @@
 package edu.mum.mpp.service;
 
 import edu.mum.mpp.dao.AbstractDao;
+import edu.mum.mpp.dao.HollydayDao;
 import edu.mum.mpp.model.Food;
+import edu.mum.mpp.model.HolidayRequest;
 import edu.mum.mpp.model.Hollyday;
 import edu.mum.mpp.util.FoodDataUtil;
 import edu.mum.mpp.util.HollydayDataUtil;
@@ -23,6 +25,14 @@ public class HollydayService extends AbstractService<Hollyday>
     public HollydayService(@Qualifier("hollydayDao") AbstractDao<Hollyday> dao)
     {
         super(dao);
+    }
+
+
+    public long addHolidayRequest(HolidayRequest holidayRequest) {
+
+
+        HollydayDao hollydayDao = (HollydayDao) dao;
+        return hollydayDao.addHolidayRequest(holidayRequest);
     }
 
     public Hollyday create(Hollyday hollyday) {
