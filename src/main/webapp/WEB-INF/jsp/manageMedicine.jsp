@@ -286,7 +286,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                var param = JSON.stringify(jsonRequest);
 
                $.ajax({
-                   url: "${cp}/api/v1/zoo/medicine",
+                   url: "${cp}/api/v1/zoo/manageMedicine",
                    type: "POST",
                    dataType: "json",
                    beforeSend: function (xhr) {
@@ -340,8 +340,8 @@ function editMedId() {
                var param = JSON.stringify(jsonRequest);
               // xhr.setRequestHeader(header, token);
                $.ajax({
-                   url: "${cp}/api/v1/zoo/medicine",
-                   type: "PUT",
+                   url: "${cp}/api/v1/zoo/manageMedicine",
+                   type: "POST",
                    dataType: "json",
                    beforeSend: function (xhr) {
                        xhr.setRequestHeader("Accept", "application/json");

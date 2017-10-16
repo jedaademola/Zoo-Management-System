@@ -79,7 +79,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
              $(document).on("click", "#submitLogin", function (e) {
 
-                    callLogin();
+                    //callLogin();
+
+                     if ($("#txtUsername").val().length === 0) {
+                          $.alert("Please enter Username");
+                          e.preventDefault();
+
+                        } 
+                  
+                    if ($("#txtPassowrd").val().length === 0) {
+                          $.alert("Please enter Password");
+                          e.preventDefault();
+
+                    } 
+
+                     window.location.href = "${pageContext.request.servletContext.contextPath}/dashboard";
 
                 });
 

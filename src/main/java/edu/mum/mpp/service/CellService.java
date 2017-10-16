@@ -1,10 +1,10 @@
 package edu.mum.mpp.service;
 
 import edu.mum.mpp.dao.AbstractDao;
-import edu.mum.mpp.model.Block;
+import edu.mum.mpp.dao.CellDao;
 import edu.mum.mpp.model.Cell;
 import edu.mum.mpp.model.CellReport;
-import edu.mum.mpp.util.BlockDataUtil;
+import edu.mum.mpp.model.Page;
 import edu.mum.mpp.util.CellDataUtil;
 import edu.mum.mpp.util.LoggerUtil;
 import org.slf4j.Logger;
@@ -27,6 +27,19 @@ public class CellService extends AbstractService<Cell> {
     @Autowired
     BlockService blockService;
 
+
+    public Page<CellReport> getCells(long pageNum, long pageSize) {
+        CellDao cellDao = (CellDao) dao;
+        return cellDao.getCells(pageNum, pageSize);
+    }
+
+    public long manageCell(Cell cell) {
+
+
+        CellDao cellDao = (CellDao) dao;
+        return cellDao.manageCell(cell);
+    }
+
     public Cell create(Cell cell) {
 
         CellDataUtil.addCell(cell);
@@ -40,11 +53,11 @@ public class CellService extends AbstractService<Cell> {
     }
     //
 
-    public Cell getSingleCell(long id) {
-        Cell singleCell = null;
+    public CellReport getSingleCell(long id) {
+        CellReport singleCell = null;
         try {
-
-            singleCell = CellDataUtil.displayCells().stream()
+            Page<CellReport> cells = getCells(1, 20);
+            singleCell = cells.getContent().stream()
                     .filter(cell -> cell.getId() == id)
                     .findAny().get();
 
@@ -60,8 +73,14 @@ public class CellService extends AbstractService<Cell> {
     public List<CellReport> displayCellReport() {
 
 
+        // List<CellReport> report = new ArrayList<>();
+
         List<CellReport> report = new ArrayList<>();
+
         try {
+
+            report = getCells(1, 20).getContent();
+            /*
             List<Cell> cellList = CellDataUtil.displayCells();
 
             if (cellList != null) {
@@ -77,11 +96,11 @@ public class CellService extends AbstractService<Cell> {
 
                     report.add(r);
                 }
+ }
+        */
 
-
-            }
         } catch (Exception ex) {
-            logger.error(" [displayStockReport()]: " + ex.getMessage());
+            logger.error(" [displayCellReport()]: " + ex.getMessage());
             LoggerUtil.logError(logger, ex);
         }
 

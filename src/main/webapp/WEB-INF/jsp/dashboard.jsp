@@ -300,7 +300,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 
 	      <!-- map -->
-<link href="${cp}/css/jqvmap.css" rel='stylesheet' type='text/css' />
+<!--link href="${cp}/css/jqvmap.css" rel='stylesheet' type='text/css' />
 <script src="${cp}/js/jquery.vmap.js"></script>
 <script src="${cp}/js/jquery.vmap.sampledata.js" type="text/javascript"></script>
 <script src="${cp}/js/jquery.vmap.world.js" type="text/javascript"></script>
@@ -319,7 +319,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		    normalizeFunction: 'polynomial'
 		});
 	});
-</script>
+</script -->
 <!-- //map -->
        </div>
        <div class="clearfix"> </div>

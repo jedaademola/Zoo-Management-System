@@ -3,9 +3,7 @@ package edu.mum.mpp.controller;
 import edu.mum.mpp.model.Block;
 import edu.mum.mpp.model.StockRequest;
 import edu.mum.mpp.model.User;
-import edu.mum.mpp.service.CellService;
-import edu.mum.mpp.service.StockService;
-import edu.mum.mpp.service.TokenService;
+import edu.mum.mpp.service.*;
 import edu.mum.mpp.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +26,16 @@ public class DashboardController {
 
     @Autowired
     CellService cellService;
+
+    @Autowired
+    BlockService blockService;
+
+    @Autowired
+    FoodService foodService;
+
+
+    @Autowired
+    MedicineService medicineService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView index() {
@@ -97,7 +105,10 @@ public class DashboardController {
         // if (CustomResponseCode.USER_CATEGORY_EMPLOYEE.equals(loggedInUser.getCategory())) {
 
         //   page = "manageBlock";
-        model.addObject("blocks", BlockDataUtil.displayBlocks());
+        // model.addObject("blocks", BlockDataUtil.displayBlocks());
+
+        model.addObject("blocks", blockService.getBlocks(1, 20).getContent());
+
         // }
         // }
 
@@ -118,7 +129,7 @@ public class DashboardController {
         //  if (CustomResponseCode.USER_CATEGORY_EMPLOYEE.equals(loggedInUser.getCategory())) {
 
         //    page = "manageFood";
-        model.addObject("foods", FoodDataUtil.displayFoods());
+        model.addObject("foods", foodService.getFoods(1, 20).getContent());
         //}
 
         //  }
@@ -164,7 +175,7 @@ public class DashboardController {
         // page = "manageStock";
         model.addObject("stocks", stockService.displayStockReport());
         model.addObject("suppliers", SupplierDataUtil.getSupplierListForDropDown());
-        model.addObject("itemIds", FoodDataUtil.getFoodListForDropDown());
+        model.addObject("itemIds", foodService.getFoodListForDropDown());
         // }
 
         //}
@@ -184,7 +195,7 @@ public class DashboardController {
         //   if (CustomResponseCode.USER_CATEGORY_EMPLOYEE.equals(loggedInUser.getCategory())) {
 
         //  page = "manageMedicine";
-        model.addObject("medicines", MedicineDataUtil.displayMedicines());
+        model.addObject("medicines", medicineService.getMedicines(1, 20));
         //}
 
         //}
@@ -206,7 +217,7 @@ public class DashboardController {
         //  if (CustomResponseCode.USER_CATEGORY_EMPLOYEE.equals(loggedInUser.getCategory())) {
 
         //    page = "manageCell";
-        model.addObject("blocks", BlockDataUtil.getBlockListForDropDown());
+        model.addObject("blocks", blockService.getBlockListForDropDown());
         model.addObject("cells", cellService.displayCellReport());
         //}
 
@@ -251,8 +262,10 @@ public class DashboardController {
         // if (CustomResponseCode.USER_CATEGORY_EMPLOYEE.equals(loggedInUser.getCategory())) {
 
         //   page = "manageAnimal";
-        model.addObject("blocks", BlockDataUtil.getBlockListForDropDown());
-        model.addObject("cells", CellDataUtil.getCellListForDropDown());
+        // model.addObject("blocks", BlockDataUtil.getBlockListForDropDown());
+        // model.addObject("cells", CellDataUtil.getCellListForDropDown());
+        model.addObject("blocks", blockService.getBlockListForDropDown());
+        model.addObject("cells", cellService.displayCellReport());
         model.addObject("animals", AnimalDataUtil.displayAnimals());
         //}
 

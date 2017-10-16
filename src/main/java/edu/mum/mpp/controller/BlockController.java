@@ -4,6 +4,7 @@ package edu.mum.mpp.controller;
 import edu.mum.mpp.exceptions.BadRequestException;
 import edu.mum.mpp.exceptions.ConflictException;
 import edu.mum.mpp.model.Block;
+import edu.mum.mpp.model.Page;
 import edu.mum.mpp.model.Response;
 import edu.mum.mpp.service.BlockService;
 import edu.mum.mpp.util.CustomResponseCode;
@@ -14,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -22,6 +24,44 @@ public class BlockController {
 
     @Autowired
     BlockService blockService;
+
+
+    @RequestMapping(value = "/block/paging", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    //@PreAuthorize("hasAnyRole('ROLE_SUPER_ADMIN','ROLE_VIEW_ALL_USERS')")
+    public Page<Block> getBlocks(
+            @RequestParam(value = "pageNum", defaultValue = "1") Long pageNum,
+            @RequestParam(value = "pageSize", defaultValue = "20") Long pageSize) throws Exception {
+        return blockService.getBlocks(pageNum, pageSize);
+    }
+
+    @RequestMapping(value = "/manageBlock", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> manageBlock(@RequestBody @Valid Block block) throws Exception {
+
+        if (block.getName() == null || block.getName().isEmpty())
+            throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Block Name cannot be empty");
+
+        if (block.getLocation() == null || block.getLocation().isEmpty())
+            throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Location cannot be empty");
+
+        if (blockService.checkBlock(block.getName(), block.getLocation())) {
+            throw new ConflictException(CustomResponseCode.INVALID_REQUEST, " Block already exist");
+        }
+
+        long id = blockService.manageBlock(block);
+
+        Response resp = new Response();
+
+
+        HttpStatus httpCode = (id > 0L) ? HttpStatus.CREATED : HttpStatus.INTERNAL_SERVER_ERROR;
+        resp.setDescription((id > 0L) ? "Operation successful" : "Operation failed");
+
+        return new ResponseEntity<>(resp, httpCode);
+
+    }
+
 
     @RequestMapping(value = "/block", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -81,7 +121,7 @@ public class BlockController {
     @RequestMapping(value = "/block", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public List<Block> getBlocks() {
-        return blockService.getBlocks();
+        return blockService.getBlocks(1, 20).getContent();
     }
 
 

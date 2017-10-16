@@ -36,6 +36,8 @@ IF NOT EXISTS(SELECT *
 GO
 
 
+
+
 IF NOT EXISTS(SELECT *
               FROM sys.objects
               WHERE object_id = OBJECT_ID(N'Animal') AND type IN (N'U'))
@@ -47,8 +49,7 @@ IF NOT EXISTS(SELECT *
     tag        VARCHAR(100) NOT NULL,
     cellId     BIGINT    NOT NULL REFERENCES Cell (id)
                 ON DELETE CASCADE,
-    blockId      BIGINT    NOT NULL REFERENCES Block (id)
-     ON DELETE CASCADE
+    blockId      BIGINT    NOT NULL REFERENCES Block (id),
      dateOfBirth  date,
      dateOfDeath  date
 
@@ -57,6 +58,10 @@ IF NOT EXISTS(SELECT *
   CREATE NONCLUSTERED  INDEX IX_Animal ON Animal (id);
     PRINT 'Animal Table created successfully'
 GO
+
+
+
+
 
 
 IF NOT EXISTS(SELECT *
@@ -183,7 +188,7 @@ IF NOT EXISTS(SELECT *
     amount      float,
     paymentMethod    VARCHAR(100),
     paymentDate    date,
-    paidBy    BIGINT      NOT NULL REFERENCES users (id)
+    paidBy    BIGINT      NOT NULL REFERENCES users (id),
     description    VARCHAR(100),
     discount  float
 
