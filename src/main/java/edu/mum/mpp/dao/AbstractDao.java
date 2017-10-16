@@ -75,7 +75,7 @@ public abstract class AbstractDao<T extends AbstractModel> {
         return page;
     }
 
-    public class RowCountMapper implements RowMapper {
+    public class RowCountMapper implements RowMapper, org.springframework.jdbc.core.RowMapper<Object> {
         //@Override
         public Long mapRow(ResultSet rs, int rowNum) throws SQLException {
             return rs.getLong(1);

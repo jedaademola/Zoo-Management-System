@@ -1,7 +1,10 @@
 package edu.mum.mpp.service;
 
 import edu.mum.mpp.dao.AbstractDao;
+import edu.mum.mpp.dao.BlockDao;
 import edu.mum.mpp.model.Block;
+import edu.mum.mpp.model.LabelValue;
+import edu.mum.mpp.model.Page;
 import edu.mum.mpp.util.BlockDataUtil;
 import edu.mum.mpp.util.LoggerUtil;
 import org.slf4j.Logger;
@@ -10,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,6 +26,37 @@ public class BlockService extends AbstractService<Block> {
         super(dao);
     }
 
+
+    public List<LabelValue> getBlockListForDropDown() {
+
+        List<LabelValue> selectItems = new ArrayList<>();
+
+        for (Block b : getBlocks(1, 20).getContent()) {
+
+            LabelValue l = new LabelValue();
+            l.setLabel(b.getName());
+            l.setValue(b.getId());
+            selectItems.add(l);
+
+
+        }
+
+        return selectItems;
+    }
+
+    public Page<Block> getBlocks(long pageNum, long pageSize) {
+        BlockDao blockDao = (BlockDao) dao;
+        return blockDao.getBlocks(pageNum, pageSize);
+    }
+
+    public long manageBlock(Block block) {
+
+
+        BlockDao blockDao = (BlockDao) dao;
+        return blockDao.manageBlock(block);
+    }
+
+
     public Block create(Block block) {
 
         BlockDataUtil.addBlock(block);
@@ -32,8 +67,8 @@ public class BlockService extends AbstractService<Block> {
 
         String blockNameTemp = blockName;
         try {
-
-            blockNameTemp = BlockDataUtil.displayBlocks().stream()
+            Page<Block> blocks = getBlocks(1, 20);
+            blockNameTemp = blocks.getContent().stream()
                     .filter(
                             block -> block.getName().equals(blockName)
                                     && block.getLocation().equals(location))
@@ -51,15 +86,18 @@ public class BlockService extends AbstractService<Block> {
     }
 
 
-    public List<Block> getBlocks() {
-        return BlockDataUtil.displayBlocks();
-    }
+    // public List<Block> getBlocks() {
+    // return BlockDataUtil.displayBlocks();
+    // }
 
     public Block getSingleBlock(long id) {
         Block singleBlock = null;
         try {
+            ///TODO  pageNum=1,  pageSize=20
+            Page<Block> blocks = getBlocks(1, 20);
 
-            singleBlock = BlockDataUtil.displayBlocks().stream()
+            singleBlock = blocks.getContent().stream()
+
                     .filter(block -> block.getId() == id)
                     .findAny().get();
 

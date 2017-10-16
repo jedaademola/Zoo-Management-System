@@ -36,12 +36,12 @@ public class ValidateUser {
     public void validateLogin(LoginRequest loginRequest) {
 
         if (loginRequest.getUsername() == null || loginRequest.getUsername().isEmpty()) {
-            throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Invalid Username");
+            throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Username required");
         }
 
 
         if (loginRequest.getPassword() == null || loginRequest.getPassword().isEmpty()) {
-            throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Invalid Password ");
+            throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Password required");
         }
     }
 

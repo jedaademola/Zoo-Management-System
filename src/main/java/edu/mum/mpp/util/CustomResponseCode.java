@@ -29,10 +29,10 @@ public class CustomResponseCode {
     public static final String OTHERS = "05";
 
 
-    public static final String USER_CATEGORY_BANK_ADMIN = "B";
-    public static final String USER_CATEGORY_RETAIL_USER = "R";
-    public static final String USER_CATEGORY_COORPORATE = "C";
-    public static final String USER_CATEGORY_ISW_USER = "I";
+    public static final String USER_CATEGORY_EMPLOYEE = "E";
+    public static final String USER_CATEGORY_VISITOR = "V";
+    public static final String USER_CATEGORY_SUPPLIER = "S";
+  
 
     public static final String FORGET_PASSWORD = "F";
     public static final String LOGIN = "L";

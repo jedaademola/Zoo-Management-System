@@ -101,7 +101,7 @@ public class UserController {
         }
 
 
-        AuthenticationWithToken authWithToken = new AuthenticationWithToken(user, null, AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_RETAIL_USER,ROLE_SUPER_ADMIN"));
+        AuthenticationWithToken authWithToken = new AuthenticationWithToken(user, null, AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER"));
 
         String newToken = this.tokenService.generateNewToken();
         authWithToken.setToken(newToken);

@@ -1,11 +1,8 @@
 package edu.mum.mpp.controller;
 
 import edu.mum.mpp.exceptions.BadRequestException;
-import edu.mum.mpp.exceptions.ConflictException;
-import edu.mum.mpp.model.Block;
 import edu.mum.mpp.model.Cell;
 import edu.mum.mpp.model.Response;
-import edu.mum.mpp.service.BlockService;
 import edu.mum.mpp.service.CellService;
 import edu.mum.mpp.util.CustomResponseCode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +10,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/api/v1/zoo")
@@ -101,4 +101,24 @@ public class CellController {
         return block;
     }
     */
+
+
+    @RequestMapping(value = "/manageCell", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> manageLimit(@RequestBody @Valid Cell cell) throws Exception {
+
+        if (cell.getName() == null || cell.getName().isEmpty())
+            throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Block Name cannot be empty");
+
+        long id = cellService.manageCell(cell);
+
+        Response resp = new Response();
+
+
+        HttpStatus httpCode = (id > 0L) ? HttpStatus.CREATED : HttpStatus.INTERNAL_SERVER_ERROR;
+        resp.setDescription((id > 0L) ? "Operation successful" : "Operation failed");
+
+        return new ResponseEntity<>(resp, httpCode);
+
+    }
 }

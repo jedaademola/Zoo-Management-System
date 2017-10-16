@@ -5,6 +5,7 @@ package edu.mum.mpp.service;
 
 
 import edu.mum.mpp.model.ICacheManager;
+import edu.mum.mpp.util.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -26,7 +27,7 @@ public class TokenCachingService {
 //restApiAuthTokenCache
     @PostConstruct
     public void init() {
-        apiAuthTokenCache = cacheManager.createCache("Our Portal", "TokenCache", tokenTimeToLeave);
+        apiAuthTokenCache = cacheManager.createCache(Utility.APP_NAME, "TokenCache", tokenTimeToLeave);
     }
 
     public void put(String token, Object data) {

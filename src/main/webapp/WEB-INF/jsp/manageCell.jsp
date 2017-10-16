@@ -289,7 +289,7 @@ License URL: http://creativecommons.org/licenses/by/4.0/
                var param = JSON.stringify(jsonRequest);
 
                $.ajax({
-                   url: "${cp}/api/v1/zoo/cell",
+                   url: "${cp}/api/v1/zoo/manageCell",
                    type: "POST",
                    dataType: "json",
                    beforeSend: function (xhr) {
@@ -304,6 +304,11 @@ License URL: http://creativecommons.org/licenses/by/4.0/
                        $("#resultsSuccess").html(data.description);
                        document.getElementById("msgAlert").style.display = '';
                        document.getElementById("msgAlertFailed").style.display = 'none';
+
+                        setTimeout(
+                          function(){ 
+                            location.reload(); 
+                          }, 7000);
 
 
 
@@ -341,8 +346,8 @@ function editCell() {
                var param = JSON.stringify(jsonRequest);
               // xhr.setRequestHeader(header, token);
                $.ajax({
-                   url: "${cp}/api/v1/zoo/cell",
-                   type: "PUT",
+                   url: "${cp}/api/v1/zoo/manageCell",
+                   type: "POST",
                    dataType: "json",
                    beforeSend: function (xhr) {
                        xhr.setRequestHeader("Accept", "application/json");
@@ -356,6 +361,10 @@ function editCell() {
                        $("#resultsSuccess").html(data.description);
                        document.getElementById("msgAlert").style.display = '';
                        document.getElementById("msgAlertFailed").style.display = 'none';
+                       setTimeout(
+                          function(){ 
+                            location.reload(); 
+                          }, 7000);
 
 
 

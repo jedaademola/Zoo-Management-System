@@ -1,7 +1,10 @@
 package edu.mum.mpp.service;
 
 import edu.mum.mpp.dao.AbstractDao;
+import edu.mum.mpp.dao.AnimalDao;
 import edu.mum.mpp.model.Animal;
+import edu.mum.mpp.model.AnimalReport;
+import edu.mum.mpp.model.Page;
 import edu.mum.mpp.util.AnimalDataUtil;
 import edu.mum.mpp.util.LoggerUtil;
 import org.slf4j.Logger;
@@ -23,6 +26,19 @@ public class AnimalService extends AbstractService<Animal> {
     }
 
 
+    public Page<AnimalReport> getAnimals(long pageNum, long pageSize) {
+        AnimalDao animalDao = (AnimalDao) dao;
+        return animalDao.getAnimals(pageNum, pageSize);
+    }
+
+    public long manageAnimal(Animal animal) {
+
+
+        AnimalDao animalDao = (AnimalDao) dao;
+        return animalDao.manageAnimal(animal);
+    }
+
+
     public Animal create(Animal animal) {
 
         AnimalDataUtil.addAnimal(animal);
@@ -34,10 +50,10 @@ public class AnimalService extends AbstractService<Animal> {
         long idTemp = cellId;
         try {
 
-            idTemp = AnimalDataUtil.displayAnimals().stream()
+            idTemp = getAnimals(1, 20).getContent().stream()
                     .filter(
                             animal -> animal.getCellId() == cellId)
-                    .map(Animal::getCellId)
+                    .map(AnimalReport::getCellId)
                     .findAny()
                     .orElse(0L);
 
@@ -55,11 +71,11 @@ public class AnimalService extends AbstractService<Animal> {
         return AnimalDataUtil.displayAnimals();
     }
 
-    public Animal getSingleAnimal(long id) {
-        Animal singleAnimal = null;
+    public AnimalReport getSingleAnimal(long id) {
+        AnimalReport singleAnimal = null;
         try {
 
-            singleAnimal = AnimalDataUtil.displayAnimals().stream()
+            singleAnimal = getAnimals(1, 20).getContent().stream()
                     .filter(animal -> animal.getId() == id)
                     .findAny().get();
 

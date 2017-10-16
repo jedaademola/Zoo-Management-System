@@ -1,6 +1,6 @@
 package edu.mum.mpp.model;
 
-import java.time.LocalDate;
+
 
 public class Hollyday extends AbstractModel
 {
@@ -9,6 +9,7 @@ public class Hollyday extends AbstractModel
 
     private String period;
     private double amount;
+    private long userId;
 
 
     @Override
@@ -43,5 +44,13 @@ public class Hollyday extends AbstractModel
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 }

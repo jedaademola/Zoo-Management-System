@@ -10,6 +10,7 @@ import edu.mum.mpp.security.AuthenticationFilter;
 import edu.mum.mpp.security.TokenAuthenticationProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -21,14 +22,14 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 
 import javax.servlet.http.HttpServletResponse;
 
+
 /**
  *
  * @author larogundade
  */
 
 
-
-//@Order(1)
+@Order(1)
 @Configuration
 @EnableWebSecurity
 
@@ -39,25 +40,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-
+        //authorizeRequests().antMatchers("/**", "/css/**", "/js/**", "/images/*",
         // authorizeRequests().antMatchers("/jsp/**","/css/**", "/js/**","/images/*",
         http.
                 authorizeRequests().antMatchers("/**", "/css/**", "/js/**", "/images/*",
                         "/fonts/*",
-                "/favicon.ico", "/manageBlock").
+                "/favicon.ico", "/api/v1/zoo/user/authenticate").
                 permitAll().
-
                 anyRequest().authenticated().and().
                 csrf().disable().
                 sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).
                 and().exceptionHandling().authenticationEntryPoint(unauthorizedEntryPoint());
 
-
         http.addFilterBefore(new AuthenticationFilter(authenticationManager()), BasicAuthenticationFilter.class);
     }
 
 
- @Override
+    @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(tokenAuthenticationProvider());
     }

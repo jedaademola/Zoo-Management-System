@@ -1,9 +1,10 @@
 package edu.mum.mpp.service;
 
 import edu.mum.mpp.dao.AbstractDao;
-import edu.mum.mpp.model.Food;
+import edu.mum.mpp.dao.MedicineDao;
+import edu.mum.mpp.model.LabelValue;
 import edu.mum.mpp.model.Medicine;
-import edu.mum.mpp.util.FoodDataUtil;
+import edu.mum.mpp.model.Page;
 import edu.mum.mpp.util.LoggerUtil;
 import edu.mum.mpp.util.MedicineDataUtil;
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,6 +27,37 @@ public class MedicineService extends AbstractService<Medicine> {
         super(dao);
     }
 
+
+    public List<LabelValue> getMedicineListForDropDown() {
+
+        List<LabelValue> selectItems = new ArrayList<>();
+
+        for (Medicine b : getMedicines(1, 20).getContent()) {
+
+            LabelValue l = new LabelValue();
+            l.setLabel(b.getName());
+            l.setValue(b.getId());
+            selectItems.add(l);
+
+
+        }
+
+        return selectItems;
+    }
+
+    public Page<Medicine> getMedicines(long pageNum, long pageSize) {
+        MedicineDao foodDao = (MedicineDao) dao;
+        return foodDao.getMedicines(pageNum, pageSize);
+    }
+
+    public long manageMedicine(Medicine medicine) {
+
+
+        MedicineDao foodDao = (MedicineDao) dao;
+        return foodDao.manageMedicine(medicine);
+    }
+
+
     public Medicine create(Medicine medicine) {
 
         MedicineDataUtil.addMedicine(medicine);
@@ -36,7 +69,7 @@ public class MedicineService extends AbstractService<Medicine> {
         String medicineNameTemp = "";
         try {
 
-            medicineNameTemp = MedicineDataUtil.displayMedicines().stream()
+            medicineNameTemp = getMedicines(1, 20).getContent().stream()
                     .filter(
                             food -> food.getName().equals(medicineName)
                     )
@@ -62,7 +95,7 @@ public class MedicineService extends AbstractService<Medicine> {
         Medicine singleMedicine = null;
         try {
 
-            singleMedicine = MedicineDataUtil.displayMedicines().stream()
+            singleMedicine = getMedicines(1, 20).getContent().stream()
                     .filter(food -> food.getId() == id)
                     .findAny().get();
 

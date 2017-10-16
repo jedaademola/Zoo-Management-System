@@ -168,7 +168,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			 <h3></h3>
 		 </div>
 		 <div class="ftr-right">
-			 <p>Copyright 2017 Wild Life. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+			 <p>Copyright &copy; 2017 Wild Life. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
 		 </div>
 		 <div class="clearfix"></div>
 	 </div>

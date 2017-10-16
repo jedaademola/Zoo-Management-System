@@ -1,7 +1,6 @@
 package edu.mum.mpp.service;
 
 
-
 import edu.mum.mpp.model.User;
 import edu.mum.mpp.security.AuthenticationWithToken;
 import edu.mum.mpp.util.LoggerUtil;
@@ -14,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
+
 
 
 @Service
@@ -31,7 +31,12 @@ public class TokenService {
     public static User getCurrentUserFromSecurityContext() {
 
         try {
+
             AuthenticationWithToken auth = (AuthenticationWithToken) SecurityContextHolder.getContext().getAuthentication();
+            // Authentication a = SecurityContextHolder.getContext().getAuthentication();
+
+            //Object principal = a.getPrincipal();
+
             return (User) auth.getPrincipal();
         } catch (Exception ex) {
             logger.error("Error retrieving User from Security context : " + ex);

@@ -293,7 +293,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                var param = JSON.stringify(jsonRequest);
     // xhr.setRequestHeader(header, token);
                $.ajax({
-                   url: "${cp}/api/v1/zoo/block",
+                   url: "${cp}/api/v1/zoo/manageBlock",
                    type: "POST",
                    dataType: "json",
                    beforeSend: function (xhr) {
@@ -309,7 +309,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                        document.getElementById("msgAlert").style.display = '';
                        document.getElementById("msgAlertFailed").style.display = 'none';
 
-
+setTimeout(
+                          function(){ 
+                            location.reload(); 
+                          }, 7000);
 
                    }
                    ,
@@ -345,8 +348,8 @@ function editBlock() {
                var param = JSON.stringify(jsonRequest);
               // xhr.setRequestHeader(header, token);
                $.ajax({
-                   url: "${cp}/api/v1/zoo/block",
-                   type: "PUT",
+                   url: "${cp}/api/v1/zoo/manageBlock",
+                   type: "POST",
                    dataType: "json",
                    beforeSend: function (xhr) {
                        xhr.setRequestHeader("Accept", "application/json");
@@ -360,7 +363,10 @@ function editBlock() {
                        $("#resultsSuccess").html(data.description);
                        document.getElementById("msgAlert").style.display = '';
                        document.getElementById("msgAlertFailed").style.display = 'none';
-
+setTimeout(
+                          function(){ 
+                            location.reload(); 
+                          }, 7000);
 
 
                    }

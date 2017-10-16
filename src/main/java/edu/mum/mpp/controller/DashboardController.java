@@ -3,10 +3,11 @@ package edu.mum.mpp.controller;
 import edu.mum.mpp.model.Block;
 import edu.mum.mpp.model.StockRequest;
 import edu.mum.mpp.model.User;
-import edu.mum.mpp.service.CellService;
-import edu.mum.mpp.service.StockService;
-import edu.mum.mpp.service.TokenService;
-import edu.mum.mpp.util.*;
+import edu.mum.mpp.service.*;
+import edu.mum.mpp.util.AppointmentDataUtil;
+import edu.mum.mpp.util.CustomResponseCode;
+import edu.mum.mpp.util.HollydayDataUtil;
+import edu.mum.mpp.util.SupplierDataUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,15 +16,31 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 
-
 @Controller
 public class DashboardController {
 
     @Autowired
+    private TokenService tokenService;
+
+    @Autowired
     StockService stockService;
+
+    private User loggedInUser;
 
     @Autowired
     CellService cellService;
+
+    @Autowired
+    BlockService blockService;
+
+    @Autowired
+    FoodService foodService;
+
+    @Autowired
+    AnimalService animalService;
+
+    @Autowired
+    MedicineService medicineService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView index() {
@@ -33,22 +50,35 @@ public class DashboardController {
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public ModelAndView dashboardPage() {
+    public ModelAndView indexPage() {
         ModelAndView model = new ModelAndView();
         model.setViewName("index");
         return model;
     }
 
-    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-    public ModelAndView dashboad() {
+    @RequestMapping(value = "/confirmLogin", method = RequestMethod.GET)
+    public ModelAndView confirmLogin() {
         ModelAndView model = new ModelAndView();
-        String page = "index";
+        String page = "login?emr=You are not authorised to access this page";
 
-        User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
-        if (loggedInUser != null)
-            page = "dashboard";
+        loggedInUser = TokenService.getCurrentUserFromSecurityContext();
+        if (loggedInUser != null) {
+            if (CustomResponseCode.USER_CATEGORY_EMPLOYEE.equals(loggedInUser.getCategory().name()))
+                page = "dashboard";
+
+        }
 
         model.setViewName("redirect:" + page);
+        return model;
+    }
+
+
+    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+    public ModelAndView dashboard() {
+        ModelAndView model = new ModelAndView();
+        String page = "dashboard";
+
+        model.setViewName(page);
         return model;
     }
 
@@ -72,15 +102,22 @@ public class DashboardController {
     public ModelAndView manageBlock() {
         ModelAndView model = new ModelAndView();
 
-        String page = "index";
+        //  String page = "login?emr=You are not authorised to access this page";
 
-        User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
-        if (loggedInUser != null) {
-            page = "manageBlock";
-            model.addObject("blocks", BlockDataUtil.displayBlocks());
-        }
+        //User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
+        // if (loggedInUser != null) {
 
-        model.setViewName("redirect:" + page);
+        // if (CustomResponseCode.USER_CATEGORY_EMPLOYEE.equals(loggedInUser.getCategory())) {
+
+        //   page = "manageBlock";
+        // model.addObject("blocks", BlockDataUtil.displayBlocks());
+
+        model.addObject("blocks", blockService.getBlocks(1, 20).getContent());
+
+        // }
+        // }
+
+        model.setViewName("manageBlock");
         return model;
     }
 
@@ -88,16 +125,21 @@ public class DashboardController {
     public ModelAndView manageFood() {
         ModelAndView model = new ModelAndView();
 
-        String page = "index";
+        //   String page = "login?emr=You are not authorised to access this page";
 
 
-        User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
-        if (loggedInUser != null) {
-            page = "manageFood";
-            model.addObject("foods", FoodDataUtil.displayFoods());
-        }
+        // User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
+        //if (loggedInUser != null) {
 
-        model.setViewName("redirect:" + page);
+        //  if (CustomResponseCode.USER_CATEGORY_EMPLOYEE.equals(loggedInUser.getCategory())) {
+
+        //    page = "manageFood";
+        model.addObject("foods", foodService.getFoods(1, 20).getContent());
+        //}
+
+        //  }
+
+        model.setViewName("manageFood");
 
         return model;
     }
@@ -106,14 +148,19 @@ public class DashboardController {
     public ModelAndView manageHollydayPackage() {
         ModelAndView model = new ModelAndView();
 
-        String page = "index";
-        User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
-        if (loggedInUser != null) {
-            page = "manageHollydayPackage";
-            model.addObject("hollydays", HollydayDataUtil.displayHollydays());
-        }
+        //  String page = "login?emr=You are not authorised to access this page";
+        // User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
+        //if (loggedInUser != null) {
+        //  if (CustomResponseCode.USER_CATEGORY_EMPLOYEE.equals(loggedInUser.getCategory())) {
 
-        model.setViewName("redirect:" + page);
+        //    page = "manageHollydayPackage";
+        model.addObject("hollydays", HollydayDataUtil.displayHollydays());
+        //}
+
+
+//        }
+
+        model.setViewName("manageHollydayPackage");
 
         return model;
     }
@@ -124,16 +171,21 @@ public class DashboardController {
         ModelAndView model = new ModelAndView();
 
 
-        String page = "index";
-        User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
-        if (loggedInUser != null) {
-            page = "manageStock";
-            model.addObject("stocks", stockService.displayStockReport());
-            model.addObject("suppliers", SupplierDataUtil.getSupplierListForDropDown());
-            model.addObject("itemIds", FoodDataUtil.getFoodListForDropDown());
-        }
+        //   String page = "login?emr=You are not authorised to access this page";
+        // User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
+        //if (loggedInUser != null) {
 
-        model.setViewName("redirect:" + page);
+        //  if (CustomResponseCode.USER_CATEGORY_EMPLOYEE.equals(loggedInUser.getCategory())) {
+
+        // page = "manageStock";
+        model.addObject("stocks", stockService.displayStockReport());
+        model.addObject("suppliers", SupplierDataUtil.getSupplierListForDropDown());
+        model.addObject("itemIds", foodService.getFoodListForDropDown());
+        // }
+
+        //}
+
+        model.setViewName("manageStock");
         return model;
     }
 
@@ -142,33 +194,41 @@ public class DashboardController {
     public ModelAndView manageMedicine() {
         ModelAndView model = new ModelAndView();
 
-        String page = "index";
-        User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
-        if (loggedInUser != null) {
-            page = "manageMedicine";
-            model.addObject("medicines", MedicineDataUtil.displayMedicines());
-        }
+        // String page = "login?emr=You are not authorised to access this page";
+        //   User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
+        // if (loggedInUser != null) {
+        //   if (CustomResponseCode.USER_CATEGORY_EMPLOYEE.equals(loggedInUser.getCategory())) {
 
-        model.setViewName("redirect:" + page);
+        //  page = "manageMedicine";
+        model.addObject("medicines", medicineService.getMedicines(1, 20));
+        //}
+
+        //}
+
+        model.setViewName("manageMedicine");
 
         return model;
     }
-
 
 
     @RequestMapping(value = "/manageCell", method = RequestMethod.GET)
     public ModelAndView manageCell(@ModelAttribute("command") Block block) {
         ModelAndView model = new ModelAndView();
 
-        String page = "index";
-        User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
-        if (loggedInUser != null) {
-            page = "manageCell";
-            model.addObject("blocks", BlockDataUtil.getBlockListForDropDown());
-            model.addObject("cells", cellService.displayCellReport());
-        }
+        // String page = "login?emr=You are not authorised to access this page";
+        //User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
+        //if (loggedInUser != null) {
 
-        model.setViewName("redirect:" + page);
+        //  if (CustomResponseCode.USER_CATEGORY_EMPLOYEE.equals(loggedInUser.getCategory())) {
+
+        //    page = "manageCell";
+        model.addObject("blocks", blockService.getBlockListForDropDown());
+        model.addObject("cells", cellService.displayCellReport());
+        //}
+
+        //   }
+
+        model.setViewName("manageCell");
 
         return model;
     }
@@ -178,19 +238,21 @@ public class DashboardController {
         ModelAndView model = new ModelAndView();
 
 
-        String page = "index";
-        User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
-        if (loggedInUser != null) {
-            page = "manageAppointment";
-            model.addObject("appointments", AppointmentDataUtil.displayAppointments());
-        }
+        // String page = "login?emr=You are not authorised to access this page";
+        //User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
+        //if (loggedInUser != null) {
+        //  if (CustomResponseCode.USER_CATEGORY_EMPLOYEE.equals(loggedInUser.getCategory())) {
 
-        model.setViewName("redirect:" + page);
+//                page = "manageAppointment";
+        model.addObject("appointments", AppointmentDataUtil.displayAppointments());
+        //          }
+
+        //    }
+
+        model.setViewName("manageAppointment");
 
         return model;
     }
-
-
 
 
     @RequestMapping(value = "/manageAnimal", method = RequestMethod.GET)
@@ -199,16 +261,22 @@ public class DashboardController {
         ModelAndView model = new ModelAndView();
 
 
-        String page = "index";
-        User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
-        if (loggedInUser != null) {
-            page = "manageAnimal";
-            model.addObject("blocks", BlockDataUtil.getBlockListForDropDown());
-            model.addObject("cells", CellDataUtil.getCellListForDropDown());
-            model.addObject("animals", AnimalDataUtil.displayAnimals());
-        }
+        //String page = "login?emr=You are not authorised to access this page";
+        //User loggedInUser = TokenService.getCurrentUserFromSecurityContext();
+        //if (loggedInUser != null) {
+        // if (CustomResponseCode.USER_CATEGORY_EMPLOYEE.equals(loggedInUser.getCategory())) {
 
-        model.setViewName("redirect:" + page);
+        //   page = "manageAnimal";
+        // model.addObject("blocks", BlockDataUtil.getBlockListForDropDown());
+        // model.addObject("cells", CellDataUtil.getCellListForDropDown());
+        model.addObject("blocks", blockService.getBlockListForDropDown());
+        model.addObject("cells", cellService.getCellListForDropDown());
+        model.addObject("animals", animalService.getAnimals(1, 20).getContent());
+        //}
+
+        //}
+
+        model.setViewName("manageAnimal");
 
         return model;
     }
@@ -227,6 +295,7 @@ public class DashboardController {
         model.setViewName("table");
         return model;
     }
+
     @RequestMapping(value = "/welcome", method = RequestMethod.GET)
     public ModelAndView welcome() {
         ModelAndView model = new ModelAndView();

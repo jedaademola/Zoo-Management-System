@@ -7,7 +7,7 @@ import edu.mum.mpp.util.CustomDateSerializer;
 import edu.mum.mpp.util.UserCategory;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -32,7 +32,7 @@ public class AccessTokenWithUserDetails implements Serializable {
 
     @JsonSerialize(using = CustomDateSerializer.class)
     @JsonProperty("lastLogin")
-    private Date lastLogin;
+    private Timestamp lastLogin;
 
 
     @JsonProperty("passwordExpirationDaysRemaining")
@@ -40,11 +40,11 @@ public class AccessTokenWithUserDetails implements Serializable {
 
     @JsonSerialize(using = CustomDateSerializer.class)
     @JsonProperty("failedLoginDate")
-    private Date failedLoginDate;
+    private Timestamp failedLoginDate;
 
     @JsonSerialize(using = CustomDateSerializer.class)
     @JsonProperty("passwordChangedOn")
-    private Date passwordChangedOn;
+    private Timestamp passwordChangedOn;
 
 
     @JsonProperty("userCategory")
