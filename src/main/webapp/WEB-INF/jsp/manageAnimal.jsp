@@ -223,8 +223,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <td>${animal.tag}</td>
             <td>${animal.dateOfBirth}</td>
             <td>${animal.dateOfDeath}</td>
-            <td>${animal.blockId}</td>
-            <td>${animal.cellId}</td>
+            <td>${animal.blockName}</td>
+            <td>${animal.cellName}</td>
             <td> <a href="#"
             data-toggle="tooltip" data-placement="top"
             data-id="${animal.id}:${animal.name}:${animal.specy}:${animal.tag}:${animal.dateOfBirth}:${animal.dateOfDeath}"
@@ -305,7 +305,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                var param = JSON.stringify(jsonRequest);
               // xhr.setRequestHeader(header, token);
                $.ajax({
-                   url: "${cp}/api/v1/zoo/animal",
+                   url: "${cp}/api/v1/zoo/manageAnimal",
                    type: "POST",
                    dataType: "json",
                    beforeSend: function (xhr) {
@@ -363,8 +363,8 @@ function editAnimal() {
                var param = JSON.stringify(jsonRequest);
 
                $.ajax({
-                   url: "${cp}/api/v1/zoo/animal",
-                   type: "PUT",
+                   url: "${cp}/api/v1/zoo/manageAnimal",
+                   type: "POST",
                    dataType: "json",
                    beforeSend: function (xhr) {
                        xhr.setRequestHeader("Accept", "application/json");

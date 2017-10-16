@@ -4,7 +4,10 @@ import edu.mum.mpp.model.Block;
 import edu.mum.mpp.model.StockRequest;
 import edu.mum.mpp.model.User;
 import edu.mum.mpp.service.*;
-import edu.mum.mpp.util.*;
+import edu.mum.mpp.util.AppointmentDataUtil;
+import edu.mum.mpp.util.CustomResponseCode;
+import edu.mum.mpp.util.HollydayDataUtil;
+import edu.mum.mpp.util.SupplierDataUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -33,6 +36,8 @@ public class DashboardController {
     @Autowired
     FoodService foodService;
 
+    @Autowired
+    AnimalService animalService;
 
     @Autowired
     MedicineService medicineService;
@@ -265,8 +270,8 @@ public class DashboardController {
         // model.addObject("blocks", BlockDataUtil.getBlockListForDropDown());
         // model.addObject("cells", CellDataUtil.getCellListForDropDown());
         model.addObject("blocks", blockService.getBlockListForDropDown());
-        model.addObject("cells", cellService.displayCellReport());
-        model.addObject("animals", AnimalDataUtil.displayAnimals());
+        model.addObject("cells", cellService.getCellListForDropDown());
+        model.addObject("animals", animalService.getAnimals(1, 20).getContent());
         //}
 
         //}

@@ -4,9 +4,10 @@ package edu.mum.mpp.controller;
 import edu.mum.mpp.exceptions.BadRequestException;
 import edu.mum.mpp.exceptions.ConflictException;
 import edu.mum.mpp.model.Animal;
+import edu.mum.mpp.model.AnimalReport;
+import edu.mum.mpp.model.Page;
 import edu.mum.mpp.model.Response;
 import edu.mum.mpp.service.AnimalService;
-import edu.mum.mpp.util.AnimalDataUtil;
 import edu.mum.mpp.util.CustomResponseCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,6 +25,56 @@ public class AnimalController {
 
     @Autowired
     AnimalService animalService;
+
+
+    @RequestMapping(value = "/manageAnimal", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> manageAnimal(@RequestBody @Valid Animal animal) throws Exception {
+
+
+        if (animal.getName() == null || animal.getName().isEmpty())
+            throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Animal Name cannot be empty");
+
+        if (animal.getTag() == null || animal.getTag().isEmpty())
+            throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Tag cannot be empty");
+
+        if (animal.getBlockId() < 0)
+            throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Block cannot be empty");
+
+        //animal.setCellId(AnimalDataUtil.lastId + 1);//TODO REMOVE LATER JUST FOR TESTING, lastId SHOULD BE PRIVATE
+
+        if (animal.getCellId() < 0)
+            throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Cell cannot be empty");
+
+        if (animalService.checkAnimal(animal.getCellId())) {
+            throw new ConflictException(CustomResponseCode.INVALID_REQUEST, "Another Animal already exist assigned to this Cell");
+        }
+
+        long id = animalService.manageAnimal(animal);
+
+        Response resp = new Response();
+
+
+        HttpStatus httpCode = (id > 0L) ? HttpStatus.CREATED : HttpStatus.INTERNAL_SERVER_ERROR;
+        resp.setDescription((id > 0L) ? "Operation successful" : "Operation failed");
+
+        return new ResponseEntity<>(resp, httpCode);
+
+    }
+
+
+    @RequestMapping(value = "/animal/paging", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    //@PreAuthorize("hasAnyRole('ROLE_SUPER_ADMIN','ROLE_VIEW_ALL_USERS')")
+    public Page<AnimalReport> getAnimals(
+            @RequestParam(value = "pageNum", defaultValue = "1") Long pageNum,
+            @RequestParam(value = "pageSize", defaultValue = "20") Long pageSize) throws Exception {
+        return animalService.getAnimals(pageNum, pageSize);
+    }
+
+
+
 
     @RequestMapping(value = "/animal", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -78,7 +130,7 @@ public class AnimalController {
         if (animal.getCellId() < 0)
             throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Cell cannot be empty");
 
-        Animal animalTemp = animalService.getSingleAnimal(animal.getId());
+        AnimalReport animalTemp = animalService.getSingleAnimal(animal.getId());
         if (animalTemp == null) {
             throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, " Animal record does not exist");
         }
@@ -103,12 +155,12 @@ public class AnimalController {
 
     @RequestMapping(value = "/animal/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
-    public Animal getAnimalById(@PathVariable long id) {
+    public AnimalReport getAnimalById(@PathVariable long id) {
 
         if (id < 1)
             throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Animal Id cannot be empty");
 
-        Animal animal = animalService.getSingleAnimal(id);
+        AnimalReport animal = animalService.getSingleAnimal(id);
         if (animal == null) {
             throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Aimal does not exist");
         }

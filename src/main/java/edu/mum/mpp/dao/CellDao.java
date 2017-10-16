@@ -31,7 +31,7 @@ public class CellDao extends AbstractDao<Cell> {
 
         this.manageCell = new SimpleJdbcCall(jdbcTemplate).withProcedureName("manageCell").withReturnValue();
 
-        this.getCells = new SimpleJdbcCall(jdbcTemplate).withProcedureName("getBlocks")
+        this.getCells = new SimpleJdbcCall(jdbcTemplate).withProcedureName("getCells")
                 .returningResultSet(RESULT_COUNT, new RowCountMapper())
                 .returningResultSet(MULTIPLE_RESULT, BeanPropertyRowMapper.newInstance(CellReport.class));
 

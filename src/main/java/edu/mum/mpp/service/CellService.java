@@ -4,6 +4,7 @@ import edu.mum.mpp.dao.AbstractDao;
 import edu.mum.mpp.dao.CellDao;
 import edu.mum.mpp.model.Cell;
 import edu.mum.mpp.model.CellReport;
+import edu.mum.mpp.model.LabelValue;
 import edu.mum.mpp.model.Page;
 import edu.mum.mpp.util.CellDataUtil;
 import edu.mum.mpp.util.LoggerUtil;
@@ -27,6 +28,23 @@ public class CellService extends AbstractService<Cell> {
     @Autowired
     BlockService blockService;
 
+
+    public List<LabelValue> getCellListForDropDown() {
+
+        List<LabelValue> selectItems = new ArrayList<>();
+
+        for (CellReport c : getCells(1, 20).getContent()) {
+
+            LabelValue l = new LabelValue();
+            l.setLabel(c.getName());
+            l.setValue(c.getId());
+            selectItems.add(l);
+
+
+        }
+
+        return selectItems;
+    }
 
     public Page<CellReport> getCells(long pageNum, long pageSize) {
         CellDao cellDao = (CellDao) dao;
