@@ -5,6 +5,7 @@ import edu.mum.mpp.dao.AnimalDao;
 import edu.mum.mpp.model.Animal;
 import edu.mum.mpp.model.AnimalReport;
 import edu.mum.mpp.model.Page;
+import edu.mum.mpp.model.PaymentReport;
 import edu.mum.mpp.util.AnimalDataUtil;
 import edu.mum.mpp.util.LoggerUtil;
 import org.slf4j.Logger;
@@ -30,6 +31,13 @@ public class AnimalService extends AbstractService<Animal> {
         AnimalDao animalDao = (AnimalDao) dao;
         return animalDao.getAnimals(pageNum, pageSize);
     }
+
+    public Page<PaymentReport> report(long pageNum, long pageSize) {
+        AnimalDao animalDao = (AnimalDao) dao;
+        return animalDao.report(pageNum, pageSize);
+    }
+
+
 
     public long manageAnimal(Animal animal) {
 

@@ -4,6 +4,7 @@ package edu.mum.mpp.dao;
 import edu.mum.mpp.model.Animal;
 import edu.mum.mpp.model.AnimalReport;
 import edu.mum.mpp.model.Page;
+import edu.mum.mpp.model.PaymentReport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
@@ -22,7 +23,7 @@ import java.util.Map;
 @Repository
 public class AnimalDao extends AbstractDao<Animal> {
 
-    private SimpleJdbcCall manageAnimal, getAnimals, searchAnimal;
+    private SimpleJdbcCall manageAnimal, getAnimals, searchAnimal, report;
 
     @Autowired
     @Override
@@ -41,6 +42,10 @@ public class AnimalDao extends AbstractDao<Animal> {
 
         this.searchAnimal = new SimpleJdbcCall(jdbcTemplate).withProcedureName("searchAnimal")
                 .returningResultSet(SINGLE_RESULT, BeanPropertyRowMapper.newInstance(AnimalReport.class));
+
+        this.report = new SimpleJdbcCall(jdbcTemplate).withProcedureName("getReports")
+                .returningResultSet(RESULT_COUNT, new RowCountMapper())
+                .returningResultSet(MULTIPLE_RESULT, BeanPropertyRowMapper.newInstance(PaymentReport.class));
 
     }
 
@@ -70,6 +75,19 @@ public class AnimalDao extends AbstractDao<Animal> {
         List content = (List) m.get("list");
         Long count = (Long) ((List) m.get("count")).get(0);
         Page<AnimalReport> page = new Page(count, content);
+        return page;
+
+    }
+
+    public Page<PaymentReport> report(long pageNum, long pageSize) throws DataAccessException {
+        SqlParameterSource params = new MapSqlParameterSource()
+                .addValue("page_num", pageNum)
+                .addValue("page_size", pageSize);
+
+        Map m = this.report.execute(params);
+        List content = (List) m.get("list");
+        Long count = (Long) ((List) m.get("count")).get(0);
+        Page<PaymentReport> page = new Page(count, content);
         return page;
 
     }
