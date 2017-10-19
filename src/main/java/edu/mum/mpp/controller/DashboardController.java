@@ -319,6 +319,15 @@ public class DashboardController {
         return model;
     }
 
+
+    @RequestMapping(value = "/loginAdmin", method = RequestMethod.GET)
+    public ModelAndView loginAdmin() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("loginAdmin");
+        return model;
+    }
+
+
     @RequestMapping(value = "/table", method = RequestMethod.GET)
     public ModelAndView table() {
         ModelAndView model = new ModelAndView();
