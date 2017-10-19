@@ -221,9 +221,9 @@ License URL: http://creativecommons.org/licenses/by/4.0/
             <th scope="row">${theCount.count}</th>
             <td>${report.paidBy}</td>
              <td>${report.paymentMethod}</td>
-            <td>>${report.description}</td>
-            <td>>${report.amount}</td>
-            <td>>${report.paymentDate}</td>
+            <td>${report.description}</td>
+            <td>${report.amount}</td>
+            <td>${report.paymentDate}</td>
             <td> </td>
           </tr>
          </c:forEach>
