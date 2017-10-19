@@ -131,7 +131,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				            <td></td>
 				            <td> <a href="#"
 				                        data-toggle="tooltip" data-placement="top"
-				                        data-id="${holiday.id}:${holiday.name}:${holiday.period}"   class="reserveBtn" id="myBtn${holiday.id}">Reserve</td>
+				                        data-id="${holiday.id}:${holiday.name}:${holiday.amount}"   class="reserveBtn" id="myBtn${holiday.id}">Reserve</td>
 				          </tr>
 				         </c:forEach>
 				        </tbody>

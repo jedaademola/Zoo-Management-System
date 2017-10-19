@@ -135,7 +135,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                      
                      //redirct();
                       $('#_a').val(JSON.stringify(data));
-                     window.location.href = "${pageContext.request.servletContext.contextPath}/index";
+                     window.location.href = "${pageContext.request.servletContext.contextPath}/dashboard";
 
 
                    }
