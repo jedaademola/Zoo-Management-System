@@ -1,7 +1,6 @@
 package edu.mum.mpp.service;
 
 import edu.mum.mpp.dao.AbstractDao;
-import edu.mum.mpp.model.Animal;
 import edu.mum.mpp.model.Appointment;
 import edu.mum.mpp.util.AppointmentDataUtil;
 import edu.mum.mpp.util.LoggerUtil;
@@ -61,7 +60,8 @@ public class AppointmentService extends AbstractService<Appointment> {
 
             singleAppointment = AppointmentDataUtil.displayAppointments().stream()
                     .filter(appointment -> appointment.getId() == id)
-                    .findAny().get();
+                    .findAny().get()
+            ;
 
         } catch (Exception ex) {
             logger.error(" [getSingleAppointment()]: " + ex.getMessage());
