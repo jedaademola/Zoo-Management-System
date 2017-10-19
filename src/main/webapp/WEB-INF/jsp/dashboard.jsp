@@ -281,6 +281,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <li>Opera<div class="text-danger pull-right">10%<i class="fa fa-level-down"></i></div></li>
                         <li>Mobile &amp; tablet<div class="text-success pull-right">14%<i class="fa fa-level-up"></i></div></li>
                         <li class="last">Others<div class="text-success pull-right">5%<i class="fa fa-level-up"></i></div></li>
+
+                          <li>
+                                             <a href="${cp}/report"><i class="fa fa-check-square-o nav_icon"></i>Report</a>
+                                         </li>
                     </ul>
                 </div>
             </div>
