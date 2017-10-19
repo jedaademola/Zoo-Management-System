@@ -133,7 +133,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	      		</li>
 			</ul>
 			<form class="navbar-form navbar-right">
-              <input type="text" class="form-control" value="Search..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search...';}">
+              <input type="text" class="form-control" value="Search..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search...';}" id= "txtSearchAnimal">
             </form>
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
@@ -281,6 +281,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <li>Opera<div class="text-danger pull-right">10%<i class="fa fa-level-down"></i></div></li>
                         <li>Mobile &amp; tablet<div class="text-success pull-right">14%<i class="fa fa-level-up"></i></div></li>
                         <li class="last">Others<div class="text-success pull-right">5%<i class="fa fa-level-up"></i></div></li>
+
+                          <li>
+                                             <a href="${cp}/report"><i class="fa fa-check-square-o nav_icon"></i>Report</a>
+                                         </li>
                     </ul>
                 </div>
             </div>
@@ -339,4 +343,119 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!-- Bootstrap Core JavaScript -->
     <script src="${cp}/js/bootstrap.min.js"></script>
 </body>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    	var typingTimer; //timer identifier
+        var doneTypingInterval = 2000; //time in ms, 5 second for example
+        var $input = $('#txtSearchAnimal');
+//on keyup, start the countdown
+        $input.on('keyup', function () {
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(doSearch, doneTypingInterval);
+        });
+//on keydown, clear the countdown 
+        $input.on('keydown', function () {
+            clearTimeout(typingTimer);
+        });
+
+
+ });
+
+
+
+function doSearch() {
+
+	var nameParam = $("#txtSearchAnimal").val();
+
+        $.ajax({
+            url: "${cp}/api/v1/zoo/animal/search",
+            type: "GET",
+            dataType: "json",
+             data: {name: nameParam},
+            success: function (data) {
+
+            	 console.log(data);
+
+            	 //ar dataJson = JSON.parse(data);
+
+                var serialNo = 1;
+                
+                $("#animalList").find("tr:not(:first)").remove();
+                document.getElementById("animalList").style.display= '';
+                
+                              
+               // for (var i=0; i<dataJson.length; i++) {
+                    var row = $(
+                            '<tr>'
+                            + '<td>' + serialNo + '</td>' 
+                            + '<td>' + data.name + '</td>'
+                            + '<td>' + data.specy + '</td>'
+                            + '<td>' + data.tag + '</td>' 
+                            + '<td>' + data.blockName + '</td>'
+                            + '<td>' + data.cellName + '</td>'
+                            + '<td>' + ''+ '</td>'
+                           + '<td>' + ''+ '</td>'
+                            + '<td></td>'
+                            + '</tr>');
+
+                    $('#animalList').append(row);
+                    serialNo = serialNo + 1;
+               // }
+
+                 console.log(data);
+
+                 $('#myModalEdit').modal();
+               
+            }
+            ,
+            error: function (xhr, errorType, exception) {
+                console.log(xhr);
+              
+                alert("Animal record not found!");
+             }
+        });
+    }
+
+ </script>
+
+
+
+ <!-- Modal Edit-->
+<div id="myModalEdit" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Animal Search result</h4>
+      </div>
+      <div class="modal-body">
+                 <table class="table table-bordered" 
+                                       id="animalList" style="display:none">
+                                     <tr>
+                                        <td>#</td>
+                                        <td>Name</td>
+                                        <td>Species</td>
+                                        <td>Tag</td>
+                                        <td>Block Name</td>
+                                        <td>Cell Name</td>
+                                        <td>Date of Birth</td>
+                                        <td>Date of Death</td>
+                                        <td></td>
+                                    </tr>
+
+
+                                       
+                                </table>
+      </div>
+      <div class="modal-footer">
+      
+      </div>
+    </div>
+ </div>
+
+</div>
 </html>

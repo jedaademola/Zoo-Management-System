@@ -5,6 +5,7 @@ import edu.mum.mpp.dao.AnimalDao;
 import edu.mum.mpp.model.Animal;
 import edu.mum.mpp.model.AnimalReport;
 import edu.mum.mpp.model.Page;
+import edu.mum.mpp.model.PaymentReport;
 import edu.mum.mpp.util.AnimalDataUtil;
 import edu.mum.mpp.util.LoggerUtil;
 import org.slf4j.Logger;
@@ -31,6 +32,13 @@ public class AnimalService extends AbstractService<Animal> {
         return animalDao.getAnimals(pageNum, pageSize);
     }
 
+    public Page<PaymentReport> report(long pageNum, long pageSize) {
+        AnimalDao animalDao = (AnimalDao) dao;
+        return animalDao.report(pageNum, pageSize);
+    }
+
+
+
     public long manageAnimal(Animal animal) {
 
 
@@ -44,6 +52,7 @@ public class AnimalService extends AbstractService<Animal> {
         AnimalDataUtil.addAnimal(animal);
         return animal;
     }
+
 
     public boolean checkAnimal(long cellId) {
 
@@ -70,6 +79,31 @@ public class AnimalService extends AbstractService<Animal> {
     public List<Animal> getAnimals() {
         return AnimalDataUtil.displayAnimals();
     }
+
+
+    public AnimalReport searchAnimal(String AnimalReport) {
+        AnimalDao animalDao = (AnimalDao) dao;
+        return animalDao.searchAnimal(AnimalReport);
+    }
+
+
+    public AnimalReport searchAnimal2(String name) {
+        AnimalReport singleAnimal = null;
+        try {
+
+            singleAnimal = getAnimals(1, 20).getContent().stream()
+                    .filter(animal -> animal.getSpecy().equals(name))
+                    .findAny().get();
+
+        } catch (Exception ex) {
+            logger.error(" [searchAnimal()]: " + ex.getMessage());
+            LoggerUtil.logError(logger, ex);
+        }
+
+        return singleAnimal;
+    }
+
+
 
     public AnimalReport getSingleAnimal(long id) {
         AnimalReport singleAnimal = null;

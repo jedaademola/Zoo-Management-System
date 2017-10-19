@@ -3,10 +3,7 @@ package edu.mum.mpp.controller;
 
 import edu.mum.mpp.exceptions.BadRequestException;
 import edu.mum.mpp.exceptions.ConflictException;
-import edu.mum.mpp.model.Animal;
-import edu.mum.mpp.model.AnimalReport;
-import edu.mum.mpp.model.Page;
-import edu.mum.mpp.model.Response;
+import edu.mum.mpp.model.*;
 import edu.mum.mpp.service.AnimalService;
 import edu.mum.mpp.util.CustomResponseCode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,6 +68,17 @@ public class AnimalController {
             @RequestParam(value = "pageNum", defaultValue = "1") Long pageNum,
             @RequestParam(value = "pageSize", defaultValue = "20") Long pageSize) throws Exception {
         return animalService.getAnimals(pageNum, pageSize);
+    }
+
+
+    @RequestMapping(value = "/animal/report", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    //@PreAuthorize("hasAnyRole('ROLE_SUPER_ADMIN','ROLE_VIEW_ALL_USERS')")
+    public Page<PaymentReport> getreports(
+            @RequestParam(value = "pageNum", defaultValue = "1") Long pageNum,
+            @RequestParam(value = "pageSize", defaultValue = "20") Long pageSize) throws Exception {
+        return animalService.report(pageNum, pageSize);
     }
 
 
@@ -162,7 +170,22 @@ public class AnimalController {
 
         AnimalReport animal = animalService.getSingleAnimal(id);
         if (animal == null) {
-            throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Aimal does not exist");
+            throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Animal does not exist");
+        }
+
+        return animal;
+    }
+
+    @RequestMapping(value = "/animal/search", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    public AnimalReport searchAnimal(@RequestParam("name") String name) {
+
+        if (name == null || name.isEmpty())
+            throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Animal Name cannot be empty");
+
+        AnimalReport animal = animalService.searchAnimal(name);
+        if (animal == null) {
+            throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Animal does not exist");
         }
 
         return animal;

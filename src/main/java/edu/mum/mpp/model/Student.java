@@ -5,9 +5,12 @@ public class Student {
     private String name;
     private int age;
 
-    public Student(String name, int age) {
+    private String course;
+
+    public Student(String name, int age, String course) {
         this.name = name;
         this.age = age;
+        this.setCourse(course);
     }
 
     public String getName() {
@@ -24,5 +27,14 @@ public class Student {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+
+    public String getCourse() {
+        return course;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
     }
 }

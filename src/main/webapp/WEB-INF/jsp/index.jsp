@@ -78,8 +78,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 		 <div class="search">
 				<form>
-				 <input type="text" value="" placeholder="Search Animal">
-				 <input type="submit" value="">
+				 <input type="text" value="" placeholder="Search Animal" id= "txtSearchAnimal">
+				
 				</form>
 		 </div>
 		 <div class="clearfix"></div>
