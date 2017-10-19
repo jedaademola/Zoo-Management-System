@@ -135,6 +135,37 @@ GO
 
 
 
+IF EXISTS(SELECT
+            *
+          FROM sys.objects
+          WHERE object_id = OBJECT_ID(N'searchAnimal') AND type IN (N'P', N'PC'))
+  DROP PROCEDURE searchAnimal
+GO
+
+CREATE PROCEDURE searchAnimal
+	@name varchar(100)
+AS
+	SET NOCOUNT ON
+
+	SELECT
+	                                       id,
+                                           name      ,
+                                           specy       ,
+                                           tag        ,
+                                          ( select name from Cell c where c.id = cellId ) cellName ,
+                                          ( select name from Block b where b.id = blockId ) blockName ,
+                                           dateOfBirth  ,
+                                           dateOfDeath,
+                                           cellId,
+                                           blockId
+    FROM   Animal (nolock)
+	WHERE
+	specy like '%@name%'
+
+	RETURN @@Error
+GO
+
+
 
 
 
