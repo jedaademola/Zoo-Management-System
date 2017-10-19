@@ -73,6 +73,8 @@ public class DashboardController {
     @RequestMapping(value = "/report", method = RequestMethod.GET)
     public ModelAndView report() {
         ModelAndView model = new ModelAndView();
+
+        model.addObject("reports", animalService.report(1, 20).getContent());
         model.setViewName("report");
         return model;
     }
