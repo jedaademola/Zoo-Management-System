@@ -372,7 +372,9 @@ function doSearch() {
              data: {name: nameParam},
             success: function (data) {
 
-            	 $('#myModalEdit').modal();
+            	 console.log(data);
+
+            	 //ar dataJson = JSON.parse(data);
 
                 var serialNo = 1;
                 
@@ -380,24 +382,27 @@ function doSearch() {
                 document.getElementById("animalList").style.display= '';
                 
                               
-                for (var i=0; i<data.length; i++) {
+               // for (var i=0; i<dataJson.length; i++) {
                     var row = $(
                             '<tr>'
                             + '<td>' + serialNo + '</td>' 
-                            + '<td>' + data[i].name + '</td>'
-                            + '<td>' + data[i].specy + '</td>'
-                            + '<td>' + data[i].tag + '</td>' 
-                            + '<td>' + data[i].blockName + '</td>'
-                            + '<td>' + data[i].cellName + '</td>'
-                            + '<td>' + data[i].dateOfBirth + '</td>'
-                            + '<td>' + data[i].dateOfDeath + '</td>'
+                            + '<td>' + data.name + '</td>'
+                            + '<td>' + data.specy + '</td>'
+                            + '<td>' + data.tag + '</td>' 
+                            + '<td>' + data.blockName + '</td>'
+                            + '<td>' + data.cellName + '</td>'
+                            + '<td>' + ''+ '</td>'
+                           + '<td>' + ''+ '</td>'
                             + '<td></td>'
                             + '</tr>');
 
                     $('#animalList').append(row);
                     serialNo = serialNo + 1;
-                }
-                
+               // }
+
+                 console.log(data);
+
+                 $('#myModalEdit').modal();
                
             }
             ,
