@@ -22,7 +22,7 @@ import java.util.Map;
 @Repository
 public class AnimalDao extends AbstractDao<Animal> {
 
-    private SimpleJdbcCall manageAnimal, getAnimals;
+    private SimpleJdbcCall manageAnimal, getAnimals, searchAnimal;
 
     @Autowired
     @Override
@@ -38,9 +38,23 @@ public class AnimalDao extends AbstractDao<Animal> {
                 .returningResultSet(RESULT_COUNT, new RowCountMapper())
                 .returningResultSet(MULTIPLE_RESULT, BeanPropertyRowMapper.newInstance(AnimalReport.class));
 
+
+        this.searchAnimal = new SimpleJdbcCall(jdbcTemplate).withProcedureName("searchAnimal")
+                .returningResultSet(SINGLE_RESULT, BeanPropertyRowMapper.newInstance(AnimalReport.class));
+
     }
 
 
+    public AnimalReport searchAnimal(String name) throws DataAccessException {
+        SqlParameterSource in = new MapSqlParameterSource().addValue("name", name);
+        Map<String, Object> m = searchAnimal.execute(in);
+        List<AnimalReport> result = (List<AnimalReport>) m.get(SINGLE_RESULT);
+        if (!result.isEmpty()) {
+            return result.get(0);
+        } else {
+            return null;
+        }
+    }
     public long manageAnimal(Animal animal) throws DataAccessException {
         SqlParameterSource in = new BeanPropertySqlParameterSource(animal);
         Map<String, Object> m = this.manageAnimal.execute(in);

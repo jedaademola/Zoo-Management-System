@@ -45,6 +45,7 @@ public class AnimalService extends AbstractService<Animal> {
         return animal;
     }
 
+
     public boolean checkAnimal(long cellId) {
 
         long idTemp = cellId;
@@ -70,6 +71,31 @@ public class AnimalService extends AbstractService<Animal> {
     public List<Animal> getAnimals() {
         return AnimalDataUtil.displayAnimals();
     }
+
+
+    public AnimalReport searchAnimal(String AnimalReport) {
+        AnimalDao animalDao = (AnimalDao) dao;
+        return animalDao.searchAnimal(AnimalReport);
+    }
+
+
+    public AnimalReport searchAnimal2(String name) {
+        AnimalReport singleAnimal = null;
+        try {
+
+            singleAnimal = getAnimals(1, 20).getContent().stream()
+                    .filter(animal -> animal.getSpecy().equals(name))
+                    .findAny().get();
+
+        } catch (Exception ex) {
+            logger.error(" [searchAnimal()]: " + ex.getMessage());
+            LoggerUtil.logError(logger, ex);
+        }
+
+        return singleAnimal;
+    }
+
+
 
     public AnimalReport getSingleAnimal(long id) {
         AnimalReport singleAnimal = null;

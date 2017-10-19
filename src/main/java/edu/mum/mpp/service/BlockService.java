@@ -70,8 +70,8 @@ public class BlockService extends AbstractService<Block> {
             Page<Block> blocks = getBlocks(1, 20);
             blockNameTemp = blocks.getContent().stream()
                     .filter(
-                            block -> block.getName().equals(blockName)
-                                    && block.getLocation().equals(location))
+                            block -> block.getName().equals(blockName))
+                    .filter(block -> block.getLocation().equals(location))
                     .map(Block::getName)
                     .findAny()
                     .orElse("");

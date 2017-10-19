@@ -162,7 +162,22 @@ public class AnimalController {
 
         AnimalReport animal = animalService.getSingleAnimal(id);
         if (animal == null) {
-            throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Aimal does not exist");
+            throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Animal does not exist");
+        }
+
+        return animal;
+    }
+
+    @RequestMapping(value = "/animal/search", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    public AnimalReport searchAnimal(@RequestParam("name") String name) {
+
+        if (name == null || name.isEmpty())
+            throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Animal Name cannot be empty");
+
+        AnimalReport animal = animalService.searchAnimal(name);
+        if (animal == null) {
+            throw new BadRequestException(CustomResponseCode.INVALID_REQUEST, "Animal does not exist");
         }
 
         return animal;
