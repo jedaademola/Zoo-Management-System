@@ -18,8 +18,8 @@ public class TestLamdba {
         System.out.println(ff.apply(1, 2, 3));
         //
 
-        Student s1 = new Student("stanley", 24);
-        Student s2 = new Student("lukman", 25);
+        Student s1 = new Student("stanley", 24, "MPP");
+        Student s2 = new Student("lukman", 25, "MPP");
 
         List<Student> students = new ArrayList<>();
         students.add(s1);
