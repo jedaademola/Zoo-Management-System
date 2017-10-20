@@ -1,7 +1,8 @@
 
 
 
-
+use zoo_system_db
+go
 
 IF EXISTS(SELECT *
           FROM sys.objects
