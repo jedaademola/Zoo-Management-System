@@ -45,7 +45,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.
                 authorizeRequests().antMatchers("/**", "/css/**", "/js/**", "/images/*",
                         "/fonts/*",
-                "/favicon.ico", "/api/v1/zoo/user/authenticate", "/api/v1/zoo/animal/search").
+                "/favicon.ico", "/api/v1/zoo/user/authenticate", "/api/v1/zoo/animal/search"
+                , "/api-docs/**", "/docs/**").
                 permitAll().
                 anyRequest().authenticated().and().
                 csrf().disable().
